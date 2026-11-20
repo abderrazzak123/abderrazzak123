@@ -211,6 +211,7 @@ nav.bottom button.active{background:var(--accent); color:#fff}
   </section>
   <section class="section" id="tab-concours">
     <h3 class="sec-title" data-i18n="tab_concours">المباريات</h3>
+    <div class="field" style="margin-bottom:12px"><input id="concoursSearch" type="search" placeholder="ابحث عن مباراة أو جهة…" autocomplete="off"></div>
     <div id="concoursList"></div>
   </section>
   <section class="section" id="tab-jobs">
@@ -358,7 +359,7 @@ const I18N = {
     err_wrong_pass:"كلمة السر غير صحيحة", err_no_user:"هذا الحساب غير موجود", err_email_used:"هذا البريد مسجل مسبقا",
     err_weak:"كلمة السر قصيرة — 6 أحرف على الأقل", err_bad_email:"البريد الإلكتروني غير صحيح",
     err_network:"مشكلة في الاتصال — أعد المحاولة", err_generic:"حدثت مشكلة — أعد المحاولة",
-    err_fill:"أدخل البريد الإلكتروني وكلمة السر"
+    err_fill:"أدخل البريد الإلكتروني وكلمة السر", search_ph:"ابحث عن مباراة أو جهة…", no_results:"لا نتائج مطابقة"
   },
   fr: {
     login_sub:"Connectez-vous pour utiliser l'application et enregistrer vos fichiers dans votre compte",
@@ -398,7 +399,8 @@ const I18N = {
     err_wrong_pass:"Mot de passe incorrect", err_no_user:"Ce compte n'existe pas",
     err_email_used:"Cet e-mail est déjà enregistré", err_weak:"Mot de passe trop court — 6 caractères minimum",
     err_bad_email:"E-mail invalide", err_network:"Problème de connexion — réessayez",
-    err_generic:"Un problème est survenu — réessayez", err_fill:"Entrez l'e-mail et le mot de passe"
+    err_generic:"Un problème est survenu — réessayez", err_fill:"Entrez l'e-mail et le mot de passe",
+    search_ph:"Rechercher un concours ou un organisme…", no_results:"Aucun résultat"
   }
 };
 let LANG = localStorage.getItem("mc_lang") || "ar";
@@ -408,6 +410,7 @@ function applyLang(){
   document.documentElement.dir = LANG === "fr" ? "ltr" : "rtl";
   document.querySelectorAll("[data-i18n]").forEach(el=>{ el.textContent = t(el.dataset.i18n); });
   const lb = document.getElementById("langBtn"); if(lb) lb.textContent = LANG === "fr" ? "عربي" : "FR";
+  const si = document.getElementById("concoursSearch"); if(si) si.placeholder = t("search_ph");
   renderAll();
   if(window.loadFiles) window.loadFiles();
 }
@@ -416,6 +419,7 @@ document.getElementById("langBtn").addEventListener("click", ()=>{
   localStorage.setItem("mc_lang", LANG);
   applyLang();
 });
+document.getElementById("concoursSearch").addEventListener("input", renderConcours);
 
 function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function daysUntil(dateStr){
@@ -454,8 +458,10 @@ function renderHero(){
 }
 function renderConcours(){
   const el = document.getElementById("concoursList");
-  if(!DATA.concours.length){ el.innerHTML = '<div class="card empty">'+t("no_concours")+'</div>'; return; }
-  el.innerHTML = DATA.concours.map(c =>
+  const q = (document.getElementById("concoursSearch")?.value || "").trim().toLowerCase();
+  const list = q ? DATA.concours.filter(c => ((c.title||"")+" "+(c.org||"")+" "+(c.note||"")).toLowerCase().includes(q)) : DATA.concours;
+  if(!list.length){ el.innerHTML = '<div class="card empty">'+(q ? t("no_results") : t("no_concours"))+'</div>'; return; }
+  el.innerHTML = list.map(c =>
     '<div class="card concours"><h4>'+esc(c.title)+'</h4><div class="org">'+esc(c.org)+'</div>'
     + '<div class="dates">'+chipFor(c)+(c.deadline?' &nbsp;'+t("deadline_lbl")+fmtDate(c.deadline):'')+(c.exam?'<br>'+t("exam_lbl")+fmtDate(c.exam):'')+'</div>'
     + (c.note?'<div class="note">'+esc(c.note)+'</div>':'')+applyBtn(c,false)+'</div>'
