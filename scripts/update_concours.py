@@ -94,6 +94,11 @@ def parse_page(html):
             if rest.startswith(clean(title)):
                 org = clean(rest[len(clean(title)):])
             org = re.sub(r"\s*Annonce\s*$", "", org)
+        # The card link text embeds badge + dates; cut them from the title.
+        title = re.split(r"\s+Annonce\s+", clean(title))[0]
+        title = re.split(r"\s+Limite de dépôt\s*:", title)[0]
+        title = re.split(r"\s+Date du concours\s*:", title)[0]
+        org = re.split(r"\s+Annonce\s+", clean(org))[0]
         items.append({
             "title": clean(title),
             "org": clean(org),
