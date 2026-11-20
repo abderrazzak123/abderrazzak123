@@ -171,6 +171,15 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 .filerow .fname{flex:1;word-break:break-all}
 .filerow button{background:none;border:none;color:var(--accent);font-size:13.5px;cursor:pointer;padding:4px}
 .filerow .del{color:#c0392b}
+.stories{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:none}
+.stories::-webkit-scrollbar{display:none}
+.story{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:5px;text-decoration:none;color:inherit;width:68px}
+.story .ring{width:62px;height:62px;border-radius:50%;padding:3px;background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)}
+.story .inner{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;border:2px solid var(--bg,#e9edf6)}
+.story .lbl{font-size:11px;color:var(--muted);text-align:center;line-height:1.25;max-width:68px}
+.news-banner{height:110px;border-radius:16px;margin-bottom:10px;display:flex;align-items:flex-end;padding:12px;color:#fff;font-weight:800;font-size:17px;line-height:1.35;background:linear-gradient(135deg,#0b57d0,#7b1fa2)}
+.news-img{width:100%;height:150px;object-fit:cover;border-radius:16px;margin-bottom:10px;display:block}
+.news-video{width:100%;aspect-ratio:16/9;border:none;border-radius:16px;margin-bottom:10px;display:block}
 </style>
 </head>
 <body>
@@ -202,6 +211,7 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 <div id="pull" data-i18n="pull_refresh">اسحب للتحديث…</div>
 <main id="main">
   <section class="section active" id="tab-home">
+    <div class="stories" id="storiesRow"></div>
     <div id="hero"></div>
     <h3 class="sec-title" data-i18n="latest_news">آخر المستجدات</h3>
     <div class="card" id="homeNews"></div>
@@ -467,9 +477,33 @@ function renderConcours(){
 function newsHtml(items){
   if(!items.length) return '<div class="empty">'+t("no_news")+'</div>';
   return items.map(n =>
-    '<div class="news-item"><div class="date">'+fmtDate(n.date)+'</div><div class="t">'+esc(n.title)+'</div>'
+    '<div class="news-item">'
+    + (n.video ? '<iframe class="news-video" src="'+esc(n.video)+'" allowfullscreen loading="lazy"></iframe>'
+       : n.img ? '<img class="news-img" src="'+esc(n.img)+'" alt="" loading="lazy">'
+       : '<div class="news-banner">'+esc(n.title)+'</div>')
+    + '<div class="date">'+fmtDate(n.date)+'</div><div class="t">'+esc(n.title)+'</div>'
     + '<div class="b">'+esc(n.body)+'</div>'
     + (n.link?'<a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+t("official_source")+(LANG==="fr"?" →":" ←")+'</a>':'')+'</div>'
+  ).join("");
+}
+const SITES = [
+  {ar:"التشغيل العمومي", fr:"Emploi public", url:"https://www.emploi-public.ma", mono:"EP", grad:"linear-gradient(135deg,#0b57d0,#4285f4)"},
+  {ar:"الولوج", fr:"Wolouj", url:"https://wolouj.men.gov.ma", mono:"W", grad:"linear-gradient(135deg,#188038,#34a853)"},
+  {ar:"الجامعات", fr:"Universités", url:"https://recrutement.enssup.gov.ma", mono:"U", grad:"linear-gradient(135deg,#7b1fa2,#ba68c8)"},
+  {ar:"الباك الحر", fr:"Bac libre", url:"https://candidaturesbac.men.gov.ma", mono:"B", grad:"linear-gradient(135deg,#e37400,#f9ab00)"},
+  {ar:"المالية", fr:"Finances", url:"https://e-recrutement.finances.gov.ma", mono:"F", grad:"linear-gradient(135deg,#0d7377,#14a085)"},
+  {ar:"ReKrute", fr:"ReKrute", url:"https://www.rekrute.com", mono:"R", grad:"linear-gradient(135deg,#c2185b,#ec407a)"},
+  {ar:"Indeed", fr:"Indeed", url:"https://ma.indeed.com", mono:"IN", grad:"linear-gradient(135deg,#003a9b,#2557d6)"},
+  {ar:"Moncallcenter", fr:"Moncallcenter", url:"https://www.moncallcenter.ma", mono:"MC", grad:"linear-gradient(135deg,#5e35b1,#7e57c2)"},
+  {ar:"Stagiaires", fr:"Stagiaires", url:"https://www.stagiaires.ma", mono:"ST", grad:"linear-gradient(135deg,#00838f,#00acc1)"},
+  {ar:"MarEmploi", fr:"MarEmploi", url:"https://www.maremploi.ma", mono:"ME", grad:"linear-gradient(135deg,#ad1457,#d81b60)"},
+  {ar:"Emploi.ma", fr:"Emploi.ma", url:"https://www.emploi.ma", mono:"EM", grad:"linear-gradient(135deg,#283593,#3949ab)"}
+];
+function renderStories(){
+  const el = document.getElementById("storiesRow");
+  if(!el) return;
+  el.innerHTML = SITES.map(s =>
+    '<a class="story" href="'+s.url+'" target="_blank" rel="noopener"><span class="ring"><span class="inner" style="background:'+s.grad+'">'+s.mono+'</span></span><span class="lbl">'+(LANG==="fr"?s.fr:s.ar)+'</span></a>'
   ).join("");
 }
 function renderNews(){
@@ -478,7 +512,7 @@ function renderNews(){
   document.getElementById("homeNews").innerHTML = newsHtml(sorted.slice(0,3));
   document.getElementById("updatedLine").textContent = DATA.updated ? t("updated_lbl")+fmtDate(DATA.updated) : "";
 }
-function renderAll(){ renderHero(); renderConcours(); renderNews(); renderJobs(); }
+function renderAll(){ renderStories(); renderHero(); renderConcours(); renderNews(); renderJobs(); }
 function renderJobs(){
   const el = document.getElementById("jobsList");
   if(!el) return;
