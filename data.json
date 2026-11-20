@@ -1,1 +1,493 @@
-{"concours":[{"apply":"https://wolouj.men.gov.ma","deadline":"2026-11-25","exam":"2026-12-05","id":"specialiste","note":"559 منصب — آخر أجل 25 نونبر مع 16:30","org":"وزارة التربية الوطنية — الأطر المختصة","title":"مختص الاقتصاد والإدارة"},{"apply":"https://candidaturesbac.men.gov.ma","deadline":"2026-12-04","exam":"","id":"baclibre","note":"علوم اقتصادية وتدبير — مسلك علوم اقتصادية","org":"وزارة التربية الوطنية","title":"الباك الحر 2027"},{"apply":"https://wolouj.men.gov.ma","deadline":"2026-11-19","exam":"2026-11-28","id":"primaire","note":"لوائح المقبولين للكتابي: 24 نونبر — الكتابي: 28 نونبر","org":"الأكاديميات الجهوية للتربية والتكوين","title":"التعليم الابتدائي — مزدوج"},{"apply":"https://e-recrutement.finances.gov.ma","deadline":"","exam":"2026-09-20","id":"adii","note":"الكتابي داز في 20 شتنبر — النتائج لم تنشر بعد","org":"إدارة الجمارك والضرائب غير المباشرة","title":"مفتش الجمارك — الدرجة 2"},{"apply":"https://recrutement.enssup.gov.ma","deadline":"2026-11-19","exam":"2026-11-29","id":"universites","note":"أجل الترشيح انتهى","org":"الجامعات المغربية","title":"متصرف درجة 3 — علوم التدبير"},{"apply":"","deadline":"","exam":"2026-11-08","id":"ormvad","note":"الكتابي داز في 8 نونبر بالجديدة","org":"المكتب الجهوي للاستثمار الفلاحي لدكالة","title":"متصرف درجة 3 — علوم اقتصادية وتدبير"}],"news":[{"body":"تصدر اللوائح يوم 24 نونبر على بوابة الولوج.","date":"2026-11-20","link":"https://wolouj.men.gov.ma","title":"لوائح المقبولين للكتابي — التعليم الابتدائي"},{"body":"يغلق الترشيح يوم 25 نونبر مع 16:30. الكتابي يوم 5 دجنبر.","date":"2026-11-20","link":"https://wolouj.men.gov.ma","title":"آخر أجل لمختص الاقتصاد والإدارة"},{"body":"الاختبار الكتابي يوم السبت 28 نونبر.","date":"2026-11-20","link":"","title":"كتابي التعليم الابتدائي"},{"body":"نتائج كتابي مفتش الجمارك الدرجة 2 لم تنشر بعد.","date":"2026-11-20","link":"https://e-recrutement.finances.gov.ma","title":"نتائج الجمارك"},{"body":"يغلق التسجيل يوم 4 دجنبر 2026.","date":"2026-11-20","link":"https://candidaturesbac.men.gov.ma","title":"آخر أجل للباك الحر"}],"updated":"2026-11-20"}
+{
+ "concours": [
+  {
+   "apply": "https://wolouj.men.gov.ma",
+   "deadline": "2026-11-25",
+   "exam": "2026-12-05",
+   "id": "specialiste",
+   "note": "559 منصب — آخر أجل 25 نونبر مع 16:30",
+   "org": "وزارة التربية الوطنية — الأطر المختصة",
+   "title": "مختص الاقتصاد والإدارة"
+  },
+  {
+   "apply": "https://candidaturesbac.men.gov.ma",
+   "deadline": "2026-12-04",
+   "exam": "",
+   "id": "baclibre",
+   "note": "علوم اقتصادية وتدبير — مسلك علوم اقتصادية",
+   "org": "وزارة التربية الوطنية",
+   "title": "الباك الحر 2027"
+  },
+  {
+   "apply": "https://wolouj.men.gov.ma",
+   "deadline": "2026-11-19",
+   "exam": "2026-11-28",
+   "id": "primaire",
+   "note": "لوائح المقبولين للكتابي: 24 نونبر — الكتابي: 28 نونبر",
+   "org": "الأكاديميات الجهوية للتربية والتكوين",
+   "title": "التعليم الابتدائي — مزدوج"
+  },
+  {
+   "apply": "https://e-recrutement.finances.gov.ma",
+   "deadline": "",
+   "exam": "2026-09-20",
+   "id": "adii",
+   "note": "الكتابي داز في 20 شتنبر — النتائج لم تنشر بعد",
+   "org": "إدارة الجمارك والضرائب غير المباشرة",
+   "title": "مفتش الجمارك — الدرجة 2"
+  },
+  {
+   "apply": "https://recrutement.enssup.gov.ma",
+   "deadline": "2026-11-19",
+   "exam": "2026-11-29",
+   "id": "universites",
+   "note": "أجل الترشيح انتهى",
+   "org": "الجامعات المغربية",
+   "title": "متصرف درجة 3 — علوم التدبير"
+  },
+  {
+   "apply": "",
+   "deadline": "",
+   "exam": "2026-11-08",
+   "id": "ormvad",
+   "note": "الكتابي داز في 8 نونبر بالجديدة",
+   "org": "المكتب الجهوي للاستثمار الفلاحي لدكالة",
+   "title": "متصرف درجة 3 — علوم اقتصادية وتدبير"
+  }
+ ],
+ "news": [
+  {
+   "body": "تصدر اللوائح يوم 24 نونبر على بوابة الولوج.",
+   "date": "2026-11-20",
+   "link": "https://wolouj.men.gov.ma",
+   "title": "لوائح المقبولين للكتابي — التعليم الابتدائي"
+  },
+  {
+   "body": "يغلق الترشيح يوم 25 نونبر مع 16:30. الكتابي يوم 5 دجنبر.",
+   "date": "2026-11-20",
+   "link": "https://wolouj.men.gov.ma",
+   "title": "آخر أجل لمختص الاقتصاد والإدارة"
+  },
+  {
+   "body": "الاختبار الكتابي يوم السبت 28 نونبر.",
+   "date": "2026-11-20",
+   "link": "",
+   "title": "كتابي التعليم الابتدائي"
+  },
+  {
+   "body": "نتائج كتابي مفتش الجمارك الدرجة 2 لم تنشر بعد.",
+   "date": "2026-11-20",
+   "link": "https://e-recrutement.finances.gov.ma",
+   "title": "نتائج الجمارك"
+  },
+  {
+   "body": "يغلق التسجيل يوم 4 دجنبر 2026.",
+   "date": "2026-11-20",
+   "link": "https://candidaturesbac.men.gov.ma",
+   "title": "آخر أجل للباك الحر"
+  }
+ ],
+ "updated": "2026-11-20",
+ "jobs": [
+  {
+   "title": "Ingénieur IAM / CIAM",
+   "company": "EXCEL Management Conseil",
+   "city": "Rabat",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-ingenieur-iam-ciam-recrutement-excel-management-conseil-rabat-188714.html"
+  },
+  {
+   "title": "Facilities Analyst",
+   "company": "TELUS Digital",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-facilities-analyst-recrutement-telus-digital-casablanca-188713.html"
+  },
+  {
+   "title": "Customer Experience Manager",
+   "company": "TELUS Digital",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-customer-experience-manager-recrutement-telus-digital-casablanca-188712.html"
+  },
+  {
+   "title": "Human Resource Manager",
+   "company": "TELUS Digital",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-human-resource-manager-recrutement-telus-digital-casablanca-188711.html"
+  },
+  {
+   "title": "Ingénieur Marque Industrielle H/F",
+   "company": "Safran Nacelles",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-ingenieur-marque-industrielle-recrutement-safran-nacelles-casablanca-188710.html"
+  },
+  {
+   "title": "Real Time Analyst",
+   "company": "TELUS Digital",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-real-time-analyst-recrutement-telus-digital-casablanca-188709.html"
+  },
+  {
+   "title": "Operations Team Leader",
+   "company": "TELUS Digital",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-operations-team-leader-recrutement-telus-digital-casablanca-188708.html"
+  },
+  {
+   "title": "Operations Quality Analyst",
+   "company": "TELUS Digital",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-operations-quality-analyst-recrutement-telus-digital-casablanca-188707.html"
+  },
+  {
+   "title": "Responsable Atelier de Production H/F",
+   "company": "ORH Assessment",
+   "city": "Nouaceur",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-responsable-atelier-de-production-hf-recrutement-orh-assessment-nouaceur-188706.html"
+  },
+  {
+   "title": "Key Account Manager ( FMCG )",
+   "company": "Smollan Morocco",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-key-account-manager--fmcg--recrutement-smollan-morocco-casablanca-188705.html"
+  },
+  {
+   "title": "Operations Team Leader (French & English)",
+   "company": "TELUS Digital",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-operations-team-leader-french-english-recrutement-telus-digital-casablanca-188704.html"
+  },
+  {
+   "title": "Responsable Logistique H/F",
+   "company": "Université Internationale de Rabat (UIR)",
+   "city": "Rabat",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-responsable-logistique-hf-recrutement-universite-internationale-de-rabat-uir-rabat-188703.html"
+  },
+  {
+   "title": "Ingénieur d'études Électricité / Énergies Renouvelables.",
+   "company": "Novec",
+   "city": "Salé Technopolis",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-ingenieur-detudes-electricite-energies-renouvelables.-recrutement-novec-sale-technopolis-188702.html"
+  },
+  {
+   "title": "Chargé(e) Alumni / Alumni Relations Officer",
+   "company": "Université Internationale de Rabat (UIR)",
+   "city": "Salé",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-chargee-alumni-alumni-relations-officer-recrutement-universite-internationale-de-rabat-uir-sale-188372.html"
+  },
+  {
+   "title": "Stagiaire Ingénieur en Génie Industriel H/F",
+   "company": "Groupe Bel",
+   "city": "Tanger",
+   "contract": "Stage",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-stagiaire-ingenieur-en-genie-industriel-hf-recrutement-groupe-bel-tanger-188700.html"
+  },
+  {
+   "title": "Téléprospection téléphonique en B to B junior",
+   "company": "O&D Services",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-teleprospection-telephonique-en-b-to-b-junior-recrutement-od-services-sidi-maarouf-casablanca-187353.html"
+  },
+  {
+   "title": "Assistant(e) Commercial(e) en Réception d'Appels",
+   "company": "Maroc Climate and Security (MCS) - Carrier",
+   "city": "Casablanca",
+   "contract": "CDD",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-assistante-commercialeen-reception-dappels-recrutement-maroc-climate-and-security-mcs---carrier-casablanca-188698.html"
+  },
+  {
+   "title": "Animateur HSE",
+   "company": "Best Biscuits Maroc",
+   "city": "Had Soualem",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-animateur-hse-recrutement-best-biscuits-maroc-had-soualem-187850.html"
+  },
+  {
+   "title": "Responsable audit et conformité",
+   "company": "Es Saadi Marrakech Resort",
+   "city": "Marrakech",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-responsable-audit-et-conformite-recrutement-es-saadi-marrakech-resort-marrakech-188695.html"
+  },
+  {
+   "title": "Chargé Facturation (CDD 11 mois)",
+   "company": "Maroc Climate and Security (MCS) - Carrier",
+   "city": "Casablanca",
+   "contract": "CDD",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-chargee-de-facturation-cdd-11-mois-recrutement-maroc-climate-and-security-mcs---carrier-casablanca-186746.html"
+  },
+  {
+   "title": "Credit Analyst (Bilingual) (M/F)",
+   "company": "Maroc Climate and Security (MCS) - Carrier",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-credit-analyst-bilingual-mf-recrutement-maroc-climate-and-security-mcs---carrier-casablanca-188693.html"
+  },
+  {
+   "title": "Chargé(e) d'Accompagnement des Changements SI",
+   "company": "FMPS - Fondation Marocaine du Préscolaire",
+   "city": "Rabat",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-chargee-daccompagnement-des-changements-si-recrutement-fmps---fondation-marocaine-du-prescolaire-rabat-188692.html"
+  },
+  {
+   "title": "Magasinier-Cariste",
+   "company": "Pratt & Whitney",
+   "city": "Nouaceur",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-magasinier-cariste-recrutement-pratt-whitney-nouaceur-187273.html"
+  },
+  {
+   "title": "Ingénieur Hydraulicien Expérimenté",
+   "company": "Société de Développement des Services Publics de Distribution",
+   "city": "Béni Mellal",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-ingenieur-hydraulicien-experimente-recrutement-societe-de-developpement-des-services-publics-de-distribution-beni-mellal-188688.html"
+  },
+  {
+   "title": "Chargé de portefeuille H/F",
+   "company": "Fondation Arrawaj",
+   "city": "Souk Sabt",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-charge-de-portefeuille-hf-recrutement-fondation-arrawaj-souk-sabt-188683.html"
+  },
+  {
+   "title": "Technicien Laboratoire d'analyses médicales",
+   "company": "AKDITAL",
+   "city": "Mohammédia",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-technicien-laboratoire-danalyses-medicales-recrutement-akdital-mohammedia-188025.html"
+  },
+  {
+   "title": "Business Analyst",
+   "company": "CAC - Centrale Automobile Chérifienne",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-business-analyst-recrutement-cac-centrale-automobile-cherifienne-casablanca-188385.html"
+  },
+  {
+   "title": "Comptable Junior H/F",
+   "company": "CAC - Centrale Automobile Chérifienne",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-comptable-junior-hf---casablanca-recrutement-cac-centrale-automobile-cherifienne-casablanca-188677.html"
+  },
+  {
+   "title": "Conseiller(ère) Commercial(e)",
+   "company": "Jameel Motors",
+   "city": "Rabat",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-conseillerere-commerciale-recrutement-jameel-motors-rabat-188675.html"
+  },
+  {
+   "title": "Assistante Médicale",
+   "company": "Locamed",
+   "city": "Casablanca",
+   "contract": "CDI",
+   "salary": "",
+   "url": "https://www.rekrute.com/offre-emploi-assistante-medicale-recrutement-locamed-casablanca-188694.html"
+  },
+  {
+   "title": "Conseiller clientèle bancaire avec rebond commercial - primes déplafonnées sur sidi maarouf",
+   "company": "Teleperformance",
+   "city": "Casablanca",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/teleperformance-conseiller-clientele-bancaire-avec-rebond-commercial-primes-deplafonnees-sur-sidi-maarouf-170522"
+  },
+  {
+   "title": "Commerciaux francophones expérimentés : besoin immédiat",
+   "company": "Right Place Call Morocco",
+   "city": "Casablanca",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/right-place-call-morocco-commerciaux-francophones-experimentes-besoin-immediat-167255"
+  },
+  {
+   "title": "Télévendeur(euse) experts(tes) en mutuelle santé F/H",
+   "company": "Konecta Atlas",
+   "city": "Casablanca",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/konecta-atlas-televendeur-euse-experts-tes-en-mutuelle-sante-f-h-169959"
+  },
+  {
+   "title": "Chargés de recrutement (h/f) pour centre d'appels",
+   "company": "Digital Up",
+   "city": "Casablanca",
+   "contract": "",
+   "salary": "A négocier",
+   "url": "https://www.moncallcenter.ma/offre-emploi/digital-up-charges-de-recrutement-h-f-pour-centre-d-appels-170121"
+  },
+  {
+   "title": "Qualification de fiche !!!!! débutants acceptés",
+   "company": "Call Center Group",
+   "city": "Casablanca",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/call-center-group-qualification-de-fiche-debutants-acceptes-170490"
+  },
+  {
+   "title": "Expert en mutuelle santé_ rabat",
+   "company": "CPA Maroc",
+   "city": "Rabat",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/cpa-maroc-expert-en-mutuelle-sante_-rabat-165429"
+  },
+  {
+   "title": "Sezashore recrute des télévendeurs, opérateurs téléphoniques, marché belge",
+   "company": "Seza Shore",
+   "city": "Fès",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/seza-shore-sezashore-recrute-des-televendeurs-operateurs-telephoniques-marche-belge-166105"
+  },
+  {
+   "title": "Succursale MELEINE Rabat recrute des commerciaux pour ses projets en assurance auto",
+   "company": "Meleine",
+   "city": "Rabat",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/meleine-succursale-meleine-rabat-recrute-des-commerciaux-pour-ses-projets-en-assurance-auto-165056"
+  },
+  {
+   "title": "Marrakech Recrutement de Télévendeurs Expérimentés en Énergie (Changement de Fournisseur)",
+   "company": "Midnour Call",
+   "city": "Marrakech",
+   "contract": "",
+   "salary": "6000 MAD",
+   "url": "https://www.moncallcenter.ma/offre-emploi/midnour-call-marrakech-recrutement-de-televendeurs-experimentes-en-energie-changement-de-fournisseur-139494"
+  },
+  {
+   "title": "Commercial Énergie B2B – Multi-opérateurs",
+   "company": "Phone Advisor",
+   "city": "Rabat",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/phone-advisor-commercial-energie-b2b-multi-operateurs-rabat-170257"
+  },
+  {
+   "title": "Conseillers expérimentés en BTOB et/ou en BTOC - Salaire entre 4000-5500Dhs + primes non plafonnées",
+   "company": "Right Place Call Morocco",
+   "city": "Casablanca",
+   "contract": "",
+   "salary": "4000-5500Dhs",
+   "url": "https://www.moncallcenter.ma/offre-emploi/right-place-call-morocco-conseillers-experimentes-en-btob-et-ou-en-btoc-salaire-entre-4000-5500dhs-primes-non-plafonnees-170129"
+  },
+  {
+   "title": "Téléconseillers experts en pac (prise de rdv) – fixe 7000 dhs + primes",
+   "company": "Vcall",
+   "city": "Casablanca",
+   "contract": "",
+   "salary": "7000 Dhs",
+   "url": "https://www.moncallcenter.ma/offre-emploi/vcall-teleconseillers-experts-en-pac-prise-de-rdv-fixe-7000-dhs-primes-168894"
+  },
+  {
+   "title": "Conseillers clientèle francophones (h/f) – temps partiel - agadir",
+   "company": "Concentrix",
+   "city": "Agadir",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/concentrix-conseillers-clientele-francophones-h-f-temps-partiel-agadir-170327"
+  },
+  {
+   "title": "Téléconseiller(e) santé – débutants acceptés / formation rémunérée",
+   "company": "Teleactis",
+   "city": "Agadir",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/teleactis-teleconseiller-e-sante-debutants-acceptes-formation-remuneree-170556"
+  },
+  {
+   "title": "Technicien(ne) réseau & cybersécurité parfaitement francophone",
+   "company": "Offshore Valley",
+   "city": "Agadir",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/offshore-valley-technicien-ne-reseau-amp-cybersecurite-parfaitement-francophone-169313"
+  },
+  {
+   "title": "Superviseur senior - h/f",
+   "company": "Tersea",
+   "city": "Fès",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/tersea-superviseur-senior-h-f-169879"
+  },
+  {
+   "title": "Téléconseillers en assurances ( mutuelle )",
+   "company": "Saphir Direct",
+   "city": "Fès",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/saphir-direct-teleconseillers-en-assurances-mutuelle-110598"
+  },
+  {
+   "title": "Commerciaux à meknès avec prime déplafonnée ! - prime de bienvenue de 3000 dh",
+   "company": "Concentrix",
+   "city": "Meknès",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/concentrix-commerciaux-a-meknes-avec-prime-deplafonnee-prime-de-bienvenue-de-3000-dh-170102"
+  },
+  {
+   "title": "Recrutement – conseillers en mutuelle santé -nouveau site meknès",
+   "company": "Net Courtage Assurances",
+   "city": "Meknès",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/net-courtage-assurances-recrutement-conseillers-en-mutuelle-sante-nouveau-site-meknes-159294"
+  },
+  {
+   "title": "Agente de Cobros con experiencia imprescindible dominio del español - Tanger",
+   "company": "Recoverit Maroc",
+   "city": "Tanger",
+   "contract": "",
+   "salary": "",
+   "url": "https://www.moncallcenter.ma/offre-emploi/recoverit-maroc-agente-de-cobros-con-experiencia-imprescindible-dominio-del-espanol-tanger-163852"
+  }
+ ]
+}
