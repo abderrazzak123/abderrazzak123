@@ -439,7 +439,7 @@ function chipFor(c){
   return '<span class="chip done">'+t("waiting")+'</span>';
 }
 function applyBtn(c, heroStyle){
-  if(c.apply) return '<a class="btn'+(heroStyle?"":" primary")+'" href="'+esc(c.apply)+'" target="_blank" rel="noopener">"+t("apply_official")+"</a>';
+  if(c.apply) return '<a class="btn'+(heroStyle?"":" primary")+'" href="'+esc(c.apply)+'" target="_blank" rel="noopener">'+t("apply_official")+'</a>';
   return '<span class="btn disabled">'+t("apply_paper")+'</span>';
 }
 function renderHero(){
@@ -466,7 +466,7 @@ function newsHtml(items){
   return items.map(n =>
     '<div class="news-item"><div class="date">'+fmtDate(n.date)+'</div><div class="t">'+esc(n.title)+'</div>'
     + '<div class="b">'+esc(n.body)+'</div>'
-    + (n.link?'<a href="'+esc(n.link)+'" target="_blank" rel="noopener">"+t("official_source")+(LANG==="fr"?" →":" ←")+"</a>':'')+'</div>'
+    + (n.link?'<a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+t("official_source")+(LANG==="fr"?" →":" ←")+'</a>':'')+'</div>'
   ).join("");
 }
 function renderNews(){
@@ -484,7 +484,7 @@ function renderJobs(){
   el.innerHTML = jobs.map(j =>
     '<div class="card concours"><h4>'+esc(j.title)+'</h4><div class="org">'+esc(j.company)+(j.city?' — '+esc(j.city):'')+'</div>'
     + ((j.contract||j.salary)?'<div class="dates">'+esc([j.contract,j.salary].filter(Boolean).join(" · "))+'</div>':'')
-    + (j.url?'<a class="btn primary" href="'+esc(j.url)+'" target="_blank" rel="noopener">"+t("view_offer")+"</a>':'')+'</div>'
+    + (j.url?'<a class="btn primary" href="'+esc(j.url)+'" target="_blank" rel="noopener">'+t("view_offer")+'</a>':'')+'</div>'
   ).join("");
 }
 
