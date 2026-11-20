@@ -1,1407 +1,312 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<link rel="manifest" href="manifest.json" />
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="color-scheme" content="light dark" />
-<meta name="theme-color" content="#0071e3" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="description" content="كونكوراتي — مبارياتك ووثائقك في مكان واحد، مع ترشيح مباشر للبوابات الرسمية." />
-<link rel="icon" href="data:," />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>My Concours — كونكوراتي</title>
+<meta name="theme-color" content="#0071e3">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
 <style>
-  /* ===== Original app design system (Liquid Glass) ===== */
-  :root{
-    --bg:#e9edf6;
-    --surface:rgba(255,255,255,.55);
-    --surface-2:rgba(255,255,255,.38);
-    --ink:#1c1c1e; --dim:#63636b;
-    --line:rgba(96,108,140,.26);
-    --accent:#0071e3; --accent-ink:#ffffff;
-    --accent-soft:rgba(0,113,227,.13); --accent-soft-ink:#004a99;
-    --amber:#b25e00; --amber-bg:rgba(255,159,10,.18);
-    --danger:#d70015;
-    --radius:28px;
-    --glass-shadow:0 14px 36px rgba(31,45,110,.13), inset 0 1px 0 rgba(255,255,255,.65);
-    color-scheme:light;
-  }
-  body[data-theme="dark"]{
-    --bg:#0a0a12;
-    --surface:rgba(44,44,54,.5);
-    --surface-2:rgba(72,72,84,.42);
-    --ink:#f5f5f7; --dim:#a7a7b3;
-    --line:rgba(255,255,255,.16);
-    --accent:#0a84ff;
-    --accent-soft:rgba(10,132,255,.22); --accent-soft-ink:#a8d4ff;
-    --amber:#ffb340; --amber-bg:rgba(255,159,10,.2);
-    --danger:#ff6961;
-    --glass-shadow:0 14px 36px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.14);
-    color-scheme:dark;
-  }
-  @media (prefers-color-scheme: dark){
-    body[data-theme="auto"]{
-      --bg:#0a0a12;
-      --surface:rgba(44,44,54,.5);
-      --surface-2:rgba(72,72,84,.42);
-      --ink:#f5f5f7; --dim:#a7a7b3;
-      --line:rgba(255,255,255,.16);
-      --accent:#0a84ff;
-      --accent-soft:rgba(10,132,255,.22); --accent-soft-ink:#a8d4ff;
-      --amber:#ffb340; --amber-bg:rgba(255,159,10,.2);
-      --danger:#ff6961;
-      --glass-shadow:0 14px 36px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.14);
-      color-scheme:dark;
-    }
-  }
-  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
-  html,body{margin:0; padding:0;}
-  html{overscroll-behavior-y:none;}
-  body{
-    font-family:"Tajawal","Segoe UI",system-ui,sans-serif;
-    color:var(--ink); min-height:100dvh; overflow-x:hidden;
-    background-color:var(--bg);
-    background-image:
-      radial-gradient(560px 380px at 12% -4%, rgba(0,113,227,.30), transparent 62%),
-      radial-gradient(480px 360px at 94% 6%, rgba(191,90,242,.26), transparent 62%),
-      radial-gradient(520px 420px at 88% 88%, rgba(50,173,230,.24), transparent 62%),
-      radial-gradient(420px 320px at 6% 92%, rgba(255,159,10,.18), transparent 62%),
-      radial-gradient(380px 300px at 55% 45%, rgba(94,92,230,.10), transparent 65%);
-    background-attachment:fixed; background-repeat:no-repeat;
-  }
-  body[data-theme="dark"]{
-    background-image:
-      radial-gradient(560px 380px at 12% -4%, rgba(10,132,255,.34), transparent 62%),
-      radial-gradient(480px 360px at 94% 6%, rgba(191,90,242,.30), transparent 62%),
-      radial-gradient(520px 420px at 88% 88%, rgba(50,173,230,.26), transparent 62%),
-      radial-gradient(420px 320px at 6% 92%, rgba(255,159,10,.20), transparent 62%),
-      radial-gradient(380px 300px at 55% 45%, rgba(94,92,230,.16), transparent 65%);
-  }
-  @media (prefers-color-scheme: dark){
-    body[data-theme="auto"]{
-      background-image:
-        radial-gradient(560px 380px at 12% -4%, rgba(10,132,255,.34), transparent 62%),
-        radial-gradient(480px 360px at 94% 6%, rgba(191,90,242,.30), transparent 62%),
-        radial-gradient(520px 420px at 88% 88%, rgba(50,173,230,.26), transparent 62%),
-        radial-gradient(420px 320px at 6% 92%, rgba(255,159,10,.20), transparent 62%),
-        radial-gradient(380px 300px at 55% 45%, rgba(94,92,230,.16), transparent 65%);
-    }
-  }
-  button,[role="button"],select,summary,input:not([type="checkbox"],[type="radio"]){min-height:2.25rem;}
-  button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit;}
-  a{color:inherit;}
-  :focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:6px;}
-
-  .glass{
-    background:var(--surface); border:1px solid var(--line);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .card{
-    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    box-shadow:var(--glass-shadow); padding:1.25rem;
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .card-c{
-    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    box-shadow:var(--glass-shadow); padding:.875rem;
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-
-  /* ---------- Install strip (top, glass — original style) ---------- */
-  .install-bar{
-    display:flex; align-items:center; gap:.55rem;
-    padding:.45rem .8rem; padding-top:calc(.45rem + env(safe-area-inset-top,0px));
-    background:var(--surface); border-bottom:1px solid var(--line);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  @media (min-width:1024px){ .install-bar{margin-inline-start:240px;} }
-  .install-bar.hidden{display:none;}
-  .install-bar .ib-txt{flex:1; min-width:0; line-height:1.25;}
-  .install-bar .ib-txt b{display:block; font-size:.88rem; font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-  .install-bar .ib-txt span{font-size:.7rem; color:var(--dim);}
-  .btn-install{
-    background:var(--accent); color:var(--accent-ink); font-weight:700; font-size:.82rem;
-    padding:.45rem .95rem; border-radius:999px; white-space:nowrap; min-height:2.2rem;
-    box-shadow:0 8px 18px rgba(0,113,227,.35), inset 0 1px 0 rgba(255,255,255,.35);
-  }
-  .btn-install:active{transform:scale(.97);}
-  .ib-close{width:34px; height:34px; flex:0 0 34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--dim); font-size:.95rem; min-height:2.1rem;}
-
-  /* ---------- Header (phone / tablet) ---------- */
-  .app-head{
-    position:sticky; top:0; z-index:40;
-    background:var(--surface); border-bottom:1px solid var(--line);
-    box-shadow:0 10px 30px rgba(30,40,90,.10);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-    padding-top:env(safe-area-inset-top,0px);
-  }
-  .app-head .in{
-    max-width:42rem; margin:0 auto; display:flex; align-items:center; gap:.5rem; padding:.55rem 1rem;
-  }
-  .menu-btn{
-    width:40px; height:40px; flex:0 0 40px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center; font-size:1.25rem; color:var(--ink);
-  }
-  .menu-btn:hover{background:var(--surface-2);}
-  .logo-slot{display:flex; flex:0 0 auto; line-height:0;}
-  .brand{flex:1; min-width:0;}
-  .brand b{display:block; font-size:1rem; font-weight:900; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-  .brand span{display:block; font-size:.75rem; color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-  .avatar{
-    border-radius:50%; flex:0 0 auto; padding:0; overflow:hidden;
-    background:linear-gradient(135deg,#0a84ff,#5e5ce6 52%,#bf5af2);
-    color:#fff; font-weight:900; display:flex; align-items:center; justify-content:center;
-    box-shadow:0 6px 16px rgba(94,92,230,.4), inset 0 1px 0 rgba(255,255,255,.45);
-  }
-
-  /* ---------- Sidebar (wide screens) ---------- */
-  .sidebar{
-    display:none; position:fixed; top:0; bottom:0; inset-inline-start:0; z-index:40; width:240px;
-    flex-direction:column; padding:1rem;
-    background:var(--surface); border-inline-end:1px solid var(--line);
-    box-shadow:0 0 44px rgba(30,40,90,.12);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .sidebar .s-brand{display:flex; align-items:center; gap:.7rem; padding:0 .25rem;}
-  .sidebar .s-brand .avatar{margin-inline-start:auto;}
-  .side-nav{margin-top:1.5rem; display:flex; flex-direction:column; gap:.25rem;}
-  .nav-pill{
-    display:flex; align-items:center; gap:.7rem; width:100%; text-align:start;
-    padding:.6rem 1rem; border-radius:999px; font-size:.95rem; font-weight:700; color:var(--dim); min-height:2.9rem;
-  }
-  .nav-pill .gly{font-size:1.15rem; line-height:1; width:1.4rem; text-align:center; flex:0 0 1.4rem;}
-  .nav-pill.on{background:var(--accent-soft); color:var(--accent-soft-ink);}
-  .nav-pill .cnt{margin-inline-start:auto; background:var(--surface-2); border:1px solid var(--line); color:var(--dim); font-size:.68rem; font-weight:800; border-radius:999px; padding:.1rem .5rem;}
-
-  /* ---------- Layout ---------- */
-  .wrap{max-width:42rem; margin:0 auto; padding:1rem 1rem 7.5rem;}
-  @media (min-width:1024px){
-    .app-head{display:none;}
-    .sidebar{display:flex;}
-    .tabbar{display:none;}
-    .wrap{max-width:48rem; margin-inline-start:240px; margin-inline-end:auto; padding-bottom:2.5rem;}
-  }
-  .view{display:none;}
-  .view.active{display:block; animation:fadein .22s ease;}
-  @keyframes fadein{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;}}
-  @media (prefers-reduced-motion: reduce){ .view.active{animation:none;} *{transition:none !important;} }
-
-  /* Pull-to-refresh pill */
-  .ptr{
-    position:fixed; top:calc(.5rem + env(safe-area-inset-top,0px)); inset-inline:0; z-index:60;
-    display:flex; justify-content:center; pointer-events:none; opacity:0; transition:opacity .18s ease, transform .18s ease; transform:translateY(-6px);
-  }
-  .ptr.show{opacity:1; transform:none;}
-  .ptr .p-in{
-    display:flex; align-items:center; gap:.5rem; border-radius:999px; padding:.5rem 1rem;
-    font-size:.875rem; font-weight:700; color:var(--ink); box-shadow:var(--glass-shadow);
-    background:var(--surface); border:1px solid var(--line);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .ptr .spin{display:inline-block;}
-  .ptr.on .spin{animation:rot .7s linear infinite;}
-  @keyframes rot{to{transform:rotate(360deg);}}
-
-  /* ---------- Hero: nearest-deadline countdown (gradient) ---------- */
-  .hero{
-    position:relative; overflow:hidden; border-radius:var(--radius); color:#fff; padding:1rem;
-    background:linear-gradient(135deg,#0071e3,#5e5ce6 52%,#bf5af2);
-    box-shadow:0 20px 44px rgba(94,92,230,.38), inset 0 1px 0 rgba(255,255,255,.45);
-  }
-  .hero .mc-wm{
-    position:absolute; top:-2.6rem; inset-inline-end:0; font-size:104px; font-weight:900; line-height:1;
-    color:rgba(255,255,255,.10); pointer-events:none; user-select:none; font-family:"Segoe UI",system-ui,sans-serif;
-  }
-  .hero .glow{
-    position:absolute; bottom:-4rem; inset-inline-start:-2rem; width:176px; height:176px; border-radius:50%;
-    background:rgba(255,255,255,.15); filter:blur(32px); pointer-events:none;
-  }
-  .hero > *:not(.mc-wm):not(.glow){position:relative;}
-  .hero .h-label{margin:0; font-size:.875rem; font-weight:700; opacity:.92; line-height:1.5;}
-  .hero .count{display:flex; align-items:flex-end; gap:.5rem; margin-top:.35rem;}
-  .hero .count b{font-size:2.25rem; font-weight:900; line-height:1;}
-  .hero .count span{font-size:1rem; font-weight:700; padding-bottom:.15rem;}
-  .hero .h-date{margin:.35rem 0 0; font-size:.875rem; opacity:.92;}
-  .hero-prog{margin-top:.75rem;}
-  .hero-prog .pr-row{display:flex; justify-content:space-between; font-size:.875rem; opacity:.92; margin-bottom:.25rem;}
-  .track{height:.5rem; border-radius:999px; background:rgba(0,0,0,.20); overflow:hidden;}
-  .track .fill{height:100%; border-radius:999px; background:#fff; transition:width .3s ease;}
-  .btn-glass{
-    display:block; width:100%; margin-top:.75rem; border-radius:999px; padding:.5rem 1rem;
-    border:1px solid rgba(255,255,255,.4); background:rgba(255,255,255,.20); color:#fff; font-weight:700; font-size:.95rem;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
-    -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
-  }
-  .btn-hero-apply{
-    display:block; width:100%; margin-top:.5rem; border-radius:999px; padding:.6rem 1rem; text-align:center;
-    background:#fff; color:#0071e3; font-weight:900; font-size:.95rem; text-decoration:none;
-    box-shadow:0 10px 24px rgba(0,0,0,.18);
-  }
-
-  /* ---------- Home stats + scan ---------- */
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; margin-top:.75rem;}
-  .stat{text-align:center;}
-  .stat b{display:block; font-size:1.25rem; font-weight:900; line-height:1.2;}
-  .stat span{font-size:.75rem; color:var(--dim);}
-  .scan-btn{
-    display:block; width:100%; margin-top:.75rem; border-radius:999px; padding:.6rem 1rem;
-    font-weight:700; font-size:.95rem; color:var(--accent); text-align:center; text-decoration:none;
-    border:1px solid rgba(0,113,227,.5); box-shadow:var(--glass-shadow);
-    background:var(--surface);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-
-  /* ---------- Section heads ---------- */
-  .sec-head{display:flex; align-items:baseline; justify-content:space-between; gap:.6rem; margin:1.4rem 0 .55rem;}
-  .sec-head h2{margin:0; font-size:1.125rem; font-weight:700;}
-  .sec-head .more{font-size:.875rem; color:var(--accent); font-weight:700; text-decoration:none; padding:.3rem .1rem;}
-  .sec-sub{font-size:.875rem; color:var(--dim); margin:-.3rem 0 .6rem; line-height:1.65;}
-
-  /* ---------- Search & filter chips ---------- */
-  .search-box{
-    display:flex; align-items:center; gap:.5rem; border-radius:16px; padding:0 1rem;
-    background:var(--surface); border:1px solid var(--line);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.45);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .search-box svg{width:18px; height:18px; stroke:var(--dim); flex:0 0 18px;}
-  .search-box input{flex:1; border:none; background:none; font-family:inherit; font-size:.95rem; color:var(--ink); min-height:2.75rem; outline:none; min-width:0;}
-  .chips{display:flex; gap:.45rem; margin-top:.6rem; flex-wrap:wrap;}
-  .chip{
-    border-radius:999px; padding:.3rem .85rem; font-size:.8rem; font-weight:700; color:var(--dim); min-height:2.1rem;
-    background:var(--surface-2); border:1px solid var(--line);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .chip.on{background:var(--accent-soft); color:var(--accent-soft-ink); border-color:transparent;}
-
-  /* ---------- Concours cards ---------- */
-  .cards-grid{display:grid; gap:.6rem; margin-top:.7rem;}
-  @media (min-width:640px){ .cards-grid{grid-template-columns:1fr 1fr;} }
-  .cards-stack{display:flex; flex-direction:column; gap:.75rem; margin-top:.7rem;}
-  .c-open{display:block; width:100%; text-align:start; padding:0; min-height:0;}
-  .c-top{display:flex; align-items:flex-start; justify-content:space-between; gap:.5rem;}
-  .c-top h3{margin:0; font-size:1rem; font-weight:700; line-height:1.4;}
-  .c-top .c-title{font-size:1rem; font-weight:700; line-height:1.4; text-align:start;}
-  .card .org, .card-c .org{font-size:.875rem; color:var(--dim); margin-top:.25rem; line-height:1.5;}
-  .c-meta{display:flex; flex-wrap:wrap; gap:.15rem .75rem; margin-top:.25rem; font-size:.875rem; color:var(--dim); line-height:1.55;}
-  .c-meta .posts-inline{font-weight:700; color:var(--accent);}
-  .c-meta .urgent{font-weight:700; color:var(--amber);}
-  .chip-st{
-    flex:0 0 auto; border-radius:999px; padding:.28rem .7rem; font-size:.72rem; font-weight:700; white-space:nowrap;
-    background:var(--surface-2); border:1px solid var(--line); color:var(--dim);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
-  }
-  .chip-st.amber{background:var(--amber-bg); color:var(--amber); border-color:transparent;}
-  .chip-st.blue{background:var(--accent-soft); color:var(--accent-soft-ink); border-color:transparent;}
-  .pbar{margin-top:.55rem;}
-  .pbar .pr-row{display:flex; justify-content:space-between; font-size:.8rem; color:var(--dim); margin-bottom:.25rem;}
-  .pbar .track{background:var(--surface-2); box-shadow:inset 0 1px 2px rgba(20,30,80,.15);}
-  .pbar .fill{background:linear-gradient(to left,#0a84ff,#5e5ce6 52%,#bf5af2);}
-  [dir="ltr"] .pbar .fill{background:linear-gradient(to right,#0a84ff,#5e5ce6 52%,#bf5af2);}
-  .btn-apply{
-    display:block; width:100%; margin-top:.65rem; border-radius:999px; padding:.6rem 1rem; text-align:center;
-    background:var(--accent); color:var(--accent-ink); font-weight:700; font-size:.95rem; text-decoration:none;
-    box-shadow:0 10px 24px rgba(0,113,227,.35), inset 0 1px 0 rgba(255,255,255,.35);
-  }
-  .btn-apply:active{transform:scale(.98);}
-  .past{opacity:.6;}
-
-  /* Positions cards */
-  .posts-pill{
-    display:inline-block; border-radius:999px; padding:.5rem 1rem; font-size:1.125rem; font-weight:900; color:#fff;
-    background:linear-gradient(to left,#0071e3,#5e5ce6 52%,#bf5af2);
-    box-shadow:0 10px 22px rgba(94,92,230,.35), inset 0 1px 0 rgba(255,255,255,.4);
-  }
-  [dir="ltr"] .posts-pill{background:linear-gradient(to right,#0071e3,#5e5ce6 52%,#bf5af2);}
-  .posts-none{
-    display:inline-block; border-radius:16px; padding:.5rem .75rem; font-size:.875rem; font-weight:700; color:var(--dim);
-    background:var(--surface-2);
-  }
-  .pos-meta{display:flex; flex-wrap:wrap; align-items:center; gap:.6rem; margin-top:.75rem;}
-  .pos-meta .when{font-size:.875rem; color:var(--dim);}
-  .btn-row{display:flex; gap:.5rem; margin-top:.75rem;}
-  .btn-row .btn-apply{margin-top:0; flex:1;}
-  .btn-details{
-    flex:1; border-radius:999px; padding:.55rem .75rem; font-weight:700; font-size:.95rem; color:var(--ink);
-    background:var(--surface-2);
-  }
-
-  /* ---------- Updates feed ---------- */
-  .feed{display:flex; flex-direction:column; gap:.6rem;}
-  .feed-item .fi-top{display:flex; align-items:flex-start; justify-content:space-between; gap:.5rem;}
-  .feed-item .fi-top .lft{display:flex; flex-wrap:wrap; align-items:center; gap:.5rem;}
-  .feed-item time{font-size:.75rem; color:var(--dim); flex:0 0 auto; padding-top:.2rem;}
-  .feed-item h4{margin:.5rem 0 0; font-size:1rem; font-weight:700; line-height:1.45;}
-  .feed-item p{margin:.25rem 0 0; font-size:.875rem; color:var(--dim); line-height:1.7;}
-
-  /* ---------- Vault ---------- */
-  .doc-list{display:flex; flex-direction:column; gap:.6rem;}
-  .doc-item{display:flex; gap:.7rem; align-items:flex-start;}
-  .doc-item h4{margin:0; font-size:.95rem; font-weight:700;}
-  .doc-item p{margin:.15rem 0 0; font-size:.82rem; color:var(--dim); line-height:1.6;}
-  .doc-item .st{margin-inline-start:auto;}
-  .portals{display:grid; grid-template-columns:1fr 1fr; gap:.6rem;}
-  @media (min-width:640px){ .portals{grid-template-columns:repeat(3,1fr);} }
-  .portal{display:block; text-decoration:none;}
-  .portal b{display:block; font-size:.88rem; font-weight:700; line-height:1.4;}
-  .portal .url{font-size:.7rem; color:var(--dim); direction:ltr; display:block; margin-top:.2rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-  .portal .go{color:var(--accent); font-size:.76rem; font-weight:700; margin-top:.45rem; display:inline-flex; gap:.3rem; align-items:center;}
-  .portal .go svg{width:13px; height:13px; stroke:var(--accent);}
-
-  /* ---------- Scanner ---------- */
-  .scan-preview{display:none; margin-top:.75rem;}
-  .scan-preview.show{display:block;}
-  .scan-preview img{width:100%; max-height:320px; object-fit:contain; border-radius:16px; background:var(--surface-2);}
-  .sess-item{display:flex; gap:.7rem; align-items:center;}
-  .sess-item img{width:54px; height:54px; flex:0 0 54px; object-fit:cover; border-radius:14px;}
-  .sess-item b{font-size:.9rem; font-weight:700; display:block;}
-  .sess-item span{font-size:.75rem; color:var(--dim);}
-
-  /* ---------- Profile / account ---------- */
-  .profile-card{text-align:center; padding:1.5rem 1.25rem;}
-  .profile-card .avatar{margin:0 auto .6rem;}
-  .profile-card h2{margin:0; font-size:1.2rem; font-weight:900;}
-  .profile-card p{margin:.2rem 0 0; color:var(--dim); font-size:.85rem;}
-  .kv{padding:0; overflow:hidden; margin-top:.75rem;}
-  .kv .row{display:flex; justify-content:space-between; gap:1rem; padding:.65rem 1.1rem; border-bottom:1px solid var(--line); font-size:.88rem;}
-  .kv .row:last-child{border-bottom:none;}
-  .kv .row span{color:var(--dim); flex:0 0 auto;}
-  .kv .row b{font-weight:700; text-align:end;}
-  .pref-card{margin-top:.75rem;}
-  .pref-card .lbl{font-size:.8rem; color:var(--dim); font-weight:700; margin:.7rem 0 .35rem;}
-  .pref-card .lbl:first-child{margin-top:0;}
-  .seg{display:flex; background:var(--surface-2); border:1px solid var(--line); border-radius:999px; padding:3px; gap:3px;}
-  .seg button{flex:1; border-radius:999px; font-size:.82rem; font-weight:700; color:var(--dim); padding:.35rem 0; min-height:2.1rem;}
-  .seg button.on{background:var(--accent); color:#fff;}
-
-  /* ---------- Floating bottom tab bar ---------- */
-  .tabbar{
-    position:fixed; inset-inline:.75rem; bottom:max(.75rem, env(safe-area-inset-bottom,0px)); z-index:40;
-  }
-  .tabbar .tabs{
-    max-width:42rem; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:.1rem;
-    border-radius:999px; padding:.35rem;
-    background:var(--surface); border:1px solid var(--line);
-    box-shadow:0 20px 46px rgba(20,30,80,.30), inset 0 1px 0 rgba(255,255,255,.55);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .tab{
-    display:flex; flex-direction:column; align-items:center; gap:.1rem;
-    padding:.35rem .2rem; border-radius:999px; font-size:.72rem; font-weight:700; color:var(--dim); min-height:3.2rem;
-  }
-  .tab .tb-ic{
-    display:flex; width:3.5rem; height:2rem; align-items:center; justify-content:center;
-    border-radius:999px; font-size:1.2rem; line-height:1;
-  }
-  .tab.on{color:var(--accent);}
-  .tab.on .tb-ic{
-    background:var(--accent); color:#fff;
-    box-shadow:0 8px 18px rgba(0,113,227,.45), inset 0 1px 0 rgba(255,255,255,.4);
-  }
-
-  /* ---------- Drawer (nav shortcuts only) ---------- */
-  .drawer-wrap{position:fixed; inset:0; z-index:50; display:none;}
-  .drawer-wrap.open{display:block;}
-  .drawer-wrap .scrim{
-    position:absolute; inset:0; width:100%; height:100%; padding:0;
-    background:rgba(0,0,0,.4); -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px);
-  }
-  .drawer-panel{
-    position:absolute; top:0; bottom:0; inset-inline-start:0; width:288px; max-width:85vw;
-    display:flex; flex-direction:column; overflow-y:auto; overscroll-behavior:contain; padding:1rem;
-    background:var(--surface); border-inline-end:1px solid var(--line);
-    border-start-end-radius:32px; border-end-end-radius:32px;
-    box-shadow:0 24px 60px rgba(10,16,40,.35);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-    transform:translateX(105%); transition:transform .26s cubic-bezier(.32,.72,.28,1);
-  }
-  [dir="ltr"] .drawer-panel{transform:translateX(-105%);}
-  .drawer-wrap.open .drawer-panel{transform:translateX(0);}
-  .drawer-panel .d-head{display:flex; align-items:center; gap:.7rem; padding:0 .25rem;}
-  .drawer-panel .d-head .brand b{font-size:.95rem;}
-  .d-close{
-    margin-inline-start:auto; width:36px; height:36px; flex:0 0 36px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center; color:var(--dim); font-size:1rem;
-  }
-  .d-close:hover{background:var(--surface-2);}
-  .drawer-panel .side-nav{margin-top:1.25rem;}
-
-  /* ---------- Detail sheet ---------- */
-  .sheet{
-    position:fixed; inset:0; z-index:80; overflow-y:auto; overscroll-behavior:contain;
-    background-color:var(--bg);
-    background-image:
-      radial-gradient(560px 380px at 12% -4%, rgba(0,113,227,.30), transparent 62%),
-      radial-gradient(480px 360px at 94% 6%, rgba(191,90,242,.26), transparent 62%),
-      radial-gradient(520px 420px at 88% 88%, rgba(50,173,230,.24), transparent 62%);
-    background-attachment:fixed; background-repeat:no-repeat;
-    transform:translateY(100%); transition:transform .28s cubic-bezier(.32,.72,.28,1);
-  }
-  body[data-theme="dark"] .sheet{
-    background-image:
-      radial-gradient(560px 380px at 12% -4%, rgba(10,132,255,.34), transparent 62%),
-      radial-gradient(480px 360px at 94% 6%, rgba(191,90,242,.30), transparent 62%),
-      radial-gradient(520px 420px at 88% 88%, rgba(50,173,230,.26), transparent 62%);
-  }
-  .sheet.open{transform:translateY(0);}
-  .sheet-head{
-    position:sticky; top:0; z-index:2; display:flex; align-items:center; gap:.6rem;
-    padding:.6rem 1rem; padding-top:calc(.6rem + env(safe-area-inset-top,0px));
-    background:var(--surface); border-bottom:1px solid var(--line);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .sheet-head b{flex:1; font-size:1rem; font-weight:800;}
-  .back-btn{
-    width:40px; height:40px; flex:0 0 40px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    background:var(--surface-2); border:1px solid var(--line);
-  }
-  .back-btn svg{width:20px; height:20px; stroke:var(--ink);}
-  .sheet-body{max-width:48rem; margin:0 auto; padding:1rem 1rem 2.5rem;}
-  .sheet-body h2{margin:.2rem 0 .3rem; font-size:1.3rem; font-weight:900; line-height:1.4;}
-  .sheet-body .org{color:var(--dim); font-size:.9rem; line-height:1.6;}
-  .fact-grid{display:grid; grid-template-columns:1fr 1fr; gap:.55rem; margin-top:.9rem;}
-  .fact{
-    border-radius:16px; padding:.65rem .85rem;
-    background:var(--surface); border:1px solid var(--line);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .fact span{display:block; font-size:.7rem; color:var(--dim); font-weight:700;}
-  .fact b{font-size:.92rem; font-weight:800;}
-  .sheet-body h3.sec{font-size:1rem; font-weight:900; margin:1.2rem 0 .5rem;}
-  .req-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.45rem;}
-  .req-list li{
-    border-radius:16px; padding:.6rem .85rem; font-size:.88rem; display:flex; gap:.55rem; align-items:flex-start; line-height:1.55;
-    background:var(--surface); border:1px solid var(--line);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .req-list li::before{
-    content:""; width:8px; height:8px; border-radius:50%; flex:0 0 8px; margin-top:.45rem;
-    background:linear-gradient(135deg,#0a84ff,#bf5af2);
-  }
-  .note-box{
-    border-radius:16px; padding:.7rem .9rem; font-size:.85rem; line-height:1.7; margin-top:.9rem;
-    background:var(--amber-bg); color:var(--ink);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .sheet .btn-apply{padding:.8rem 1rem; font-size:1rem; font-weight:900;}
-  .kit-row{display:flex; gap:.5rem; margin-top:.6rem;}
-  .kit-row button{
-    flex:1; border-radius:999px; padding:.55rem .5rem; font-weight:700; font-size:.88rem; color:var(--accent);
-    background:var(--surface-2); border:1px solid var(--line);
-  }
-
-  /* ---------- Install help modal ---------- */
-  .modal-scrim{
-    position:fixed; inset:0; z-index:90; display:none; align-items:flex-end; justify-content:center;
-    background:rgba(0,0,0,.4); -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px);
-  }
-  .modal-scrim.open{display:flex;}
-  .modal{
-    width:100%; max-width:520px; border-radius:28px 28px 0 0; padding:1.25rem 1.25rem calc(1.3rem + env(safe-area-inset-bottom,0px));
-    background:var(--surface); border:1px solid var(--line); border-bottom:none;
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .modal h3{margin:0 0 .4rem; font-size:1.05rem; font-weight:900;}
-  .modal p{margin:0 0 .6rem; font-size:.88rem; color:var(--dim); line-height:1.7;}
-  .modal ol{margin:0; padding-inline-start:1.2rem; font-size:.9rem; line-height:1.9;}
-  .modal .m-close{width:100%; margin-top:.9rem;}
-
-  /* ---------- Toast ---------- */
-  .toast{
-    position:fixed; bottom:6.2rem; inset-inline:0; z-index:95;
-    display:flex; justify-content:center; pointer-events:none; opacity:0; transform:translateY(8px); transition:.25s ease;
-  }
-  @media (min-width:1024px){ .toast{bottom:2.5rem;} }
-  .toast.show{opacity:1; transform:none;}
-  .toast .t-in{
-    display:flex; gap:.45rem; align-items:center; border-radius:999px; padding:.55rem 1.05rem;
-    font-size:.85rem; font-weight:700; color:var(--ink); box-shadow:var(--glass-shadow);
-    background:var(--surface); border:1px solid var(--line);
-    -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
-  }
-  .toast .t-in .ck{color:var(--accent); font-weight:900;}
-
-  .empty{
-    border:1px dashed var(--line); border-radius:var(--radius); padding:1.4rem 1rem; text-align:center;
-    color:var(--dim); font-size:.88rem; background:var(--surface-2);
-  }
-  .foot-note{margin-top:1.5rem; font-size:.74rem; color:var(--dim); line-height:1.7; text-align:center;}
-  .hidden{display:none !important;}
+:root{
+  --bg:#e9edf6; --accent:#0071e3; --accent2:#5e5ce6; --amber:#f5a623;
+  --text:#1c1c1e; --muted:#6e6e73; --glass:rgba(255,255,255,.55);
+  --glass-strong:rgba(255,255,255,.75); --border:rgba(255,255,255,.65);
+  --shadow:0 8px 32px rgba(28,28,60,.12); --radius:28px;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#101018; --text:#f2f2f7; --muted:#a1a1aa;
+    --glass:rgba(40,40,55,.5); --glass-strong:rgba(45,45,62,.7);
+    --border:rgba(255,255,255,.14); --shadow:0 8px 32px rgba(0,0,0,.45); }
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,"Segoe UI",Roboto,"Noto Sans Arabic",sans-serif;
+  color:var(--text); min-height:100dvh; overflow-x:hidden;
+  background:
+    radial-gradient(120% 60% at 85% -5%, rgba(94,92,230,.35), transparent 60%),
+    radial-gradient(100% 55% at 10% 0%, rgba(0,113,227,.30), transparent 60%),
+    radial-gradient(90% 50% at 50% 110%, rgba(245,166,35,.18), transparent 60%),
+    var(--bg);
+  background-attachment:fixed;
+}
+header{
+  position:sticky; top:0; z-index:20; display:flex; align-items:center; gap:10px;
+  padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 10px;
+  backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%);
+  background:var(--glass); border-bottom:1px solid var(--border);
+}
+.logo{
+  width:40px;height:40px;border-radius:12px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; font-weight:800; font-size:15px;
+  box-shadow:var(--shadow);
+}
+header .titles{flex:1; min-width:0}
+header h1{margin:0;font-size:17px;line-height:1.2}
+header .sub{font-size:12px;color:var(--muted)}
+.refresh-btn{
+  border:1px solid var(--border); background:var(--glass-strong); color:var(--accent);
+  width:40px;height:40px;border-radius:50%; cursor:pointer; flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center; box-shadow:var(--shadow);
+}
+.refresh-btn.spinning svg{animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#pull{
+  height:0; overflow:hidden; display:flex; align-items:flex-end; justify-content:center;
+  color:var(--muted); font-size:13px; transition:height .15s ease;
+}
+main{padding:14px 14px 120px; max-width:640px; margin:0 auto}
+.section{display:none}
+.section.active{display:block; animation:fade .25s ease}
+@keyframes fade{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
+.card{
+  background:var(--glass); border:1px solid var(--border); border-radius:var(--radius);
+  backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%);
+  box-shadow:var(--shadow); padding:18px; margin-bottom:14px;
+}
+.hero{background:linear-gradient(135deg, rgba(0,113,227,.85), rgba(94,92,230,.85)); color:#fff; border:none}
+.hero .kicker{font-size:12px; opacity:.85}
+.hero h2{margin:6px 0 4px; font-size:21px}
+.hero .meta{font-size:13px; opacity:.92}
+.days{
+  display:inline-block; margin-top:10px; background:rgba(255,255,255,.22);
+  border-radius:999px; padding:4px 12px; font-size:13px; font-weight:700;
+}
+.btn{
+  display:inline-block; margin-top:12px; background:#fff; color:var(--accent);
+  text-decoration:none; font-weight:700; font-size:14px; padding:10px 18px; border-radius:999px;
+}
+.btn.primary{background:var(--accent); color:#fff}
+.btn.disabled{background:rgba(128,128,128,.18); color:var(--muted); pointer-events:none}
+h3.sec-title{margin:18px 4px 10px; font-size:16px}
+.concours h4{margin:0 0 4px; font-size:16px}
+.concours .org{font-size:13px; color:var(--muted)}
+.concours .dates{font-size:13px; margin-top:6px}
+.concours .note{font-size:13px; color:var(--muted); margin-top:4px}
+.chip{
+  display:inline-block; font-size:12px; font-weight:700; border-radius:999px; padding:3px 10px;
+  background:rgba(0,113,227,.12); color:var(--accent);
+}
+.chip.warn{background:rgba(245,166,35,.18); color:#9a6a00}
+.chip.done{background:rgba(128,128,128,.15); color:var(--muted)}
+.news-item{padding:12px 2px; border-bottom:1px solid var(--border)}
+.news-item:last-child{border-bottom:none}
+.news-item .date{font-size:12px; color:var(--muted)}
+.news-item .t{font-weight:700; margin:3px 0}
+.news-item .b{font-size:13.5px; color:var(--muted); line-height:1.6}
+.news-item a{color:var(--accent); font-size:13px; text-decoration:none; font-weight:600}
+.updated{font-size:12px; color:var(--muted); text-align:center; margin:6px 0 2px}
+nav.bottom{
+  position:fixed; left:50%; transform:translateX(-50%);
+  bottom:calc(env(safe-area-inset-bottom,0px) + 12px); z-index:30;
+  display:flex; gap:4px; padding:6px; border-radius:999px;
+  background:var(--glass-strong); border:1px solid var(--border);
+  backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%);
+  box-shadow:var(--shadow); width:min(92vw, 440px); justify-content:space-between;
+}
+nav.bottom button{
+  flex:1; border:none; background:transparent; color:var(--muted); font-size:12.5px; font-weight:600;
+  padding:9px 2px; border-radius:999px; cursor:pointer; font-family:inherit;
+}
+nav.bottom button.active{background:var(--accent); color:#fff}
+.empty{text-align:center; color:var(--muted); padding:24px 10px; font-size:14px}
+.toast{
+  position:fixed; top:calc(env(safe-area-inset-top,0px) + 70px); left:50%; transform:translateX(-50%) translateY(-16px);
+  background:var(--glass-strong); border:1px solid var(--border); color:var(--text);
+  padding:9px 18px; border-radius:999px; font-size:13.5px; font-weight:600; z-index:50;
+  opacity:0; pointer-events:none; transition:all .25s ease; box-shadow:var(--shadow);
+  backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%);
+}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
 </style>
 </head>
-<body data-theme="auto">
-
-<!-- ===== Install strip: works in browser, installable as an app ===== -->
-<div class="install-bar" id="installBar">
-  <span class="logo-slot" data-size="30"></span>
-  <div class="ib-txt">
-    <b data-i18n="ibTitle">حمّل تطبيق كونكوراتي</b>
-    <span data-i18n="ibSub">كيخدم فالمتصفح — وثبّتو فتيليفونك بضغطة وحدة</span>
+<body>
+<header>
+  <div class="logo">MC</div>
+  <div class="titles">
+    <h1>My Concours</h1>
+    <div class="sub">كونكوراتي — تتبع المباريات والمستجدات</div>
   </div>
-  <button class="btn-install" id="btnInstall" data-i18n="ibBtn">تثبيت التطبيق</button>
-  <button class="ib-close" id="ibClose" aria-label="إغلاق">✕</button>
-</div>
-
-<!-- ===== Sidebar (wide screens) — nav shortcuts only ===== -->
-<aside class="sidebar">
-  <div class="s-brand">
-    <span class="logo-slot" data-size="44"></span>
-    <div class="brand">
-      <b data-i18n="brand">كونكوراتي</b>
-      <span data-i18n="brandSub">مبارياتك ووثائقك في مكان واحد</span>
-    </div>
-    <button class="avatar" data-goto="profile" aria-label="الملف الشخصي" style="width:42px;height:42px;font-size:1rem;">ع</button>
-  </div>
-  <nav class="side-nav" id="sideNav">
-    <button class="nav-pill on" data-goto="home"><span class="gly">⌂</span><span data-i18n="tabHome">الرئيسية</span></button>
-    <button class="nav-pill" data-goto="concours"><span class="gly">▦</span><span data-i18n="tabConcours">المباريات</span><span class="cnt" id="sideCnt">10</span></button>
-    <button class="nav-pill" data-goto="positions"><span class="gly">⚑</span><span data-i18n="tabPositions">المناصب</span></button>
-    <button class="nav-pill" data-goto="news"><span class="gly">🗞</span><span data-i18n="tabNews">المستجدات</span></button>
-    <button class="nav-pill" data-goto="scan"><span class="gly">◎</span><span data-i18n="tabScan">الماسح</span></button>
-    <button class="nav-pill" data-goto="vault"><span class="gly">▤</span><span data-i18n="tabVault">الخزنة</span></button>
-  </nav>
-</aside>
-
-<!-- ===== Header (phone) ===== -->
-<header class="app-head">
-  <div class="in">
-    <button class="menu-btn" id="btnMenu" aria-label="القائمة">☰</button>
-    <span class="logo-slot" data-size="38"></span>
-    <div class="brand">
-      <b data-i18n="brand">كونكوراتي</b>
-      <span data-i18n="brandSub">مبارياتك ووثائقك في مكان واحد</span>
-    </div>
-    <button class="avatar" id="btnAvatar" aria-label="الملف الشخصي" style="width:38px;height:38px;font-size:.95rem;">ع</button>
-  </div>
+  <button class="refresh-btn" id="refreshBtn" aria-label="تحديث">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+  </button>
 </header>
-
-<div class="ptr" id="ptr"><span class="p-in"><span class="spin">⟳</span><span id="ptrTxt">اسحب للأسفل للتحديث</span></span></div>
-
-<main class="wrap" id="mainWrap">
-
-  <!-- ================= HOME ================= -->
-  <section class="view active" id="view-home">
-    <div id="heroBox"></div>
-
-    <div class="stats">
-      <div class="card-c stat"><b id="stConcours">–</b><span data-i18n="statConcours">مباراة قيد التتبع</span></div>
-      <div class="card-c stat"><b id="stDocs">–</b><span data-i18n="statDocsReady">وثائق جاهزة</span></div>
-      <div class="card-c stat"><b id="stVault">–</b><span data-i18n="statVault">ملف في الخزنة</span></div>
-    </div>
-
-    <a class="scan-btn" href="#" data-goto="scan" data-i18n="scanNew">+ مسح وثيقة جديدة بالكاميرا</a>
-
-    <div class="sec-head">
-      <h2 data-i18n="latestNews">آخر المستجدات</h2>
-      <a class="more" href="#" data-goto="news"><span data-i18n="tabNews">المستجدات</span> ←</a>
-    </div>
-    <div class="feed" id="homeFeed"></div>
-
-    <div class="sec-head"><h2 data-i18n="secDirect">الترشيح المباشر</h2><a class="more" href="#" data-goto="concours" data-i18n="seeAll">شوف الكل</a></div>
-    <p class="sec-sub" data-i18n="secDirectSub">اضغط مرة واحدة وتصل مباشرة إلى صفحة الترشيح الرسمية لكل مباراة على بوابتها — بلا خطوات وسيطة.</p>
-    <label class="search-box">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input type="search" id="qHome" data-i18n-ph="searchPh" placeholder="قلّب على مباراة، مؤسسة، مدينة…" />
-    </label>
-    <div class="chips" id="chipsHome"></div>
-    <div class="cards-grid" id="homeCards"></div>
+<div id="pull">اسحب للتحديث…</div>
+<main id="main">
+  <section class="section active" id="tab-home">
+    <div id="hero"></div>
+    <h3 class="sec-title">آخر المستجدات</h3>
+    <div class="card" id="homeNews"></div>
   </section>
-
-  <!-- ================= ALL CONCOURS ================= -->
-  <section class="view" id="view-concours">
-    <div class="sec-head" style="margin-top:.2rem;"><h2 data-i18n="allT">جميع المباريات</h2></div>
-    <label class="search-box">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input type="search" id="qAll" data-i18n-ph="searchPh" placeholder="قلّب على مباراة، مؤسسة، مدينة…" />
-    </label>
-    <div class="chips" id="chipsAll"></div>
-    <div class="cards-stack" id="allCards"></div>
+  <section class="section" id="tab-concours">
+    <h3 class="sec-title">المباريات</h3>
+    <div id="concoursList"></div>
   </section>
-
-  <!-- ================= POSITIONS ================= -->
-  <section class="view" id="view-positions">
-    <div class="sec-head" style="margin-top:.2rem;"><h2 data-i18n="positionsT">المناصب المتاحة للترشيح</h2></div>
-    <p class="sec-sub" data-i18n="positionsSub">كل مباراة كتتبعها بعدد مناصبها وآخر أجل للترشيح — اضغط على مباراة لعرض وثائقها، أو انتقل مباشرة إلى بوابة الترشيح.</p>
-    <div class="cards-stack" id="posCards" style="margin-top:0;"></div>
-  </section>
-
-  <!-- ================= NEWS ================= -->
-  <section class="view" id="view-news">
-    <div class="sec-head" style="margin-top:.2rem;"><h2 data-i18n="newsT">مستجدات المباريات</h2></div>
-    <p class="sec-sub" data-i18n="newsSub">إعلانات ونتائج كل مرحلة: صدور نتائج الكتابي، مواعيد الشفوي واجتيازه، النتائج النهائية، والخطوة التالية بعد كل مرحلة.</p>
-    <div class="feed" id="newsFeed"></div>
-    <div class="note-box" id="autoBox" style="margin-top:.9rem;"></div>
-  </section>
-
-  <!-- ================= SCANNER ================= -->
-  <section class="view" id="view-scan">
-    <div class="sec-head" style="margin-top:.2rem;"><h2 data-i18n="scanT">الماسح</h2></div>
-    <p class="sec-sub" data-i18n="scanSub">صوّر وثيقة بالكاميرا ولا اختار صورتها من المعرض، وغتزاد لمسوحات هاد الجلسة.</p>
+  <section class="section" id="tab-jobs">
+    <h3 class="sec-title">المناصب</h3>
     <div class="card">
-      <label class="btn-apply" for="scanFile" style="margin-top:0;" data-i18n="scanBtn">التقط صورة / اختر من المعرض</label>
-      <input type="file" id="scanFile" accept="image/*" class="hidden" />
-      <div class="scan-preview" id="scanPreview">
-        <img id="scanImg" alt="" />
-        <button class="btn-apply" id="scanSave" data-i18n="scanSave">زيدها لمسوحات الجلسة</button>
-      </div>
-      <p class="sec-sub" style="margin:.7rem 0 0;" data-i18n="scanNote">الصورة كتبقى غير في هاد الجلسة؛ الخزنة الدائمة فيها الوثائق المسجلة في الأسفل.</p>
+      <p style="margin:0 0 6px"><b>بوابة التشغيل العمومي</b></p>
+      <p style="color:var(--muted);font-size:13.5px;margin:0">جميع مباريات الدولة والمناصب المفتوحة في مكان واحد.</p>
+      <a class="btn primary" href="https://www.emploi-public.ma" target="_blank" rel="noopener">فتح البوابة الرسمية</a>
     </div>
-    <div class="sec-head"><h2 data-i18n="scanSess">مسوحات هاد الجلسة</h2></div>
-    <div class="doc-list" id="scanList"></div>
-  </section>
-
-  <!-- ================= VAULT ================= -->
-  <section class="view" id="view-vault">
-    <div class="sec-head" style="margin-top:.2rem;"><h2 data-i18n="vaultT">خزنة الوثائق</h2></div>
-    <p class="sec-sub" data-i18n="vaultSub">الوثائق اللي كتحتاجها ملفات الترشيح، وحالة كل وحدة.</p>
-    <div class="doc-list" id="docList"></div>
-
-    <div class="sec-head"><h2 data-i18n="portalsT">البوابات الرسمية</h2></div>
-    <p class="sec-sub" data-i18n="portalsSub">روابط مباشرة للمواقع الرسمية ديال الترشيح والنتائج.</p>
-    <div class="portals" id="portalGrid"></div>
-  </section>
-
-  <!-- ================= PROFILE / ACCOUNT ================= -->
-  <section class="view" id="view-profile">
-    <div class="card profile-card">
-      <div class="avatar" style="width:84px;height:84px;font-size:1.7rem;">ع</div>
-      <h2>عبد الرزاق العمراني</h2>
-      <p>Abderrazzak Omrani · برشيد</p>
-      <p dir="ltr" style="font-size:.8rem;">abderrazza90@gmail.com</p>
+    <div class="card">
+      <p style="margin:0 0 6px"><b>بوابة وزارة المالية</b></p>
+      <p style="color:var(--muted);font-size:13.5px;margin:0">مباريات الجمارك والخزينة والضرائب.</p>
+      <a class="btn primary" href="https://e-recrutement.finances.gov.ma" target="_blank" rel="noopener">فتح البوابة الرسمية</a>
     </div>
-    <div class="card kv" id="profileKv"></div>
-
-    <div class="card pref-card">
-      <p class="lbl" data-i18n="lblLang">اللغة</p>
-      <div class="seg" id="segLang">
-        <button data-lang="ar" class="on">العربية</button>
-        <button data-lang="fr">Français</button>
-      </div>
-      <p class="lbl" data-i18n="lblTheme">المظهر</p>
-      <div class="seg" id="segTheme">
-        <button data-theme-set="auto" class="on" data-i18n="thAuto">تلقائي</button>
-        <button data-theme-set="light" data-i18n="thLight">فاتح</button>
-        <button data-theme-set="dark" data-i18n="thDark">داكن</button>
-      </div>
-      <p class="lbl" data-i18n="installApp">تثبيت التطبيق</p>
-      <p class="sec-sub" style="margin:0 0 .5rem;" data-i18n="installHint">ثبّت التطبيق على هاتفك ليفتح بملء الشاشة مثل التطبيقات الأصلية.</p>
-      <button class="btn-apply" id="btnInstall2" style="margin-top:0;" data-i18n="installApp">تثبيت التطبيق</button>
-    </div>
-    <p class="foot-note" data-i18n="profileNote">هاد المعلومات هي اللي كتتعمر بها استمارات الترشيح. أي تصحيح، عدّلو من هنا قبل ما تدفع لأي مباراة جديدة.</p>
   </section>
-
-  <p class="foot-note" data-i18n="footNote">المعلومات مأخوذة من الإعلانات والبوابات الرسمية، وآخر تحديث: 20 نونبر 2026. قبل أي دفع، تأكد دائماً من الإعلان الرسمي الكامل في صفحة المباراة.</p>
+  <section class="section" id="tab-news">
+    <h3 class="sec-title">المستجدات</h3>
+    <div class="card" id="newsList"></div>
+  </section>
+  <p class="updated" id="updatedLine"></p>
 </main>
-
-<!-- ===== Floating bottom tab bar ===== -->
-<nav class="tabbar"><div class="tabs" id="tabs">
-  <button class="tab on" data-goto="home"><span class="tb-ic">⌂</span><span data-i18n="tabHome">الرئيسية</span></button>
-  <button class="tab" data-goto="concours"><span class="tb-ic">▦</span><span data-i18n="tabConcours">المباريات</span></button>
-  <button class="tab" data-goto="positions"><span class="tb-ic">⚑</span><span data-i18n="tabPositions">المناصب</span></button>
-  <button class="tab" data-goto="news"><span class="tb-ic">🗞</span><span data-i18n="tabNews">المستجدات</span></button>
-</div></nav>
-
-<!-- ===== Drawer: navigation shortcuts only ===== -->
-<div class="drawer-wrap" id="drawerWrap">
-  <button class="scrim" id="scrim" aria-label="إغلاق"></button>
-  <aside class="drawer-panel" id="drawer" aria-hidden="true">
-    <div class="d-head">
-      <span class="logo-slot" data-size="40"></span>
-      <div class="brand">
-        <b data-i18n="brand">كونكوراتي</b>
-        <span data-i18n="brandSub">مبارياتك ووثائقك في مكان واحد</span>
-      </div>
-      <button class="d-close" id="drawerClose" aria-label="إغلاق">✕</button>
-    </div>
-    <nav class="side-nav" id="drawerNav">
-      <button class="nav-pill on" data-goto="home"><span class="gly">⌂</span><span data-i18n="tabHome">الرئيسية</span></button>
-      <button class="nav-pill" data-goto="concours"><span class="gly">▦</span><span data-i18n="tabConcours">المباريات</span><span class="cnt" id="drawerCnt">10</span></button>
-      <button class="nav-pill" data-goto="positions"><span class="gly">⚑</span><span data-i18n="tabPositions">المناصب</span></button>
-      <button class="nav-pill" data-goto="news"><span class="gly">🗞</span><span data-i18n="tabNews">المستجدات</span></button>
-      <button class="nav-pill" data-goto="scan"><span class="gly">◎</span><span data-i18n="tabScan">الماسح</span></button>
-      <button class="nav-pill" data-goto="vault"><span class="gly">▤</span><span data-i18n="tabVault">الخزنة</span></button>
-    </nav>
-  </aside>
-</div>
-
-<!-- ===== Detail sheet ===== -->
-<div class="sheet" id="sheet" aria-hidden="true">
-  <div class="sheet-head">
-    <button class="back-btn" id="sheetBack" aria-label="رجوع">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
-    </button>
-    <b data-i18n="detailT">تفاصيل المباراة</b>
-    <span class="chip-st" id="sheetBadge"></span>
-  </div>
-  <div class="sheet-body" id="sheetBody"></div>
-</div>
-
-<!-- ===== Install help modal ===== -->
-<div class="modal-scrim" id="installModal">
-  <div class="modal">
-    <h3 data-i18n="imT">تثبيت كونكوراتي فتيليفونك</h3>
-    <p data-i18n="imP">التطبيق كيخدم نيشان من المتصفح بلا تحميل. إلا بغيتيه يبان فالشاشة الرئيسية بحال أي تطبيق:</p>
-    <ol>
-      <li data-i18n="im1">حل قائمة المتصفح (⋮) من لفوق</li>
-      <li data-i18n="im2">ختار «تثبيت التطبيق» ولا «إضافة إلى الشاشة الرئيسية»</li>
-      <li data-i18n="im3">أكّد بالتثبيت — غتلقى أيقونة كونكوراتي الملونة فشاشتك</li>
-    </ol>
-    <button class="btn-apply m-close" id="imClose" data-i18n="imClose">صافي، فهمت</button>
-  </div>
-</div>
-
-<div class="toast" id="toast"><span class="t-in"><span class="ck">✓</span><span id="toastTxt"></span></span></div>
-
+<nav class="bottom">
+  <button data-tab="home" class="active">الرئيسية</button>
+  <button data-tab="concours">المباريات</button>
+  <button data-tab="jobs">المناصب</button>
+  <button data-tab="news">المستجدات</button>
+</nav>
+<div class="toast" id="toast"></div>
 <script>
-"use strict";
-/* =================== DATA (snapshot — 20 Nov 2026) =================== */
-var PORTALS = {
-  enssup:  {url:"https://recrutement.enssup.gov.ma", ar:"بوابة توظيف الجامعات", fr:"Portail recrutement universités"},
-  emploi:  {url:"https://www.emploi-public.ma", ar:"بوابة التشغيل العمومي", fr:"Portail de l'emploi public"},
-  finances:{url:"https://e-recrutement.finances.gov.ma", ar:"توظيف وزارة المالية", fr:"Recrutement Finances"},
-  douane:  {url:"https://www.douane.gov.ma", ar:"إدارة الجمارك ADII", fr:"Administration des Douanes"},
-  wolouj:  {url:"https://wolouj.men.gov.ma", ar:"ولوج — مباريات التعليم", fr:"Wolouj — concours MEN"},
-  bac:     {url:"https://candidaturesbac.men.gov.ma", ar:"ترشيحات الباك الحر", fr:"Candidatures Bac libre"}
+const FALLBACK = {
+  updated: "2026-11-20",
+  concours: [
+    {id:"specialiste", title:"مختص الاقتصاد والإدارة", org:"وزارة التربية الوطنية — الأطر المختصة", deadline:"2026-11-25", exam:"2026-12-05", apply:"https://wolouj.men.gov.ma", note:"559 منصب — آخر أجل 25 نونبر مع 16:30"},
+    {id:"baclibre", title:"الباك الحر 2027", org:"وزارة التربية الوطنية", deadline:"2026-12-04", exam:"", apply:"https://candidaturesbac.men.gov.ma", note:"علوم اقتصادية وتدبير — مسلك علوم اقتصادية"},
+    {id:"primaire", title:"التعليم الابتدائي — مزدوج", org:"الأكاديميات الجهوية للتربية والتكوين", deadline:"2026-11-19", exam:"2026-11-28", apply:"https://wolouj.men.gov.ma", note:"لوائح المقبولين للكتابي: 24 نونبر — الكتابي: 28 نونبر"},
+    {id:"adii", title:"مفتش الجمارك — الدرجة 2", org:"إدارة الجمارك والضرائب غير المباشرة", deadline:"", exam:"2026-09-20", apply:"https://e-recrutement.finances.gov.ma", note:"الكتابي داز في 20 شتنبر — النتائج لم تنشر بعد"},
+    {id:"universites", title:"متصرف درجة 3 — علوم التدبير", org:"الجامعات المغربية", deadline:"2026-11-19", exam:"2026-11-29", apply:"https://recrutement.enssup.gov.ma", note:"أجل الترشيح انتهى"},
+    {id:"ormvad", title:"متصرف درجة 3 — علوم اقتصادية وتدبير", org:"المكتب الجهوي للاستثمار الفلاحي لدكالة", deadline:"", exam:"2026-11-08", apply:"", note:"الكتابي داز في 8 نونبر بالجديدة"}
+  ],
+  news: [
+    {date:"2026-11-20", title:"لوائح المقبولين للكتابي — التعليم الابتدائي", body:"تصدر اللوائح يوم 24 نونبر على بوابة الولوج.", link:"https://wolouj.men.gov.ma"},
+    {date:"2026-11-20", title:"آخر أجل لمختص الاقتصاد والإدارة", body:"يغلق الترشيح يوم 25 نونبر مع 16:30. الكتابي يوم 5 دجنبر.", link:"https://wolouj.men.gov.ma"},
+    {date:"2026-11-20", title:"كتابي التعليم الابتدائي", body:"الاختبار الكتابي يوم السبت 28 نونبر.", link:""},
+    {date:"2026-11-20", title:"نتائج الجمارك", body:"نتائج كتابي مفتش الجمارك الدرجة 2 لم تنشر بعد.", link:"https://e-recrutement.finances.gov.ma"},
+    {date:"2026-11-20", title:"آخر أجل للباك الحر", body:"يغلق التسجيل يوم 4 دجنبر 2026.", link:"https://candidaturesbac.men.gov.ma"}
+  ]
 };
+let DATA = FALLBACK;
 
-var CONCOURS = [
-  { id:"crmef-spec", color:"#0b6b4f", ic:"CR",
-    ar:{t:"مختص الاقتصاد والإدارة", o:"مراكز التربية والتكوين CRMEF — أكاديمية الدار البيضاء سطات"},
-    fr:{t:"Spécialiste Économie et Administration", o:"CRMEF — Académie Casablanca-Settat"},
-    grade:{ar:"مختص تربوي / إداري", fr:"Spécialiste pédagogique"}, posts:559, city:{ar:"الدار البيضاء (ملحقة سطات)", fr:"Casablanca (annexe Settat)"},
-    deadline:"2026-11-25T16:30", exam:"2026-12-05", match:true, portal:"wolouj",
-    status:{ar:"الاستمارة معمّرة — باقي الطبع والتوقيع والرفع", fr:"Formulaire rempli — impression, signature et dépôt restants"},
-    req:{ar:["استمارة الترشيح مطبوعة وموقعة وممسوحة ضوئياً","نسخة من الإجازة في الاقتصاد والتدبير","نسخة من البطاقة الوطنية","تأكيد الهوية الرقمية (تم بنجاح في 18 نونبر)"], fr:["Formulaire imprimé, signé et scanné","Copie de la licence Éco-Gestion","Copie de la CIN","Identité numérique confirmée (18 nov.)"]},
-    note:{ar:"حساب المختص مستقل على حساب الابتدائي، والوثائق كترفع من جديد. سطات كاينة كملحقة تحت الدار البيضاء – درب غلف.", fr:"Compte distinct du primaire ; les pièces se déposent à nouveau."} },
-  { id:"crmef-prim", color:"#b97a1e", ic:"تع",
-    ar:{t:"التعليم الابتدائي المزدوج", o:"مراكز التربية والتكوين CRMEF — أكاديمية الدار البيضاء سطات"},
-    fr:{t:"Enseignement primaire bilingue", o:"CRMEF — Académie Casablanca-Settat"},
-    grade:{ar:"أستاذ التعليم الابتدائي", fr:"Professeur du primaire"}, posts:null, city:{ar:"مركز الامتحان: بن مسيك", fr:"Centre d'examen : Ben M'Sick"},
-    deadline:"2026-11-24", exam:"2026-11-28", match:true, portal:"wolouj",
-    status:{ar:"الترشيح مصادق عليه — رقم الطلب 523579", fr:"Candidature validée — demande n° 523579"},
-    req:{ar:["وصل الترشيح — رقم الطلب 523579","لوائح المقبولين للكتابي: 24 نونبر","الكتابي: 28 نونبر — المركز الأول: بن مسيك","المصادقة النهائية ما زالت جارية"], fr:["Reçu de candidature n° 523579","Listes des admis à l'écrit : 24 nov.","Écrit : 28 nov. — centre Ben M'Sick"]},
-    note:{ar:"الدخول كيتم عبر «هويتي الرقمية»، وبعد المصادقة النهائية التعديل غالباً ما كيبقاش ممكن.", fr:"Accès via l'identité numérique."} },
-  { id:"uh1-gestion", color:"#1d5fa8", ic:"UH1",
-    ar:{t:"متصرف درجة 3 — علوم التدبير", o:"جامعة الحسن الأول، سطات — رئاسة الجامعة"},
-    fr:{t:"Administrateur 3e grade — Sciences de gestion", o:"Université Hassan 1er, Settat — Présidence"},
-    grade:{ar:"متصرف درجة 3 (سلم 10)", fr:"Administrateur 3e grade (éch. 10)"}, posts:1, city:{ar:"سطات", fr:"Settat"},
-    deadline:"2026-11-20", exam:"2026-11-29", match:true, portal:"enssup", ref:"C44436/26",
-    status:{ar:"الترشيح عبر البوابة — آخر أجل اليوم", fr:"Candidature en ligne — dernier jour"},
-    req:{ar:["اختيار الدبلوم في البوابة","تصريح بالشرف","طلب خطي موقع — PDF أقل من 10MB","بلا صورة وبلا مسح للبطاقة الوطنية"], fr:["Choix du diplôme sur le portail","Déclaration sur l'honneur","Demande manuscrite signée — PDF < 10 Mo"]},
-    note:{ar:"الدخول للبوابة كيطلب كود Google Authenticator (TOTP). التصديق غير مطلوب؛ الملف الورقي غير عند الاستدعاء للشفوي.", fr:"Connexion avec code TOTP. Dossier papier uniquement pour l'oral."} },
-  { id:"uh1-sante", color:"#1d5fa8", ic:"UH1",
-    ar:{t:"متصرف درجة 3 — علوم اقتصادية وتدبير", o:"جامعة الحسن الأول — المعهد العالي لعلوم الصحة، سطات"},
-    fr:{t:"Administrateur 3e grade — Sciences économiques et gestion", o:"Université Hassan 1er — ISSS, Settat"},
-    grade:{ar:"متصرف درجة 3 (سلم 10)", fr:"Administrateur 3e grade (éch. 10)"}, posts:1, city:{ar:"سطات", fr:"Settat"},
-    deadline:"2026-11-20", exam:"2026-11-29", match:true, portal:"enssup", ref:"C44440/26",
-    status:{ar:"الترشيح عبر البوابة — آخر أجل اليوم", fr:"Candidature en ligne — dernier jour"},
-    req:{ar:["اختيار الدبلوم في البوابة","تصريح بالشرف","طلب خطي موقع — PDF أقل من 10MB"], fr:["Choix du diplôme sur le portail","Déclaration sur l'honneur","Demande manuscrite signée — PDF < 10 Mo"]},
-    note:{ar:"نفس شروط ملف الرئاسة C44436/26.", fr:"Mêmes conditions que le poste C44436/26."} },
-  { id:"uh2-gestion", color:"#7a4a12", ic:"UH2",
-    ar:{t:"متصرف درجة 3 — علوم التدبير", o:"جامعة الحسن الثاني، الدار البيضاء — رئاسة الجامعة"},
-    fr:{t:"Administrateur 3e grade — Sciences de gestion", o:"Université Hassan II, Casablanca — Présidence"},
-    grade:{ar:"متصرف درجة 3 (سلم 10)", fr:"Administrateur 3e grade (éch. 10)"}, posts:1, city:{ar:"الدار البيضاء", fr:"Casablanca"},
-    deadline:"2026-11-20", exam:"2026-11-29", match:true, portal:"enssup", ref:"C44457/26",
-    status:{ar:"الترشيح عبر البوابة — آخر أجل اليوم", fr:"Candidature en ligne — dernier jour"},
-    req:{ar:["اختيار الدبلوم في البوابة","تصريح بالشرف","طلب خطي موقع — PDF أقل من 10MB","أجل الأمان في كازا: 16:30"], fr:["Choix du diplôme sur le portail","Déclaration sur l'honneur","Demande manuscrite signée — PDF < 10 Mo"]},
-    note:{ar:"من بين 7 مناصب درجة 3 في جامعة الحسن الثاني، هذا والمنصب الموالي هما المطابقان لتخصصك.", fr:"Parmi les 7 postes de l'UH2, celui-ci et le suivant correspondent à votre diplôme."} },
-  { id:"uh2-entreprises", color:"#7a4a12", ic:"UH2",
-    ar:{t:"متصرف درجة 3 — تدبير المقاولات", o:"جامعة الحسن الثاني، الدار البيضاء"},
-    fr:{t:"Administrateur 3e grade — Gestion des entreprises", o:"Université Hassan II, Casablanca"},
-    grade:{ar:"متصرف درجة 3 (سلم 10)", fr:"Administrateur 3e grade (éch. 10)"}, posts:2, city:{ar:"الدار البيضاء", fr:"Casablanca"},
-    deadline:"2026-11-20", exam:"2026-11-29", match:true, portal:"enssup",
-    status:{ar:"الترشيح عبر البوابة — آخر أجل اليوم", fr:"Candidature en ligne — dernier jour"},
-    req:{ar:["اختيار الدبلوم في البوابة","تصريح بالشرف","طلب خطي موقع — PDF أقل من 10MB"], fr:["Choix du diplôme sur le portail","Déclaration sur l'honneur","Demande manuscrite signée — PDF < 10 Mo"]},
-    note:{ar:"منصبان مفتوحان في نفس التخصص.", fr:"Deux postes ouverts dans la même spécialité."} },
-  { id:"ormvad", color:"#3f7a1d", ic:"OR",
-    ar:{t:"متصرف درجة 3 — علوم اقتصادية وتدبير", o:"المكتب الجهوي للاستثمار الفلاحي لدكالة ORMVAD"},
-    fr:{t:"Administrateur 3e grade — Sciences économiques et gestion", o:"ORMVA de Doukkala"},
-    grade:{ar:"متصرف درجة 3 (سلم 10)", fr:"Administrateur 3e grade (éch. 10)"}, posts:null, city:{ar:"دكالة", fr:"Doukkala"},
-    deadline:null, exam:null, match:true, portal:"emploi", ref:"قرار 2026/02",
-    status:{ar:"مطابق للإجازة ديالك — تابع الإعلان في بوابة التشغيل العمومي", fr:"Conforme à votre licence — suivez l'avis sur l'emploi public"},
-    req:{ar:["أصل الدبلوم متوفر (سطات، دفعة 2023)","الملف الكامل حسب إعلان القرار 2026/02"], fr:["Diplôme original disponible (Settat, 2023)","Dossier selon l'avis 2026/02"]},
-    note:{ar:"إلا ما لقيتيش صفحة المباراة في البوابة، قلب برقم القرار 2026/02.", fr:"Recherchez l'avis par la décision 2026/02."} },
-  { id:"douane", color:"#8c2f22", ic:"جم",
-    ar:{t:"مفتش الجمارك — درجة 2", o:"إدارة الجمارك والضرائب غير المباشرة ADII"},
-    fr:{t:"Inspecteur des douanes — 2e grade", o:"Administration des Douanes et Impôts Indirects"},
-    grade:{ar:"مفتش درجة 2 (بالإجازة)", fr:"Inspecteur 2e grade (licence)"}, posts:250, city:{ar:"وطني", fr:"National"},
-    deadline:null, exam:"2026-09-20", match:true, portal:"douane",
-    status:{ar:"الكتابي داز في 20 شتنبر — النتائج ما زالت ما تنشرات", fr:"Écrit passé le 20 sept. — résultats en attente"},
-    req:{ar:["الكتابي: 20 شتنبر 2026 (تم)","النتائج غتنشر في بوابة المالية والجمارك والتشغيل العمومي","المراقبة اليومية مفعّلة مع 09:21"], fr:["Écrit : 20 sept. 2026 (fait)","Résultats sur les portails Finances, Douane et Emploi public"]},
-    note:{ar:"حتى 12 نونبر 2026، نتائج الكتابي ما تنشراتش. غيوصلك إشعار نهار تخرج.", fr:"Au 12 nov. 2026, les résultats n'étaient pas encore publiés."} },
-  { id:"bac-libre", color:"#5b4a8a", ic:"باك",
-    ar:{t:"الباك الحر 2027 — علوم اقتصادية وتدبير", o:"وزارة التربية الوطنية — مسلك العلوم الاقتصادية"},
-    fr:{t:"Bac libre 2027 — Sciences économiques et gestion", o:"Ministère de l'Éducation Nationale"},
-    grade:{ar:"مترشح حر", fr:"Candidat libre"}, posts:null, city:{ar:"برشيد", fr:"Berrechid"},
-    deadline:"2026-12-04", exam:null, match:true, portal:"bac",
-    status:{ar:"التسجيل بدا — التحقق بالهوية الرقمية تم", fr:"Inscription ouverte — identité numérique vérifiée"},
-    req:{ar:["المعامل: اقتصاد 6، محاسبة 4، رياضيات 4 (بالفرنسية)","الوثائق كلها إلكترونية + صورة حديثة","آخر أجل: 4 دجنبر 2026"], fr:["Coefficients : Économie 6, Comptabilité 4, Maths 4","Dossier 100% en ligne + photo récente","Date limite : 4 déc. 2026"]},
-    note:{ar:"التسجيل تقدّم في 12 نونبر، وباقي الإكمال من المتصفح.", fr:"Inscription entamée le 12 nov."} },
-  { id:"finances-tech", color:"#5a6a62", ic:"مالية",
-    ar:{t:"تقني درجة 3 — وزارة المالية", o:"وزارة الاقتصاد والمالية"},
-    fr:{t:"Technicien 3e grade — Ministère des Finances", o:"Ministère de l'Économie et des Finances"},
-    grade:{ar:"تقني درجة 3 (سلم 9)", fr:"Technicien 3e grade (éch. 9)"}, posts:443, city:{ar:"وطني", fr:"National"},
-    deadline:null, exam:null, match:false, portal:"finances",
-    status:{ar:"لا يطابق الإجازة (سلم 9) — للاطلاع فقط", fr:"Non conforme à la licence (éch. 9) — information"},
-    req:{ar:["هاد المباراة كتطلب دبلوم تقني، ماشي الإجازة"], fr:["Ce concours exige un diplôme de technicien."]},
-    note:{ar:"محطوطة هنا غير باش تبان في البحث، وما كتتحسبش في المطابقات.", fr:"Affiché à titre d'information uniquement."} }
-];
-
-var NEWS = [
-  {type:"warn", date:"2026-11-20", ar:{t:"آخر أجل اليوم: ترشيحات الجامعات", p:"مناصب الحسن الأول (سطات) والحسن الثاني (كازا) كيساليو اليوم في بوابة recrutement.enssup.gov.ma — الكتابي في 29 نونبر."}, fr:{t:"Dernier jour : candidatures universitaires", p:"Les postes UH1 (Settat) et UH2 (Casa) se clôturent aujourd'hui. Écrit le 29 novembre."}},
-  {type:"new", date:"2026-11-19", ar:{t:"مختص الاقتصاد والإدارة: الاستمارة تعمّرات", p:"تأكيد الهوية نجح والاستمارة تعمّرات. باقي: الطبع، التوقيع، المسح والرفع قبل 25 نونبر 16:30."}, fr:{t:"Spécialiste Éco-Admin : formulaire rempli", p:"Reste l'impression, la signature, le scan et le dépôt avant le 25 nov. 16:30."}},
-  {type:"res", date:"2026-11-24", ar:{t:"قريباً: لوائح المقبولين لكتابي الابتدائي", p:"لوائح CRMEF غتنشر في 24 نونبر في wolouj.men.gov.ma — رقم طلبك 523579، والكتابي في 28 نونبر ببن مسيك."}, fr:{t:"Bientôt : listes des admis à l'écrit (primaire)", p:"Listes le 24 nov. sur Wolouj — demande n° 523579, écrit le 28 nov. à Ben M'Sick."}},
-  {type:"res", date:"2026-11-12", ar:{t:"الجمارك: نتائج الكتابي لم تُنشر بعد", p:"حتى 12 نونبر، نتائج مفتش الجمارك (250 منصب) ما خرجاتش. المراقبة اليومية خدامة وغتعلّمك ملي تنشر."}, fr:{t:"Douane : résultats de l'écrit en attente", p:"Au 12 nov., les résultats de l'inspecteur des douanes (250 postes) n'étaient pas publiés."}},
-  {type:"new", date:"2026-12-04", ar:{t:"الباك الحر 2027: آخر أجل 4 دجنبر", p:"التسجيل في candidaturesbac.men.gov.ma كيسالي في 4 دجنبر — شعبة العلوم الاقتصادية والتدبير."}, fr:{t:"Bac libre 2027 : limite le 4 décembre", p:"Inscriptions jusqu'au 4 déc. sur candidaturesbac.men.gov.ma."}},
-  {type:"warn", date:"2026-11-16", ar:{t:"تنبيه ملف الجامعات", p:"خانة الإيميل في بوابة enssup كتبيّن «Un problème est survenu» — تأكد أنها ما كتمنعش الإرسال قبل ما تسد البوابة."}, fr:{t:"Alerte dossier universités", p:"Le champ e-mail du portail enssup affiche une erreur — vérifiez qu'elle ne bloque pas l'envoi."}}
-];
-
-var DOCS = [
-  {ar:{t:"الإجازة — الأصل", p:"Licence fondamentale في الاقتصاد والتدبير، جامعة الحسن الأول سطات، 2023 — الميزة: مقبول (Passable)"}, fr:{t:"Licence — original", p:"Licence fondamentale Éco-Gestion, UH1 Settat, 2023 — mention Passable"}, st:"ok"},
-  {ar:{t:"البطاقة الوطنية CNIE", p:"المعلومات محفوظة في وثائق الملف — البوابات ما كتطلبش مسحها في الترشيح الأولي"}, fr:{t:"Carte nationale CNIE", p:"Requise au dépôt papier, pas au premier dépôt en ligne"}, st:"ok"},
-  {ar:{t:"Google Authenticator", p:"كود TOTP ديال بوابة الجامعات مفعّل والمزامنة خدامة"}, fr:{t:"Google Authenticator", p:"Code TOTP du portail universitaire actif et synchronisé"}, st:"ok"},
-  {ar:{t:"طلب خطي موقع", p:"خاص لمناصب الجامعات — باقي ما تصايبش (PDF أقل من 10MB)"}, fr:{t:"Demande manuscrite signée", p:"Requise pour les postes universitaires — pas encore prête (PDF < 10 Mo)"}, st:"todo"},
-  {ar:{t:"تصريح بالشرف", p:"خاص لمناصب الجامعات — كيتعمّر في البوابة ولا كوثيقة مرفقة"}, fr:{t:"Déclaration sur l'honneur", p:"Requise pour les postes universitaires"}, st:"todo"},
-  {ar:{t:"استمارة مختص الاقتصاد والإدارة", p:"معمّرة — باقي الطبع والتوقيع والمسح والرفع قبل 25 نونبر"}, fr:{t:"Formulaire Spécialiste Éco-Admin", p:"Rempli — impression, signature, scan et dépôt avant le 25 nov."}, st:"todo"}
-];
-
-var PROFILE = [
-  {ar:["الاسم الكامل","عبد الرزاق العمراني"], fr:["Nom complet","Abderrazzak Omrani"]},
-  {ar:["تاريخ ومكان الازدياد","30 مارس 2000 — أولاد عمرو، برشيد"], fr:["Naissance","30 mars 2000 — Oulad Amrou, Berrechid"]},
-  {ar:["العنوان","Lot Inass Qbaj، برشيد"], fr:["Adresse","Lot Inass Qbaj, Berrechid"]},
-  {ar:["الدبلوم","إجازة أساسية — اقتصاد وتدبير (سطات، 2023)"], fr:["Diplôme","Licence fondamentale Éco-Gestion (Settat, 2023)"]},
-  {ar:["الإيميل","abderrazza90@gmail.com"], fr:["E-mail","abderrazza90@gmail.com"]},
-  {ar:["الحالة العائلية","عازب"], fr:["Situation","Célibataire"]},
-  {ar:["اللغات","العربية (الأم) · الفرنسية (بطلاقة) · الإنجليزية (متوسطة)"], fr:["Langues","Arabe · Français (courant) · Anglais (intermédiaire)"]}
-];
-
-/* =================== I18N =================== */
-var I18N = {
-  ar:{ brand:"كونكوراتي", brandSub:"مبارياتك ووثائقك في مكان واحد",
-    ibTitle:"حمّل تطبيق كونكوراتي", ibSub:"كيخدم فالمتصفح — وثبّتو فتيليفونك بضغطة وحدة", ibBtn:"تثبيت التطبيق",
-    ptrPull:"اسحب للأسفل للتحديث", ptrRefresh:"جارٍ التحديث…",
-    heroNextDeadline:"أقرب آخر أجل", heroNextExam:"أقرب امتحان", daysLeftHero:"يوم متبقٍ", heroDocs:"وثائق هذه المباراة",
-    viewChecklist:"عرض لائحة الوثائق", applyPortal:"الترشيح عبر البوابة",
-    statConcours:"مباراة قيد التتبع", statDocsReady:"وثائق جاهزة", statVault:"ملف في الخزنة",
-    scanNew:"+ مسح وثيقة جديدة بالكاميرا", latestNews:"آخر المستجدات",
-    searchPh:"قلّب على مباراة، مؤسسة، مدينة…", secDirect:"الترشيح المباشر",
-    secDirectSub:"اضغط مرة واحدة وتصل مباشرة إلى صفحة الترشيح الرسمية لكل مباراة على بوابتها — بلا خطوات وسيطة.",
-    seeAll:"شوف الكل",
-    allT:"جميع المباريات", positionsT:"المناصب المتاحة للترشيح",
-    positionsSub:"كل مباراة كتتبعها بعدد مناصبها وآخر أجل للترشيح — اضغط على مباراة لعرض وثائقها، أو انتقل مباشرة إلى بوابة الترشيح.",
-    newsT:"مستجدات المباريات", newsSub:"إعلانات ونتائج كل مرحلة: صدور نتائج الكتابي، مواعيد الشفوي واجتيازه، النتائج النهائية، والخطوة التالية بعد كل مرحلة.",
-    scanT:"الماسح", scanSub:"صوّر وثيقة بالكاميرا ولا اختار صورتها من المعرض، وغتزاد لمسوحات هاد الجلسة.",
-    scanBtn:"التقط صورة / اختر من المعرض", scanSave:"زيدها لمسوحات الجلسة",
-    scanNote:"الصورة كتبقى غير في هاد الجلسة؛ الخزنة الدائمة فيها الوثائق المسجلة في الأسفل.",
-    scanSess:"مسوحات هاد الجلسة", scanEmpty:"ما كاين حتى مسح في هاد الجلسة بعد.", scanAdded:"تزادت للمسوحات", scanDoc:"وثيقة ممسوحة",
-    vaultT:"خزنة الوثائق", vaultSub:"الوثائق اللي كتحتاجها ملفات الترشيح، وحالة كل وحدة.",
-    portalsT:"البوابات الرسمية", portalsSub:"روابط مباشرة للمواقع الرسمية ديال الترشيح والنتائج.",
-    profileNote:"هاد المعلومات هي اللي كتتعمر بها استمارات الترشيح. أي تصحيح، عدّلو من هنا قبل ما تدفع لأي مباراة جديدة.",
-    footNote:"المعلومات مأخوذة من الإعلانات والبوابات الرسمية، وآخر تحديث: 20 نونبر 2026. قبل أي دفع، تأكد دائماً من الإعلان الرسمي الكامل في صفحة المباراة.",
-    tabHome:"الرئيسية", tabConcours:"المباريات", tabPositions:"المناصب", tabNews:"المستجدات", tabScan:"الماسح", tabVault:"الخزنة",
-    lblLang:"اللغة", lblTheme:"المظهر", thAuto:"تلقائي", thLight:"فاتح", thDark:"داكن",
-    installApp:"تثبيت التطبيق", installHint:"ثبّت التطبيق على هاتفك ليفتح بملء الشاشة مثل التطبيقات الأصلية.",
-    detailT:"تفاصيل المباراة", imT:"تثبيت كونكوراتي فتيليفونك", imP:"التطبيق كيخدم نيشان من المتصفح بلا تحميل. إلا بغيتيه يبان فالشاشة الرئيسية بحال أي تطبيق:",
-    im1:"حل قائمة المتصفح (⋮) من لفوق", im2:"ختار «تثبيت التطبيق» ولا «إضافة إلى الشاشة الرئيسية»", im3:"أكّد بالتثبيت — غتلقى أيقونة كونكوراتي الملونة فشاشتك", imClose:"صافي، فهمت",
-    fAll:"الكل", fMatch:"المطابقة ليا", fOpen:"الترشيح مفتوح", fSoon:"النتائج واللوائح",
-    details:"التفاصيل", viewDetails:"التفاصيل والوثائق", matchB:"مطابق لديبلومك", nomatchB:"غير مطابق",
-    posts:"منصب", deadline:"آخر أجل", exam:"الكتابي", grade:"الدرجة", city:"المكان", ref:"المرجع", status:"الحالة",
-    reqT:"الوثائق والشروط", closed:"سالي الأجل", today:"اليوم!", soonB:"الأجل قريب", resB:"النتائج واللوائح",
-    deadlineL:"آخر أجل: ", examL:"الامتحان: ", remaining:"متبقٍ", passed:"انقضى", dayWord:"يوم",
-    docsReady:"الوثائق الجاهزة", noPosts:"عدد المناصب غير محدد", noDeadline:"آخر أجل غير محدد",
-    stageAd:"إعلان", stageNext:"الخطوة التالية", stageRes:"النتائج واللوائح",
-    noRes:"ما كاينة حتى مباراة كتوافق البحث.",
-    stOk:"واجدة", stTodo:"باقية", goPortal:"افتح البوابة",
-    kitDocs:"وثائقي في الخزنة", kitPortals:"البوابات الرسمية",
-    refreshed:"تحدّثات", autoTxt:"هاد النسخة من الصفحة محدّثة حتى 20 نونبر 2026. أي جديد — مباراة جديدة، تغيير أجل، لائحة ولا نتيجة — كيتزاد مع كل تحديث للصفحة، واسحب لتحت في أي صفحة باش تعاود تحميل محتواها بلا ما تبدّل الصفحة." },
-  fr:{ brand:"My Concours", brandSub:"Vos concours et documents au même endroit",
-    ibTitle:"Téléchargez l'app Concours", ibSub:"Fonctionne dans le navigateur — installez-la en un clic", ibBtn:"Installer l'app",
-    ptrPull:"Tirez vers le bas pour actualiser", ptrRefresh:"Actualisation…",
-    heroNextDeadline:"Prochaine date limite", heroNextExam:"Prochain examen", daysLeftHero:"jours restants", heroDocs:"Documents de ce concours",
-    viewChecklist:"Voir la liste des documents", applyPortal:"Postuler via le portail",
-    statConcours:"Concours suivis", statDocsReady:"Docs prêts", statVault:"Fichiers au coffre",
-    scanNew:"+ Scanner un nouveau document", latestNews:"Dernières actualités",
-    searchPh:"Rechercher un concours, un organisme, une ville…", secDirect:"Candidature directe",
-    secDirectSub:"Un seul clic et vous arrivez directement sur la page officielle de candidature de chaque concours, sans étape intermédiaire.",
-    seeAll:"Tout voir",
-    allT:"Tous les concours", positionsT:"Postes ouverts à candidature",
-    positionsSub:"Chaque concours suivi avec son nombre de postes et sa date limite — touchez un concours pour voir ses documents, ou allez directement au portail.",
-    newsT:"Actualités des concours", newsSub:"Annonces et résultats de chaque étape : résultats de l'écrit, dates et passage de l'oral, résultats finaux et étape suivante.",
-    scanT:"Scanner", scanSub:"Photographiez un document ou choisissez son image dans la galerie ; il s'ajoute aux scans de cette session.",
-    scanBtn:"Prendre une photo / choisir dans la galerie", scanSave:"Ajouter aux scans de la session",
-    scanNote:"L'image reste dans cette session ; le coffre permanent contient les documents ci-dessous.",
-    scanSess:"Scans de cette session", scanEmpty:"Aucun scan dans cette session pour l'instant.", scanAdded:"Ajouté aux scans", scanDoc:"Document scanné",
-    vaultT:"Coffre de documents", vaultSub:"Les pièces de vos dossiers de candidature et leur état.",
-    portalsT:"Portails officiels", portalsSub:"Liens directs vers les sites officiels de candidature et de résultats.",
-    profileNote:"Ces informations alimentent vos formulaires de candidature. Corrigez-les ici avant tout nouveau dépôt.",
-    footNote:"Informations issues des avis et portails officiels, mises à jour le 20 novembre 2026. Vérifiez toujours l'avis officiel complet avant de déposer.",
-    tabHome:"Accueil", tabConcours:"Concours", tabPositions:"Postes", tabNews:"Actualités", tabScan:"Scanner", tabVault:"Coffre",
-    lblLang:"Langue", lblTheme:"Apparence", thAuto:"Auto", thLight:"Clair", thDark:"Sombre",
-    installApp:"Installer l'application", installHint:"Installez l'application sur votre téléphone pour l'ouvrir en plein écran, comme une application native.",
-    detailT:"Détails du concours", imT:"Installer My Concours", imP:"L'app fonctionne directement dans le navigateur. Pour l'ajouter à votre écran d'accueil :",
-    im1:"Ouvrez le menu du navigateur (⋮)", im2:"Choisissez « Installer l'application » ou « Ajouter à l'écran d'accueil »", im3:"Confirmez — l'icône colorée My Concours apparaît sur votre écran", imClose:"Compris",
-    fAll:"Tous", fMatch:"Conformes", fOpen:"Ouverts", fSoon:"Résultats & listes",
-    details:"Détails", viewDetails:"Détails et documents", matchB:"Conforme", nomatchB:"Non conforme",
-    posts:"poste(s)", deadline:"Date limite", exam:"Écrit", grade:"Grade", city:"Lieu", ref:"Référence", status:"État",
-    reqT:"Pièces et conditions", closed:"Délai passé", today:"Aujourd'hui !", soonB:"Échéance proche", resB:"Résultats & listes",
-    deadlineL:"Date limite : ", examL:"Examen : ", remaining:"restant", passed:"passé", dayWord:"j",
-    docsReady:"Documents prêts", noPosts:"Nombre de postes non précisé", noDeadline:"Date limite non précisée",
-    stageAd:"Annonce", stageNext:"Étape suivante", stageRes:"Résultats & listes",
-    noRes:"Aucun concours ne correspond à la recherche.",
-    stOk:"Prêt", stTodo:"À faire", goPortal:"Ouvrir le portail",
-    kitDocs:"Mes documents au coffre", kitPortals:"Portails officiels",
-    refreshed:"actualisée", autoTxt:"Cette version de la page est à jour au 20 novembre 2026. Toute nouveauté — nouveau concours, délai modifié, liste ou résultat — est ajoutée à chaque mise à jour de la page ; tirez vers le bas pour recharger le contenu sans changer de page." }
-};
-
-var lang = "ar";
-var T = function(k){ return (I18N[lang] && I18N[lang][k]) || I18N.ar[k] || k; };
-var L = function(obj){ return obj[lang] || obj.ar; };
-
-/* =================== HELPERS =================== */
-function $(s, r){ return (r||document).querySelector(s); }
-function $$(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
-function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
-var NOW = new Date("2026-11-20T12:00:00");
-function daysUntil(ds){
-  if(!ds) return null;
-  var d = new Date(ds); var a = new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate());
-  var b = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-  return Math.round((b - a) / 86400000);
+function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function daysUntil(dateStr){
+  if(!dateStr) return null;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const d = new Date(dateStr+"T00:00:00");
+  return Math.round((d - today)/86400000);
 }
-function fmtDate(ds){
-  if(!ds) return "—";
-  var d = new Date(ds);
-  try{ return d.toLocaleDateString(lang==="ar" ? "ar-MA" : "fr-FR", {day:"numeric", month:"long", year:"numeric"}); }
-  catch(e){ return d.toISOString().slice(0,10); }
-}
-function fmtDateLong(ds){
-  if(!ds) return "—";
-  var d = new Date(ds);
-  try{ return d.toLocaleDateString(lang==="ar" ? "ar-MA" : "fr-FR", {weekday:"long", day:"numeric", month:"long", year:"numeric"}); }
-  catch(e){ return fmtDate(ds); }
-}
-function keyDate(c){
-  if(c.deadline) return {date:c.deadline, kind:"deadline"};
-  if(c.exam) return {date:c.exam, kind:"exam"};
-  return null;
-}
-function sortConcours(list){
-  return list.slice().sort(function(a,b){
-    var ka = keyDate(a), kb = keyDate(b);
-    var da = ka ? daysUntil(ka.date) : null, db = kb ? daysUntil(kb.date) : null;
-    if(da === null && db === null) return 0;
-    if(da === null) return 1;
-    if(db === null) return -1;
-    if(da >= 0 && db < 0) return -1;
-    if(da < 0 && db >= 0) return 1;
-    return da - db;
-  });
-}
-/* Checklist progress derived from the snapshot's own requirement texts:
-   an item counts as done when the text itself records it as done/held. */
-function doneCount(c){
-  var done = 0;
-  (c.req.ar || []).forEach(function(r){
-    if(/تم بنجاح|\(تم\)|متوفر|رقم الطلب/.test(r)) done++;
-  });
-  return {done:done, total:(c.req.ar || []).length};
-}
-function pbarHTML(c, label){
-  var dc = doneCount(c);
-  var pct = dc.total === 0 ? 0 : Math.round(dc.done / dc.total * 100);
-  return '<div class="pbar"><div class="pr-row"><span>'+esc(label)+'</span><span>'+dc.done+'/'+dc.total+' — '+pct+'%</span></div>'
-    + '<div class="track"><div class="fill" style="width:'+pct+'%"></div></div></div>';
+function fmtDate(dateStr){
+  if(!dateStr) return "";
+  const d = new Date(dateStr+"T00:00:00");
+  return d.toLocaleDateString("ar-MA",{day:"numeric",month:"long",year:"numeric"});
 }
 function chipFor(c){
-  if(!c.match) return {txt:T("nomatchB"), cls:""};
-  var d = daysUntil(c.deadline);
-  if(d !== null){
-    if(d < 0) return {txt:T("closed"), cls:""};
-    if(d <= 1) return {txt:T("today"), cls:"amber"};
-    if(d <= 7) return {txt:T("soonB"), cls:"amber"};
+  const dd = daysUntil(c.deadline);
+  if(dd !== null){
+    if(dd > 0) return '<span class="chip">باقي '+dd+' يوم</span>';
+    if(dd === 0) return '<span class="chip warn">اليوم آخر أجل</span>';
+    return '<span class="chip done">انتهى الأجل</span>';
   }
-  if(c.id === "douane" || c.id === "crmef-prim") return {txt:T("resB"), cls:"blue"};
-  return {txt:T("matchB"), cls:"blue"};
+  return '<span class="chip done">في الانتظار</span>';
 }
-function metaLine(c){
-  var out = "";
-  if(c.posts) out += '<span class="posts-inline">'+esc(c.posts)+' '+esc(T("posts"))+'</span>';
-  var k = keyDate(c);
-  if(k){
-    var d = daysUntil(k.date);
-    var urgent = k.kind === "deadline" && d !== null && d >= 0 && d <= 7;
-    var s = (k.kind === "deadline" ? T("deadlineL") : T("examL")) + fmtDate(k.date);
-    if(d !== null && d >= 0) s += " — " + T("remaining") + " " + d + " " + T("dayWord");
-    if(d !== null && d < 0) s += " — " + T("passed");
-    out += '<span'+(urgent ? ' class="urgent"' : '')+'>'+esc(s)+'</span>';
-  }
-  return out;
-}
-var IC_EXT = '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4L11 13"/><path d="M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5"/></svg>';
-
-/* =================== LOGO (original MC squircle) =================== */
-var logoSeq = 0;
-function logoSVG(size){
-  logoSeq++;
-  var g = "logo-g" + logoSeq, s = "logo-s" + logoSeq;
-  return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 64 64" role="img" aria-label="My Concours" style="filter:drop-shadow(0 6px 14px rgba(94,92,230,.4));flex:0 0 auto;">'
-    + '<defs><linearGradient id="'+g+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a84ff"/><stop offset="52%" stop-color="#5e5ce6"/><stop offset="100%" stop-color="#bf5af2"/></linearGradient>'
-    + '<linearGradient id="'+s+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0"/></linearGradient></defs>'
-    + '<rect x="3" y="3" width="58" height="58" rx="17" fill="url(#'+g+')"/>'
-    + '<rect x="3" y="3" width="58" height="30" rx="15" fill="url(#'+s+')"/>'
-    + '<rect x="3.75" y="3.75" width="56.5" height="56.5" rx="16.25" fill="none" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1.5"/>'
-    + '<text x="32" y="41.5" text-anchor="middle" font-size="19" font-weight="800" letter-spacing="0.5" fill="#ffffff" style="font-family:\'Segoe UI\',system-ui,sans-serif;">MC</text>'
-    + '<path d="M22 47.5h20" stroke="#ffb340" stroke-width="3" stroke-linecap="round"/></svg>';
-}
-$$(".logo-slot").forEach(function(el){ el.innerHTML = logoSVG(parseInt(el.getAttribute("data-size"), 10) || 40); });
-
-/* =================== RENDER =================== */
-var filter = "all", query = "";
-
-function cardHTML(c){
-  var tt = c[lang] || c.ar;
-  var p = PORTALS[c.portal];
-  var chip = chipFor(c);
-  var k = keyDate(c); var d = k ? daysUntil(k.date) : null;
-  var past = d !== null && d < 0;
-  return '<article class="card-c'+(past ? " past" : "")+'">'
-    + '<button class="c-open" data-detail="'+esc(c.id)+'">'
-    +   '<span class="c-top"><span class="c-title">'+esc(tt.t)+'</span><span class="chip-st '+chip.cls+'">'+esc(chip.txt)+'</span></span>'
-    +   '<span class="org" style="display:block;">'+esc(tt.o)+'</span>'
-    +   '<span class="c-meta" style="display:flex;">'+metaLine(c)+'</span>'
-    +   pbarHTML(c, T("docsReady"))
-    + '</button>'
-    + '<a class="btn-apply" href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(T("applyPortal"))+' ↗</a>'
-    + '</article>';
-}
-function posCardHTML(c){
-  var tt = c[lang] || c.ar;
-  var p = PORTALS[c.portal];
-  var chip = chipFor(c);
-  var k = keyDate(c); var d = k ? daysUntil(k.date) : null;
-  var past = d !== null && d < 0;
-  var when = k ? ((k.kind === "deadline" ? T("deadlineL") : T("examL")) + fmtDate(k.date) + (d !== null && d >= 0 ? " — " + T("remaining") + " " + d + " " + T("dayWord") : "") + (d !== null && d < 0 ? " — " + T("passed") : "")) : T("noDeadline");
-  return '<article class="card'+(past ? " past" : "")+'">'
-    + '<div class="c-top"><h3 style="margin:0;font-size:1rem;font-weight:700;line-height:1.4;">'+esc(tt.t)+'</h3><span class="chip-st '+chip.cls+'">'+esc(chip.txt)+'</span></div>'
-    + '<div class="org">'+esc(tt.o)+'</div>'
-    + '<div class="pos-meta">'
-    +   (c.posts ? '<span class="posts-pill">'+esc(c.posts)+' '+esc(T("posts"))+'</span>' : '<span class="posts-none">'+esc(T("noPosts"))+'</span>')
-    +   '<span class="when">'+esc(when)+'</span>'
-    + '</div>'
-    + pbarHTML(c, T("docsReady"))
-    + '<div class="btn-row"><button class="btn-details" data-detail="'+esc(c.id)+'">'+esc(T("viewDetails"))+'</button>'
-    + '<a class="btn-apply" href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(T("applyPortal"))+' ↗</a></div>'
-    + '</article>';
-}
-function filtered(list){
-  return list.filter(function(c){
-    if(filter === "match" && !c.match) return false;
-    if(filter === "open"){ var d = daysUntil(c.deadline); if(!(d !== null && d >= 0)) return false; }
-    if(filter === "soon" && !(c.id === "douane" || c.id === "crmef-prim")) return false;
-    if(query){
-      var hay = ((c.ar.t+" "+c.ar.o+" "+(c.fr?c.fr.t+" "+c.fr.o:"")+" "+(c.city?c.city.ar+" "+c.city.fr:"")).toLowerCase());
-      if(hay.indexOf(query.toLowerCase()) === -1) return false;
-    }
-    return true;
-  });
-}
-function renderChips(el){
-  var defs = [["all","fAll"],["match","fMatch"],["open","fOpen"],["soon","fSoon"]];
-  el.innerHTML = defs.map(function(d){
-    return '<button class="chip'+(filter===d[0]?" on":"")+'" data-filter="'+d[0]+'">'+esc(T(d[1]))+'</button>';
-  }).join("");
-  $$(".chip", el).forEach(function(ch){
-    ch.addEventListener("click", function(){ filter = ch.getAttribute("data-filter"); renderLists(); });
-  });
+function applyBtn(c, heroStyle){
+  if(c.apply) return '<a class="btn'+(heroStyle?"":" primary")+'" href="'+esc(c.apply)+'" target="_blank" rel="noopener">الترشيح عبر البوابة الرسمية</a>';
+  return '<span class="btn disabled">الترشيح ورقي — لا بوابة إلكترونية</span>';
 }
 function renderHero(){
-  var sorted = sortConcours(CONCOURS);
-  var hero = null, hk = null;
-  for(var i = 0; i < sorted.length; i++){
-    var k = keyDate(sorted[i]);
-    if(k && daysUntil(k.date) >= 0){ hero = sorted[i]; hk = k; break; }
-  }
-  if(!hero){ $("#heroBox").innerHTML = ""; return; }
-  var tt = hero[lang] || hero.ar;
-  var p = PORTALS[hero.portal];
-  var dc = doneCount(hero);
-  var pct = dc.total === 0 ? 0 : Math.round(dc.done / dc.total * 100);
-  $("#heroBox").innerHTML =
-      '<div class="hero"><span class="mc-wm" aria-hidden="true">MC</span><span class="glow" aria-hidden="true"></span>'
-    + '<p class="h-label">'+esc(hk.kind === "deadline" ? T("heroNextDeadline") : T("heroNextExam"))+' — '+esc(tt.t)+'</p>'
-    + '<div class="count"><b>'+daysUntil(hk.date)+'</b><span>'+esc(T("daysLeftHero"))+'</span></div>'
-    + '<p class="h-date">'+esc(fmtDateLong(hk.date))+'</p>'
-    + '<div class="hero-prog"><div class="pr-row"><span>'+esc(T("heroDocs"))+'</span><span>'+dc.done+'/'+dc.total+'</span></div>'
-    + '<div class="track"><div class="fill" style="width:'+pct+'%"></div></div></div>'
-    + '<button class="btn-glass" data-detail="'+esc(hero.id)+'">'+esc(T("viewChecklist"))+'</button>'
-    + '<a class="btn-hero-apply" href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(T("applyPortal"))+' ↗</a>'
-    + '</div>';
-  bindDetails($("#heroBox"));
+  const upcoming = DATA.concours.filter(c=>{const d=daysUntil(c.deadline); return d!==null && d>=0;})
+    .sort((a,b)=>new Date(a.deadline)-new Date(b.deadline))[0];
+  const el = document.getElementById("hero");
+  if(!upcoming){ el.innerHTML = '<div class="card hero"><div class="kicker">أقرب آخر أجل</div><h2>لا مباراة مفتوحة حاليا</h2><div class="meta">اسحب للتحديث لجلب آخر المستجدات</div></div>'; return; }
+  const dd = daysUntil(upcoming.deadline);
+  el.innerHTML = '<div class="card hero"><div class="kicker">أقرب آخر أجل</div><h2>'+esc(upcoming.title)+'</h2>'
+    + '<div class="meta">'+esc(upcoming.org)+'<br>آخر أجل: '+fmtDate(upcoming.deadline)+(upcoming.exam?'<br>الكتابي: '+fmtDate(upcoming.exam):'')+'</div>'
+    + '<span class="days">باقي '+dd+' يوم</span><br>'+applyBtn(upcoming,true)+'</div>';
 }
-function renderLists(){
-  var home = sortConcours(filtered(CONCOURS.filter(function(c){ return c.match; })));
-  $("#homeCards").innerHTML = home.length ? home.map(cardHTML).join("") : '<div class="empty">'+esc(T("noRes"))+'</div>';
-  var all = sortConcours(filtered(CONCOURS));
-  $("#allCards").innerHTML = all.length ? all.map(cardHTML).join("") : '<div class="empty">'+esc(T("noRes"))+'</div>';
-  $("#posCards").innerHTML = sortConcours(CONCOURS).map(posCardHTML).join("");
-  renderChips($("#chipsHome")); renderChips($("#chipsAll"));
-  bindDetails($("#homeCards")); bindDetails($("#allCards")); bindDetails($("#posCards"));
-  var doneSum = 0, totalSum = 0;
-  CONCOURS.forEach(function(c){ var dc = doneCount(c); doneSum += dc.done; totalSum += dc.total; });
-  $("#stConcours").textContent = CONCOURS.length;
-  $("#stDocs").textContent = doneSum + "/" + totalSum;
-  $("#stVault").textContent = DOCS.length + sessionScans.length;
-  $("#drawerCnt").textContent = CONCOURS.length;
-  $("#sideCnt").textContent = CONCOURS.length;
+function renderConcours(){
+  const el = document.getElementById("concoursList");
+  if(!DATA.concours.length){ el.innerHTML = '<div class="card empty">لا مباريات حاليا</div>'; return; }
+  el.innerHTML = DATA.concours.map(c =>
+    '<div class="card concours"><h4>'+esc(c.title)+'</h4><div class="org">'+esc(c.org)+'</div>'
+    + '<div class="dates">'+chipFor(c)+(c.deadline?' &nbsp;آخر أجل: '+fmtDate(c.deadline):'')+(c.exam?'<br>الكتابي: '+fmtDate(c.exam):'')+'</div>'
+    + (c.note?'<div class="note">'+esc(c.note)+'</div>':'')+applyBtn(c,false)+'</div>'
+  ).join("");
 }
-function feedHTML(n){
-  var tt = n[lang] || n.ar;
-  var stage = n.type === "warn" ? T("stageNext") : (n.type === "res" ? T("stageRes") : T("stageAd"));
-  return '<article class="card feed-item"><div class="fi-top"><div class="lft"><span class="chip-st amber">'+esc(stage)+'</span></div>'
-    + '<time>'+esc(fmtDate(n.date))+'</time></div>'
-    + '<h4>'+esc(tt.t)+'</h4><p>'+esc(tt.p)+'</p></article>';
+function newsHtml(items){
+  if(!items.length) return '<div class="empty">لا مستجدات حاليا</div>';
+  return items.map(n =>
+    '<div class="news-item"><div class="date">'+fmtDate(n.date)+'</div><div class="t">'+esc(n.title)+'</div>'
+    + '<div class="b">'+esc(n.body)+'</div>'
+    + (n.link?'<a href="'+esc(n.link)+'" target="_blank" rel="noopener">المصدر الرسمي ←</a>':'')+'</div>'
+  ).join("");
 }
-function renderFeed(){
-  var sorted = NEWS.slice().sort(function(a,b){ return a.date < b.date ? 1 : -1; });
-  $("#newsFeed").innerHTML = sorted.map(feedHTML).join("");
-  $("#homeFeed").innerHTML = sorted.slice(0,3).map(feedHTML).join("");
-  $("#autoBox").textContent = T("autoTxt");
+function renderNews(){
+  const sorted = [...DATA.news].sort((a,b)=>new Date(b.date)-new Date(a.date));
+  document.getElementById("newsList").innerHTML = newsHtml(sorted);
+  document.getElementById("homeNews").innerHTML = newsHtml(sorted.slice(0,3));
+  document.getElementById("updatedLine").textContent = DATA.updated ? "آخر تحديث للبيانات: "+fmtDate(DATA.updated) : "";
 }
-function renderVault(){
-  $("#docList").innerHTML = DOCS.map(function(d){
-    var tt = d[lang] || d.ar;
-    return '<div class="card-c doc-item"><div><h4>'+esc(tt.t)+'</h4><p>'+esc(tt.p)+'</p></div>'
-      + '<span class="chip-st st '+(d.st==="ok"?"blue":"amber")+'">'+esc(d.st==="ok"?T("stOk"):T("stTodo"))+'</span></div>';
-  }).join("");
-  $("#portalGrid").innerHTML = Object.keys(PORTALS).map(function(k){
-    var p = PORTALS[k];
-    return '<a class="card-c portal" href="'+esc(p.url)+'" target="_blank" rel="noopener"><b>'+esc(L(p))+'</b><span class="url">'+esc(p.url.replace("https://",""))+'</span><span class="go">'+esc(T("goPortal"))+' '+IC_EXT+'</span></a>';
-  }).join("");
-}
-function renderProfile(){
-  $("#profileKv").innerHTML = PROFILE.map(function(r){
-    var c = r[lang] || r.ar;
-    return '<div class="row"><span>'+esc(c[0])+'</span><b>'+esc(c[1])+'</b></div>';
-  }).join("");
-}
-function bindDetails(root){
-  $$("[data-detail]", root).forEach(function(b){
-    b.onclick = function(){ openDetail(b.getAttribute("data-detail")); };
-  });
-}
+function renderAll(){ renderHero(); renderConcours(); renderNews(); }
 
-/* =================== SCANNER (in-session only) =================== */
-var sessionScans = [];
-var pendingScan = null;
-function renderScans(){
-  var el = $("#scanList");
-  if(!sessionScans.length){
-    el.innerHTML = '<div class="empty">'+esc(T("scanEmpty"))+'</div>';
-    return;
-  }
-  el.innerHTML = sessionScans.map(function(s){
-    return '<div class="card-c sess-item"><img src="'+s.src+'" alt="" /><div><b>'+esc(s.name)+'</b><span>'+esc(s.when)+'</span></div></div>';
-  }).join("");
-}
-$("#scanFile").addEventListener("change", function(){
-  var f = this.files && this.files[0];
-  if(!f) return;
-  var rd = new FileReader();
-  rd.onload = function(){
-    pendingScan = {src: rd.result, name: f.name || T("scanDoc")};
-    $("#scanImg").src = rd.result;
-    $("#scanPreview").classList.add("show");
-  };
-  rd.readAsDataURL(f);
-});
-$("#scanSave").addEventListener("click", function(){
-  if(!pendingScan) return;
-  var when = "";
-  try{ when = new Date().toLocaleTimeString(lang==="ar" ? "ar-MA" : "fr-FR", {hour:"2-digit", minute:"2-digit"}); }catch(e){}
-  sessionScans.unshift({src: pendingScan.src, name: pendingScan.name, when: when});
-  pendingScan = null;
-  $("#scanPreview").classList.remove("show");
-  $("#scanFile").value = "";
-  renderScans(); renderLists();
-  toast(T("scanAdded"));
-});
-
-/* =================== DETAIL =================== */
-function openDetail(id){
-  var c = null;
-  CONCOURS.forEach(function(x){ if(x.id === id) c = x; });
-  if(!c) return;
-  var tt = c[lang] || c.ar, p = PORTALS[c.portal];
-  var chip = chipFor(c);
-  var badge = $("#sheetBadge");
-  badge.textContent = chip.txt;
-  badge.className = "chip-st " + chip.cls;
-  var facts = "";
-  function fact(l, v){ if(v) facts += '<div class="fact"><span>'+esc(l)+'</span><b>'+esc(v)+'</b></div>'; }
-  fact(T("grade"), L(c.grade));
-  fact(T("posts"), c.posts ? c.posts + " " + T("posts") : null);
-  fact(T("deadline"), c.deadline ? fmtDate(c.deadline) : null);
-  fact(T("exam"), c.exam ? fmtDate(c.exam) : null);
-  fact(T("city"), c.city ? L(c.city) : null);
-  fact(T("ref"), c.ref || null);
-  fact(T("status"), c.status ? L(c.status) : null);
-  var reqs = (c.req[lang] || c.req.ar).map(function(r){ return "<li>"+esc(r)+"</li>"; }).join("");
-  $("#sheetBody").innerHTML =
-      '<h2>'+esc(tt.t)+'</h2><div class="org">'+esc(tt.o)+'</div>'
-    + '<div class="fact-grid">'+facts+'</div>'
-    + pbarHTML(c, T("docsReady"))
-    + '<h3 class="sec">'+esc(T("reqT"))+'</h3><ul class="req-list">'+reqs+'</ul>'
-    + (c.note ? '<div class="note-box">'+esc(L(c.note))+'</div>' : '')
-    + '<a class="btn-apply" href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(T("applyPortal"))+' ↗ — '+esc(L(p))+'</a>'
-    + '<div class="kit-row"><button data-goto="vault">'+esc(T("kitDocs"))+'</button><button data-goto="vault">'+esc(T("kitPortals"))+'</button></div>';
-  $$("#sheetBody [data-goto]").forEach(function(el){
-    el.addEventListener("click", function(){ closeDetail(); go(el.getAttribute("data-goto")); });
-  });
-  $("#sheet").classList.add("open");
-  $("#sheet").setAttribute("aria-hidden","false");
-  $("#sheet").scrollTop = 0;
-  document.body.style.overflow = "hidden";
-}
-function closeDetail(){
-  $("#sheet").classList.remove("open");
-  $("#sheet").setAttribute("aria-hidden","true");
-  document.body.style.overflow = "";
-}
-
-/* =================== NAVIGATION =================== */
-var currentView = "home";
-function go(view){
-  currentView = view;
-  $$(".view").forEach(function(v){ v.classList.toggle("active", v.id === "view-" + view); });
-  $$("#tabs .tab").forEach(function(t){ t.classList.toggle("on", t.getAttribute("data-goto") === view); });
-  $$("#sideNav .nav-pill, #drawerNav .nav-pill").forEach(function(t){ t.classList.toggle("on", t.getAttribute("data-goto") === view); });
-  closeDrawer();
-  window.scrollTo({top:0});
-}
-$$("[data-goto]").forEach(function(el){
-  if(el.id === "btnAvatar") return;
-  el.addEventListener("click", function(e){
-    e.preventDefault();
-    go(el.getAttribute("data-goto"));
-  });
-});
-
-/* Drawer: scrim captures every touch behind it */
-function openDrawer(){
-  $("#drawerWrap").classList.add("open");
-  $("#drawer").setAttribute("aria-hidden","false");
-  document.body.style.overflow = "hidden";
-}
-function closeDrawer(){
-  if(!$("#drawerWrap").classList.contains("open")) return;
-  $("#drawerWrap").classList.remove("open");
-  $("#drawer").setAttribute("aria-hidden","true");
-  document.body.style.overflow = "";
-}
-$("#btnMenu").addEventListener("click", openDrawer);
-$("#scrim").addEventListener("click", closeDrawer);
-$("#scrim").addEventListener("touchmove", function(e){ e.preventDefault(); }, {passive:false});
-$("#drawerClose").addEventListener("click", closeDrawer);
-$("#btnAvatar").addEventListener("click", function(){ go("profile"); });
-$("#sheetBack").addEventListener("click", closeDetail);
-
-/* =================== INSTALL =================== */
-var deferredPrompt = null;
-window.addEventListener("beforeinstallprompt", function(e){ e.preventDefault(); deferredPrompt = e; });
-function isStandalone(){
-  return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
-}
-if(isStandalone()){ $("#installBar").classList.add("hidden"); }
-function doInstall(){
-  if(deferredPrompt){
-    var showPrompt = deferredPrompt.prompt;
-    showPrompt.call(deferredPrompt);
-    deferredPrompt.userChoice.then(function(){ deferredPrompt = null; });
-  } else {
-    $("#installModal").classList.add("open");
-  }
-}
-$("#btnInstall").addEventListener("click", doInstall);
-$("#ibClose").addEventListener("click", function(){ $("#installBar").classList.add("hidden"); });
-$("#btnInstall2").addEventListener("click", doInstall);
-$("#imClose").addEventListener("click", function(){ $("#installModal").classList.remove("open"); });
-$("#installModal").addEventListener("click", function(e){ if(e.target === this) this.classList.remove("open"); });
-
-/* =================== LANGUAGE & THEME =================== */
-function applyI18n(){
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-  $$("[data-i18n]").forEach(function(el){ el.textContent = T(el.getAttribute("data-i18n")); });
-  $$("[data-i18n-ph]").forEach(function(el){ el.setAttribute("placeholder", T(el.getAttribute("data-i18n-ph"))); });
-  $$("#segLang button").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-lang") === lang); });
-  renderHero(); renderLists(); renderFeed(); renderVault(); renderProfile(); renderScans();
-}
-$$("#segLang button").forEach(function(b){
-  b.addEventListener("click", function(){ lang = b.getAttribute("data-lang"); applyI18n(); });
-});
-$$("#segTheme button").forEach(function(b){
-  b.addEventListener("click", function(){
-    document.body.setAttribute("data-theme", b.getAttribute("data-theme-set"));
-    $$("#segTheme button").forEach(function(x){ x.classList.toggle("on", x === b); });
-  });
-});
-
-/* =================== SEARCH =================== */
-function bindSearch(id){
-  var el = $(id);
-  el.addEventListener("input", function(){ query = el.value.trim(); renderLists(); });
-}
-bindSearch("#qHome"); bindSearch("#qAll");
-
-/* =================== PULL-TO-REFRESH (stays on the same page) =================== */
-var toastTimer = null;
+let toastTimer;
 function toast(msg){
-  $("#toastTxt").textContent = msg;
-  $("#toast").classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(function(){ $("#toast").classList.remove("show"); }, 2400);
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>t.classList.remove("show"), 2200);
 }
-var ptrStart = null;
-document.addEventListener("touchstart", function(e){
-  if(window.scrollY <= 0 && !$("#sheet").classList.contains("open") && !$("#drawerWrap").classList.contains("open")){
-    ptrStart = e.touches[0].clientY;
-  } else ptrStart = null;
+let refreshing = false;
+async function refresh(showToast){
+  if(refreshing) return; refreshing = true;
+  const btn = document.getElementById("refreshBtn"); btn.classList.add("spinning");
+  try{
+    const res = await fetch("data.json?t="+Date.now(), {cache:"no-store"});
+    if(res.ok){
+      const fresh = await res.json();
+      if(fresh && Array.isArray(fresh.concours) && Array.isArray(fresh.news)){ DATA = fresh; }
+    }
+    renderAll();
+    if(showToast) toast("تم التحديث");
+  }catch(e){ renderAll(); if(showToast) toast("تعذر الجلب — عرض آخر بيانات محفوظة"); }
+  btn.classList.remove("spinning"); refreshing = false;
+}
+document.getElementById("refreshBtn").addEventListener("click", ()=>refresh(true));
+
+document.querySelectorAll("nav.bottom button").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    document.querySelectorAll("nav.bottom button").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+    document.getElementById("tab-"+b.dataset.tab).classList.add("active");
+    window.scrollTo({top:0});
+  });
+});
+
+// Pull to refresh
+let startY = 0, pulling = false;
+const pullEl = document.getElementById("pull");
+window.addEventListener("touchstart", e=>{
+  if(window.scrollY <= 0){ startY = e.touches[0].clientY; pulling = true; }
 }, {passive:true});
-document.addEventListener("touchmove", function(e){
-  if(ptrStart === null) return;
-  var dy = e.touches[0].clientY - ptrStart;
-  if(dy > 10 && window.scrollY <= 0){
-    $("#ptrTxt").textContent = T("ptrPull");
-    $("#ptr").classList.add("show");
+window.addEventListener("touchmove", e=>{
+  if(!pulling) return;
+  const dy = e.touches[0].clientY - startY;
+  if(dy > 0 && window.scrollY <= 0){
+    pullEl.style.height = Math.min(dy*0.5, 56)+"px";
+    pullEl.textContent = dy > 110 ? "أطلق للتحديث" : "اسحب للتحديث…";
   }
 }, {passive:true});
-document.addEventListener("touchend", function(e){
-  if(ptrStart === null) return;
-  var dy = e.changedTouches[0].clientY - ptrStart;
-  ptrStart = null;
-  var ptr = $("#ptr");
-  if(dy > 90 && window.scrollY <= 0){
-    ptr.classList.add("on"); ptr.classList.add("show");
-    $("#ptrTxt").textContent = T("ptrRefresh");
-    var viewName = T(currentView === "home" ? "tabHome" : currentView === "concours" ? "tabConcours" : currentView === "positions" ? "tabPositions" : currentView === "news" ? "tabNews" : currentView === "scan" ? "tabScan" : currentView === "vault" ? "tabVault" : "detailT");
-    setTimeout(function(){
-      renderHero(); renderLists(); renderFeed(); renderVault(); renderProfile(); renderScans(); /* refresh THIS page only */
-      ptr.classList.remove("on"); ptr.classList.remove("show");
-      toast("«" + viewName + "» " + T("refreshed"));
-    }, 650);
-  } else { ptr.classList.remove("show"); }
-}, {passive:true});
+window.addEventListener("touchend", e=>{
+  if(!pulling) return; pulling = false;
+  const dy = (e.changedTouches[0].clientY - startY);
+  pullEl.style.height = "0px";
+  if(dy > 110) refresh(true);
+});
 
-/* =================== INIT =================== */
-applyI18n();
+renderAll();
+refresh(false);
+if("serviceWorker" in navigator){ navigator.serviceWorker.register("sw.js").catch(()=>{}); }
 </script>
-<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}</script>
 </body>
 </html>
