@@ -119,6 +119,27 @@ nav.bottom button.active{background:var(--accent); color:#fff}
   backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%);
 }
 .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+.avatar-btn{
+  width:40px;height:40px;border-radius:50%;flex:0 0 auto;cursor:pointer;
+  border:1px solid var(--border); background:var(--glass-strong); color:var(--accent);
+  display:flex;align-items:center;justify-content:center; box-shadow:var(--shadow);
+}
+.group-head{display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.group-head .gname{font-weight:700;font-size:15px}
+.group-head .gcount{font-size:12.5px;color:var(--muted)}
+.group-fields{display:none;margin-top:14px}
+.group-fields.open{display:block}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:5px}
+.field input{
+  width:100%;padding:11px 14px;border-radius:14px;border:1px solid var(--border);
+  background:var(--glass-strong);color:var(--text);font-size:14.5px;font-family:inherit;outline:none;
+}
+.field input:focus{border-color:var(--accent)}
+.save-btn{
+  width:100%;border:none;background:var(--accent);color:#fff;font-weight:700;font-size:14.5px;
+  padding:12px;border-radius:999px;cursor:pointer;font-family:inherit;margin-top:4px;
+}
 </style>
 </head>
 <body>
@@ -130,6 +151,9 @@ nav.bottom button.active{background:var(--accent); color:#fff}
   </div>
   <button class="refresh-btn" id="refreshBtn" aria-label="تحديث">
     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+  </button>
+  <button class="avatar-btn" id="avatarBtn" aria-label="الحساب الشخصي">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
   </button>
 </header>
 <div id="pull">اسحب للتحديث…</div>
@@ -159,6 +183,36 @@ nav.bottom button.active{background:var(--accent); color:#fff}
   <section class="section" id="tab-news">
     <h3 class="sec-title">المستجدات</h3>
     <div class="card" id="newsList"></div>
+  </section>
+  <section class="section" id="tab-account">
+    <h3 class="sec-title">الحساب الشخصي</h3>
+    <div class="card">
+      <div class="group-head" data-group="identity"><span class="gname">الهوية والازدياد</span><span class="gcount" id="count-identity"></span></div>
+      <div class="group-fields" id="fields-identity">
+        <div class="field"><label>الاسم الكامل</label><input data-f="name" type="text"></div>
+        <div class="field"><label>رقم البطاقة الوطنية</label><input data-f="cin" type="text"></div>
+        <div class="field"><label>تاريخ الازدياد</label><input data-f="birth" type="date"></div>
+        <div class="field"><label>مكان الازدياد</label><input data-f="birthplace" type="text"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="group-head" data-group="contact"><span class="gname">العنوان والاتصال</span><span class="gcount" id="count-contact"></span></div>
+      <div class="group-fields" id="fields-contact">
+        <div class="field"><label>العنوان</label><input data-f="address" type="text"></div>
+        <div class="field"><label>الهاتف</label><input data-f="phone" type="tel"></div>
+        <div class="field"><label>البريد الإلكتروني</label><input data-f="email" type="email"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="group-head" data-group="diploma"><span class="gname">الدبلوم والجامعة</span><span class="gcount" id="count-diploma"></span></div>
+      <div class="group-fields" id="fields-diploma">
+        <div class="field"><label>الدبلوم</label><input data-f="diploma" type="text"></div>
+        <div class="field"><label>الجامعة</label><input data-f="university" type="text"></div>
+        <div class="field"><label>سنة التخرج</label><input data-f="year" type="text"></div>
+      </div>
+    </div>
+    <button class="save-btn" id="saveProfile">حفظ</button>
+    <p class="updated">المعلومات كتحفظ في هاد الجهاز فقط</p>
   </section>
   <p class="updated" id="updatedLine"></p>
 </main>
@@ -307,6 +361,40 @@ window.addEventListener("touchend", e=>{
 renderAll();
 refresh(false);
 if("serviceWorker" in navigator){ navigator.serviceWorker.register("sw.js").catch(()=>{}); }
+
+// Personal account (saved on this device only)
+const PROFILE_KEY = "mc_profile";
+const GROUPS = { identity:["name","cin","birth","birthplace"], contact:["address","phone","email"], diploma:["diploma","university","year"] };
+function loadProfile(){
+  let p = {};
+  try{ p = JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}"); }catch(e){}
+  document.querySelectorAll("#tab-account input[data-f]").forEach(inp=>{ inp.value = p[inp.dataset.f] || ""; });
+  updateCounts(p);
+}
+function updateCounts(p){
+  Object.entries(GROUPS).forEach(([g, fields])=>{
+    const filled = fields.filter(f => (p[f]||"").trim()).length;
+    document.getElementById("count-"+g).textContent = filled+"/"+fields.length;
+  });
+}
+document.querySelectorAll(".group-head").forEach(h=>{
+  h.addEventListener("click", ()=> document.getElementById("fields-"+h.dataset.group).classList.toggle("open"));
+});
+document.getElementById("saveProfile").addEventListener("click", ()=>{
+  const p = {};
+  document.querySelectorAll("#tab-account input[data-f]").forEach(inp=>{ p[inp.dataset.f] = inp.value.trim(); });
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
+  updateCounts(p);
+  document.querySelectorAll(".group-fields").forEach(f=>f.classList.remove("open"));
+  toast("✓ تم الحفظ بنجاح");
+});
+document.getElementById("avatarBtn").addEventListener("click", ()=>{
+  document.querySelectorAll("nav.bottom button").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  document.getElementById("tab-account").classList.add("active");
+  window.scrollTo({top:0});
+});
+loadProfile();
 </script>
 </body>
 </html>
