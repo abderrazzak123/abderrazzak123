@@ -142,9 +142,42 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 }
 .linkrows a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 2px;border-bottom:1px solid var(--border,rgba(0,0,0,.08));color:inherit;text-decoration:none;font-size:14px}
 .linkrows a:last-child{border-bottom:none}
+#loginOverlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px;background:var(--bg,#e9edf6)}
+#loginOverlay.show{display:flex}
+.login-card{width:100%;max-width:380px;background:var(--glass);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow);padding:26px 22px;text-align:center}
+.login-card h2{margin:6px 0 4px;font-size:22px}
+.login-card .sub{color:var(--muted);font-size:13.5px;margin:0 0 18px}
+.login-card .field{text-align:right}
+.login-card input{width:100%;box-sizing:border-box}
+.gbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:12px;border-radius:14px;border:1px solid var(--border);background:#fff;color:#1f1f1f;font-weight:600;font-size:15px;cursor:pointer}
+.divider{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12.5px;margin:16px 0}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--border)}
+.login-err{color:#c0392b;font-size:13px;min-height:18px;margin:8px 0 0}
+.login-toggle{background:none;border:none;color:var(--accent);font-size:13.5px;cursor:pointer;margin-top:12px}
+.photo-row{display:flex;align-items:center;gap:14px}
+.photo-row img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--border);background:var(--glass)}
+.avatar-btn img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:none}
+.filerow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 2px;border-bottom:1px solid var(--border);font-size:14px}
+.filerow:last-child{border-bottom:none}
+.filerow .fname{flex:1;word-break:break-all}
+.filerow button{background:none;border:none;color:var(--accent);font-size:13.5px;cursor:pointer;padding:4px}
+.filerow .del{color:#c0392b}
 </style>
 </head>
 <body>
+<div id="loginOverlay">
+  <div class="login-card">
+    <h2>كونكوراتي</h2>
+    <p class="sub">سجل الدخول باش تستعمل التطبيق وتحفظ ملفاتك في حسابك</p>
+    <button class="gbtn" id="googleBtn">تسجيل الدخول بجوجل</button>
+    <div class="divider">أو بالإيميل</div>
+    <div class="field"><label>البريد الإلكتروني</label><input id="loginEmail" type="email" autocomplete="email"></div>
+    <div class="field"><label>كلمة السر</label><input id="loginPass" type="password" autocomplete="current-password"></div>
+    <button class="save-btn" id="emailBtn">دخول</button>
+    <p class="login-err" id="loginErr"></p>
+    <button class="login-toggle" id="toggleMode">ما عندكش حساب؟ صايب حساب جديد</button>
+  </div>
+</div>
 <header>
   <div class="logo">MC</div>
   <div class="titles">
@@ -155,7 +188,8 @@ nav.bottom button.active{background:var(--accent); color:#fff}
     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
   </button>
   <button class="avatar-btn" id="avatarBtn" aria-label="الحساب الشخصي">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
+    <img id="avatarImg" alt="">
+    <svg id="avatarIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
   </button>
 </header>
 <div id="pull">اسحب للتحديث…</div>
@@ -205,6 +239,16 @@ nav.bottom button.active{background:var(--accent); color:#fff}
   <section class="section" id="tab-account">
     <h3 class="sec-title">الحساب الشخصي</h3>
     <div class="card">
+      <div class="photo-row">
+        <img id="profilePhoto" alt="">
+        <div>
+          <p style="margin:0 0 4px"><b id="userEmailLine"></b></p>
+          <label class="btn" for="photoInput" style="display:inline-block;cursor:pointer">بدّل الصورة</label>
+          <input id="photoInput" type="file" accept="image/*" style="display:none">
+        </div>
+      </div>
+    </div>
+    <div class="card">
       <div class="group-head" data-group="identity"><span class="gname">الهوية والازدياد</span><span class="gcount" id="count-identity"></span></div>
       <div class="group-fields" id="fields-identity">
         <div class="field"><label>الاسم الكامل</label><input data-f="name" type="text"></div>
@@ -230,7 +274,15 @@ nav.bottom button.active{background:var(--accent); color:#fff}
       </div>
     </div>
     <button class="save-btn" id="saveProfile">حفظ</button>
-    <p class="updated">المعلومات كتحفظ في هاد الجهاز فقط</p>
+    <div class="card" style="margin-top:14px">
+      <p style="margin:0 0 6px"><b>ملفاتي</b></p>
+      <p style="color:var(--muted);font-size:13.5px;margin:0 0 10px">ملفاتك محفوظة في حسابك. الحجم الأقصى لكل ملف: 700 كيلوبايت.</p>
+      <label class="btn primary" for="fileInput" style="display:inline-block;cursor:pointer">زيد ملف</label>
+      <input id="fileInput" type="file" style="display:none">
+      <div id="filesList" style="margin-top:8px"></div>
+    </div>
+    <button class="btn" id="signOutBtn" style="width:100%;margin-top:4px">تسجيل الخروج</button>
+    <p class="updated">المعلومات كتحفظ في حسابك وتتزامن بين الأجهزة</p>
   </section>
   <p class="updated" id="updatedLine"></p>
 </main>
@@ -241,6 +293,9 @@ nav.bottom button.active{background:var(--accent); color:#fff}
   <button data-tab="news">المستجدات</button>
 </nav>
 <div class="toast" id="toast"></div>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script>
 const FALLBACK = {
   updated: "2026-11-20",
@@ -434,10 +489,176 @@ document.getElementById("saveProfile").addEventListener("click", ()=>{
   localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
   updateCounts(p);
   document.querySelectorAll(".group-fields").forEach(f=>f.classList.remove("open"));
+  if(window.cloudSaveProfile) window.cloudSaveProfile(p);
   toast("✓ تم الحفظ بنجاح");
 });
 document.getElementById("avatarBtn").addEventListener("click", ()=>showTab("account"));
 loadProfile();
+
+// ===== Firebase: mandatory login, synced profile, photo, files =====
+(function(){
+  const overlay = document.getElementById("loginOverlay");
+  if(typeof firebase === "undefined"){ return; } // SDK failed to load: keep app usable
+  const firebaseConfig = {
+    apiKey: "AIzaSyCS8Y4e3668rJuobAAqvrG4mMrI-qWA3fI",
+    authDomain: "my-concours.firebaseapp.com",
+    projectId: "my-concours",
+    storageBucket: "my-concours.firebasestorage.app",
+    messagingSenderId: "493691210634",
+    appId: "1:493691210634:web:3f17f97b8ea0df5e919673"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  let currentUser = null;
+  let signupMode = false;
+
+  function err(msg){ document.getElementById("loginErr").textContent = msg || ""; }
+  function friendly(e){
+    const c = (e && e.code) || "";
+    if(c.includes("wrong-password") || c.includes("invalid-credential")) return "كلمة السر غلاطة";
+    if(c.includes("user-not-found")) return "هاد الحساب ما كاينش";
+    if(c.includes("email-already-in-use")) return "هاد الإيميل مسجل ديجا";
+    if(c.includes("weak-password")) return "كلمة السر قصيرة — خاصها 6 حروف على الأقل";
+    if(c.includes("invalid-email")) return "الإيميل ما صحيحش";
+    if(c.includes("popup-closed") || c.includes("cancelled")) return "";
+    if(c.includes("network")) return "مشكل في الاتصال — عاود المحاولة";
+    return "وقع مشكل — عاود المحاولة";
+  }
+
+  document.getElementById("googleBtn").addEventListener("click", async ()=>{
+    err("");
+    const provider = new firebase.auth.GoogleAuthProvider();
+    try{ await auth.signInWithPopup(provider); }
+    catch(e){
+      if(e && (e.code||"").includes("popup")){ try{ await auth.signInWithRedirect(provider); }catch(e2){ err(friendly(e2)); } }
+      else err(friendly(e));
+    }
+  });
+  auth.getRedirectResult().catch(e=>err(friendly(e)));
+
+  document.getElementById("toggleMode").addEventListener("click", ()=>{
+    signupMode = !signupMode;
+    document.getElementById("emailBtn").textContent = signupMode ? "صايب الحساب" : "دخول";
+    document.getElementById("toggleMode").textContent = signupMode ? "عندك حساب؟ دخل" : "ما عندكش حساب؟ صايب حساب جديد";
+    err("");
+  });
+  document.getElementById("emailBtn").addEventListener("click", async ()=>{
+    err("");
+    const email = document.getElementById("loginEmail").value.trim();
+    const pass = document.getElementById("loginPass").value;
+    if(!email || !pass){ err("عمر الإيميل وكلمة السر"); return; }
+    try{
+      if(signupMode) await auth.createUserWithEmailAndPassword(email, pass);
+      else await auth.signInWithEmailAndPassword(email, pass);
+    }catch(e){ err(friendly(e)); }
+  });
+
+  function setPhoto(url){
+    const img = document.getElementById("profilePhoto");
+    const av = document.getElementById("avatarImg");
+    const icon = document.getElementById("avatarIcon");
+    if(url){ img.src = url; av.src = url; av.style.display = "block"; if(icon) icon.style.display = "none"; }
+    else { img.removeAttribute("src"); av.style.display = "none"; if(icon) icon.style.display = ""; }
+  }
+
+  async function loadCloudProfile(){
+    if(!currentUser) return;
+    try{
+      const snap = await db.collection("users").doc(currentUser.uid).get();
+      if(snap.exists){
+        const d = snap.data() || {};
+        const p = d.profile || {};
+        document.querySelectorAll("#tab-account input[data-f]").forEach(inp=>{ inp.value = p[inp.dataset.f] || ""; });
+        updateCounts(p);
+        localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
+        setPhoto(d.photo || "");
+      } else if(currentUser.photoURL){ setPhoto(currentUser.photoURL); }
+    }catch(e){}
+  }
+
+  window.cloudSaveProfile = function(p){
+    if(!currentUser) return;
+    db.collection("users").doc(currentUser.uid).set({profile: p}, {merge: true}).catch(()=>{});
+  };
+
+  document.getElementById("photoInput").addEventListener("change", async (ev)=>{
+    const file = ev.target.files[0];
+    if(!file || !currentUser) return;
+    try{
+      const bmp = await createImageBitmap(file);
+      const scale = Math.min(1, 256 / Math.max(bmp.width, bmp.height));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.round(bmp.width * scale);
+      canvas.height = Math.round(bmp.height * scale);
+      canvas.getContext("2d").drawImage(bmp, 0, 0, canvas.width, canvas.height);
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.72);
+      await db.collection("users").doc(currentUser.uid).set({photo: dataUrl}, {merge: true});
+      setPhoto(dataUrl);
+      toast("✓ تبدلات الصورة");
+    }catch(e){ toast("تعذر حفظ الصورة"); }
+    ev.target.value = "";
+  });
+
+  // Files (stored in Firestore, max ~700KB each on the free plan)
+  const MAX_FILE = 700 * 1024;
+  async function loadFiles(){
+    const el = document.getElementById("filesList");
+    if(!currentUser){ el.innerHTML = ""; return; }
+    try{
+      const qs = await db.collection("users").doc(currentUser.uid).collection("files").orderBy("ts", "desc").get();
+      if(qs.empty){ el.innerHTML = '<p style="color:var(--muted);font-size:13px;margin:6px 0">لا ملفات بعد</p>'; return; }
+      el.innerHTML = "";
+      qs.forEach(doc=>{
+        const f = doc.data();
+        const row = document.createElement("div");
+        row.className = "filerow";
+        const name = document.createElement("span"); name.className = "fname"; name.textContent = f.name;
+        const open = document.createElement("button"); open.textContent = "فتح";
+        open.addEventListener("click", ()=>{
+          const w = window.open();
+          if(w){ w.document.write('<iframe src="'+f.data+'" style="border:0;width:100%;height:100%"></iframe>'); }
+        });
+        const del = document.createElement("button"); del.className = "del"; del.textContent = "حذف";
+        del.addEventListener("click", async ()=>{ await doc.ref.delete(); loadFiles(); });
+        row.append(name, open, del);
+        el.appendChild(row);
+      });
+    }catch(e){}
+  }
+
+  document.getElementById("fileInput").addEventListener("change", async (ev)=>{
+    const file = ev.target.files[0];
+    if(!file || !currentUser) return;
+    if(file.size > MAX_FILE){ toast("الملف كبير بزاف — الأقصى 700 كيلوبايت"); ev.target.value = ""; return; }
+    const reader = new FileReader();
+    reader.onload = async ()=>{
+      try{
+        await db.collection("users").doc(currentUser.uid).collection("files").add({
+          name: file.name, type: file.type, size: file.size, data: reader.result, ts: Date.now()
+        });
+        toast("✓ تزاد الملف");
+        loadFiles();
+      }catch(e){ toast("تعذر حفظ الملف"); }
+    };
+    reader.readAsDataURL(file);
+    ev.target.value = "";
+  });
+
+  document.getElementById("signOutBtn").addEventListener("click", ()=>auth.signOut());
+
+  auth.onAuthStateChanged((user)=>{
+    currentUser = user;
+    if(user){
+      overlay.classList.remove("show");
+      document.getElementById("userEmailLine").textContent = user.email || "";
+      loadCloudProfile();
+      loadFiles();
+    } else {
+      overlay.classList.add("show");
+    }
+  });
+})();
 </script>
 </body>
 </html>

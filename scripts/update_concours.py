@@ -2,21 +2,24 @@
 """Collect open state concours from emploi-public.ma and write concours.json.
 
 Runs on GitHub Actions on a schedule. Read-only: only public listing pages.
+Strategy (from the portal's structure): iterate the exact-deadline filter
+(datePicker, JJ/MM/AAAA) day by day for each category, keep only "Annonce"
+cards, dedupe by detail URL. Plain pagination ordering is unstable at equal
+deadlines, so day-by-day is the reliable way to be exhaustive.
 """
 import json
 import re
 import sys
 import time
-from datetime import date
+from datetime import date, timedelta
 
 import requests
 from bs4 import BeautifulSoup
 
 BASE = "https://www.emploi-public.ma"
-LIST_URLS = [
-    BASE + "/fr/concours-liste?page={page}",
-    BASE + "/fr/concours-liste?stat=etab_publics&page={page}",
-]
+CATEGORIES = ["service_etat", "etab_publics", "collec"]
+LIST_TMPL = (BASE + "/fr/concours-liste?key_word=&stat={stat}&corps=0&region=0"
+             "&datePicker={day}&date_from=&date_to=&procedure=0&page={page}")
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; MyConcoursBot/1.0; +https://abderrazzak123.github.io/abderrazzak123/)",
     "Accept-Language": "fr-FR,fr;q=0.9",
@@ -27,7 +30,9 @@ MONTHS = {
     "septembre": 9, "octobre": 10, "novembre": 11, "décembre": 12, "decembre": 12,
 }
 DATE_RE = re.compile(r"(\d{1,2})\s+([A-Za-zÀ-ÿ]+)\s+(\d{4})")
-MAX_PAGES = 60
+DAYS_AHEAD = 120
+EMPTY_STREAK_STOP = 21
+MAX_REQUESTS = 4000
 
 
 def fr_date_to_iso(text):
@@ -57,7 +62,6 @@ def parse_page(html):
             continue
         href = a["href"]
         url = href if href.startswith("http") else BASE + "/" + href.lstrip("/")
-        # The card around the link usually carries org, posts and dates.
         card = a
         for _ in range(5):
             if card.parent is None:
@@ -66,6 +70,9 @@ def parse_page(html):
             if "Limite de dépôt" in card.get_text():
                 break
         card_text = clean(card.get_text(" "))
+        # Keep announcements only (skip Convocation / Résultats publications).
+        if "Annonce" not in card_text:
+            continue
         deadline = ""
         m = re.search(r"Limite de dépôt\s*:\s*([^|]+)", card_text)
         if m:
@@ -78,15 +85,12 @@ def parse_page(html):
         m = re.search(r"(\d+)\s*postes?", card_text)
         if m:
             posts = m.group(1)
-        # Title = link text up to the org name; org = text after the title.
         title = text
         org = ""
-        # The link text typically repeats the title then the organisation.
         parts = text.split("Avis de concours")
         if len(parts) > 2:
             title = "Avis de concours" + parts[1]
             rest = clean("Avis de concours".join(parts[2:]))
-            # rest = "<title again> <org> Annonce" -> strip the repeated title
             if rest.startswith(clean(title)):
                 org = clean(rest[len(clean(title)):])
             org = re.sub(r"\s*Annonce\s*$", "", org)
@@ -102,38 +106,53 @@ def parse_page(html):
 
 
 def main():
-    today = date.today().isoformat()
+    today = date.today()
     seen = {}
     session = requests.Session()
     session.headers.update(HEADERS)
-    for template in LIST_URLS:
-        for page in range(1, MAX_PAGES + 1):
-            url = template.format(page=page)
-            try:
-                r = session.get(url, timeout=30)
-                r.raise_for_status()
-            except requests.RequestException as e:
-                print(f"fetch failed {url}: {e}", file=sys.stderr)
+    requests_made = 0
+    for stat in CATEGORIES:
+        empty_streak = 0
+        for offset in range(DAYS_AHEAD + 1):
+            if requests_made >= MAX_REQUESTS:
                 break
-            items = parse_page(r.text)
-            if not items:
-                break
-            new = 0
-            for it in items:
-                if it["url"] not in seen:
-                    seen[it["url"]] = it
-                    new += 1
-            if new == 0:
-                break
-            # Lists are newest-first: stop once every dated item is past.
-            dated = [i["deadline"] for i in items if i["deadline"]]
-            if dated and all(d < today for d in dated):
-                break
-            time.sleep(1)
+            day = today + timedelta(days=offset)
+            day_str = day.strftime("%d/%m/%Y")
+            day_items = 0
+            for page in range(1, 40):
+                if requests_made >= MAX_REQUESTS:
+                    break
+                url = LIST_TMPL.format(stat=stat, day=day_str, page=page)
+                try:
+                    r = session.get(url, timeout=30)
+                    r.raise_for_status()
+                except requests.RequestException as e:
+                    print(f"fetch failed {url}: {e}", file=sys.stderr)
+                    break
+                requests_made += 1
+                items = parse_page(r.text)
+                if not items:
+                    break
+                new = 0
+                for it in items:
+                    if it["url"] not in seen:
+                        seen[it["url"]] = it
+                        new += 1
+                day_items += len(items)
+                if new == 0:
+                    break
+                time.sleep(0.6)
+            if day_items == 0:
+                empty_streak += 1
+                if offset > 30 and empty_streak >= EMPTY_STREAK_STOP:
+                    break
+            else:
+                empty_streak = 0
 
+    today_iso = today.isoformat()
     concours = []
     for it in seen.values():
-        if it["deadline"] and it["deadline"] < today:
+        if it["deadline"] and it["deadline"] < today_iso:
             continue
         note = f"{it['posts']} منصب" if it["posts"] else ""
         slug = re.sub(r"[^a-z0-9]+", "-", it["url"].rsplit("/", 1)[-1].lower())[:60]
@@ -147,10 +166,10 @@ def main():
             "apply": it["url"],
         })
     concours.sort(key=lambda c: (c["deadline"] or "9999-12-31", c["title"]))
-    out = {"concours": concours, "updated": today}
+    out = {"concours": concours, "updated": today_iso}
     with open("concours.json", "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
-    print(f"wrote {len(concours)} open concours")
+    print(f"wrote {len(concours)} open concours from {requests_made} requests")
 
 
 if __name__ == "__main__":
