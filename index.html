@@ -140,6 +140,8 @@ nav.bottom button.active{background:var(--accent); color:#fff}
   width:100%;border:none;background:var(--accent);color:#fff;font-weight:700;font-size:14.5px;
   padding:12px;border-radius:999px;cursor:pointer;font-family:inherit;margin-top:4px;
 }
+.linkrows a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 2px;border-bottom:1px solid var(--border,rgba(0,0,0,.08));color:inherit;text-decoration:none;font-size:14px}
+.linkrows a:last-child{border-bottom:none}
 </style>
 </head>
 <body>
@@ -178,6 +180,22 @@ nav.bottom button.active{background:var(--accent); color:#fff}
       <p style="margin:0 0 6px"><b>بوابة وزارة المالية</b></p>
       <p style="color:var(--muted);font-size:13.5px;margin:0">مباريات الجمارك والخزينة والضرائب.</p>
       <a class="btn primary" href="https://e-recrutement.finances.gov.ma" target="_blank" rel="noopener">فتح البوابة الرسمية</a>
+    </div>
+    <div id="jobsList"></div>
+    <div class="card">
+      <p style="margin:0 0 10px"><b>روابط مباشرة لمواقع الشغل والمباريات</b></p>
+      <p style="color:var(--muted);font-size:13.5px;margin:0 0 10px">أي موقع ما كيتجمعش أوتوماتيكيا، دخليه من هنا مباشرة.</p>
+      <div class="linkrows">
+        <a href="https://recrutement.enssup.gov.ma" target="_blank" rel="noopener"><span>بوابة الجامعات — مباريات الأساتذة والمتصرفين</span><span>←</span></a>
+        <a href="https://wolouj.men.gov.ma" target="_blank" rel="noopener"><span>بوابة الولوج — مباريات التعليم والأطر المختصة</span><span>←</span></a>
+        <a href="https://candidaturesbac.men.gov.ma" target="_blank" rel="noopener"><span>الباك الحر — الترشيح الرسمي</span><span>←</span></a>
+        <a href="https://www.rekrute.com" target="_blank" rel="noopener"><span>ReKrute — عروض شغل القطاع الخاص</span><span>←</span></a>
+        <a href="https://ma.indeed.com" target="_blank" rel="noopener"><span>Indeed المغرب — عروض شغل متنوعة</span><span>←</span></a>
+        <a href="https://www.moncallcenter.ma" target="_blank" rel="noopener"><span>Moncallcenter — مراكز النداء والخدمات</span><span>←</span></a>
+        <a href="https://www.stagiaires.ma" target="_blank" rel="noopener"><span>Stagiaires — السطاجات وفرص البداية</span><span>←</span></a>
+        <a href="https://www.maremploi.ma" target="_blank" rel="noopener"><span>MarEmploi — عروض شغل في المغرب</span><span>←</span></a>
+        <a href="https://www.emploi.ma" target="_blank" rel="noopener"><span>Emploi.ma — عروض شغل في المغرب</span><span>←</span></a>
+      </div>
     </div>
   </section>
   <section class="section" id="tab-news">
@@ -302,7 +320,18 @@ function renderNews(){
   document.getElementById("homeNews").innerHTML = newsHtml(sorted.slice(0,3));
   document.getElementById("updatedLine").textContent = DATA.updated ? "آخر تحديث للبيانات: "+fmtDate(DATA.updated) : "";
 }
-function renderAll(){ renderHero(); renderConcours(); renderNews(); }
+function renderAll(){ renderHero(); renderConcours(); renderNews(); renderJobs(); }
+function renderJobs(){
+  const el = document.getElementById("jobsList");
+  if(!el) return;
+  const jobs = (DATA.jobs || []);
+  if(!jobs.length){ el.innerHTML = ""; return; }
+  el.innerHTML = jobs.map(j =>
+    '<div class="card concours"><h4>'+esc(j.title)+'</h4><div class="org">'+esc(j.company)+(j.city?' — '+esc(j.city):'')+'</div>'
+    + ((j.contract||j.salary)?'<div class="dates">'+esc([j.contract,j.salary].filter(Boolean).join(" · "))+'</div>':'')
+    + (j.url?'<a class="btn primary" href="'+esc(j.url)+'" target="_blank" rel="noopener">عرض الإعلان</a>':'')+'</div>'
+  ).join("");
+}
 
 let toastTimer;
 function toast(msg){
