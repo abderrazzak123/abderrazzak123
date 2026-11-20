@@ -177,22 +177,23 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 <div id="loginOverlay">
   <div class="login-card">
     <h2>كونكوراتي</h2>
-    <p class="sub">سجل الدخول باش تستعمل التطبيق وتحفظ ملفاتك في حسابك</p>
-    <button class="gbtn" id="googleBtn">تسجيل الدخول بجوجل</button>
-    <div class="divider">أو بالإيميل</div>
-    <div class="field"><label>البريد الإلكتروني</label><input id="loginEmail" type="email" autocomplete="email"></div>
-    <div class="field"><label>كلمة السر</label><input id="loginPass" type="password" autocomplete="current-password"></div>
-    <button class="save-btn" id="emailBtn">دخول</button>
+    <p class="sub" data-i18n="login_sub">سجل الدخول لاستعمال التطبيق وحفظ ملفاتك في حسابك</p>
+    <button class="gbtn" id="googleBtn" data-i18n="google_btn">تسجيل الدخول عبر Google</button>
+    <div class="divider" data-i18n="or_email">أو بالبريد الإلكتروني</div>
+    <div class="field"><label data-i18n="email">البريد الإلكتروني</label><input id="loginEmail" type="email" autocomplete="email"></div>
+    <div class="field"><label data-i18n="password">كلمة السر</label><input id="loginPass" type="password" autocomplete="current-password"></div>
+    <button class="save-btn" id="emailBtn" data-i18n="login_btn">دخول</button>
     <p class="login-err" id="loginErr"></p>
-    <button class="login-toggle" id="toggleMode">ما عندكش حساب؟ صايب حساب جديد</button>
+    <button class="login-toggle" id="toggleMode" data-i18n="toggle_signup">ليس لديك حساب؟ أنشئ حسابا جديدا</button>
   </div>
 </div>
 <header>
   <div class="logo">MC</div>
   <div class="titles">
     <h1>My Concours</h1>
-    <div class="sub">كونكوراتي — تتبع المباريات والمستجدات</div>
+    <div class="sub" data-i18n="app_sub">كونكوراتي — تتبع المباريات والمستجدات</div>
   </div>
+  <button class="refresh-btn" id="langBtn" aria-label="Language" style="font-weight:700;font-size:13px;width:auto;padding:0 10px">FR</button>
   <button class="refresh-btn" id="refreshBtn" aria-label="تحديث">
     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
   </button>
@@ -201,105 +202,105 @@ nav.bottom button.active{background:var(--accent); color:#fff}
     <svg id="avatarIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
   </button>
 </header>
-<div id="pull">اسحب للتحديث…</div>
+<div id="pull" data-i18n="pull_refresh">اسحب للتحديث…</div>
 <main id="main">
   <section class="section active" id="tab-home">
     <div id="hero"></div>
-    <h3 class="sec-title">آخر المستجدات</h3>
+    <h3 class="sec-title" data-i18n="latest_news">آخر المستجدات</h3>
     <div class="card" id="homeNews"></div>
   </section>
   <section class="section" id="tab-concours">
-    <h3 class="sec-title">المباريات</h3>
+    <h3 class="sec-title" data-i18n="tab_concours">المباريات</h3>
     <div id="concoursList"></div>
   </section>
   <section class="section" id="tab-jobs">
-    <h3 class="sec-title">المناصب</h3>
+    <h3 class="sec-title" data-i18n="tab_jobs">المناصب</h3>
     <div class="card">
-      <p style="margin:0 0 6px"><b>بوابة التشغيل العمومي</b></p>
-      <p style="color:var(--muted);font-size:13.5px;margin:0">جميع مباريات الدولة والمناصب المفتوحة في مكان واحد.</p>
-      <a class="btn primary" href="https://www.emploi-public.ma" target="_blank" rel="noopener">فتح البوابة الرسمية</a>
+      <p style="margin:0 0 6px"><b data-i18n="portal_ep">بوابة التشغيل العمومي</b></p>
+      <p style="color:var(--muted);font-size:13.5px;margin:0" data-i18n="portal_ep_desc">جميع مباريات الدولة والمناصب المفتوحة في مكان واحد.</p>
+      <a class="btn primary" href="https://www.emploi-public.ma" target="_blank" rel="noopener" data-i18n="open_portal">فتح البوابة الرسمية</a>
     </div>
     <div class="card">
-      <p style="margin:0 0 6px"><b>بوابة وزارة المالية</b></p>
-      <p style="color:var(--muted);font-size:13.5px;margin:0">مباريات الجمارك والخزينة والضرائب.</p>
-      <a class="btn primary" href="https://e-recrutement.finances.gov.ma" target="_blank" rel="noopener">فتح البوابة الرسمية</a>
+      <p style="margin:0 0 6px"><b data-i18n="portal_fin">بوابة وزارة المالية</b></p>
+      <p style="color:var(--muted);font-size:13.5px;margin:0" data-i18n="portal_fin_desc">مباريات الجمارك والخزينة والضرائب.</p>
+      <a class="btn primary" href="https://e-recrutement.finances.gov.ma" target="_blank" rel="noopener" data-i18n="open_portal">فتح البوابة الرسمية</a>
     </div>
     <div id="jobsList"></div>
     <div class="card">
-      <p style="margin:0 0 10px"><b>روابط مباشرة لمواقع الشغل والمباريات</b></p>
-      <p style="color:var(--muted);font-size:13.5px;margin:0 0 10px">أي موقع ما كيتجمعش أوتوماتيكيا، دخليه من هنا مباشرة.</p>
+      <p style="margin:0 0 10px"><b data-i18n="direct_links">روابط مباشرة لمواقع الشغل والمباريات</b></p>
+      <p style="color:var(--muted);font-size:13.5px;margin:0 0 10px" data-i18n="direct_links_desc">أي موقع لا يجمع تلقائيا، ادخل إليه من هنا مباشرة.</p>
       <div class="linkrows">
-        <a href="https://recrutement.enssup.gov.ma" target="_blank" rel="noopener"><span>بوابة الجامعات — مباريات الأساتذة والمتصرفين</span><span>←</span></a>
-        <a href="https://wolouj.men.gov.ma" target="_blank" rel="noopener"><span>بوابة الولوج — مباريات التعليم والأطر المختصة</span><span>←</span></a>
-        <a href="https://candidaturesbac.men.gov.ma" target="_blank" rel="noopener"><span>الباك الحر — الترشيح الرسمي</span><span>←</span></a>
-        <a href="https://www.rekrute.com" target="_blank" rel="noopener"><span>ReKrute — عروض شغل القطاع الخاص</span><span>←</span></a>
-        <a href="https://ma.indeed.com" target="_blank" rel="noopener"><span>Indeed المغرب — عروض شغل متنوعة</span><span>←</span></a>
-        <a href="https://www.moncallcenter.ma" target="_blank" rel="noopener"><span>Moncallcenter — مراكز النداء والخدمات</span><span>←</span></a>
-        <a href="https://www.stagiaires.ma" target="_blank" rel="noopener"><span>Stagiaires — السطاجات وفرص البداية</span><span>←</span></a>
-        <a href="https://www.maremploi.ma" target="_blank" rel="noopener"><span>MarEmploi — عروض شغل في المغرب</span><span>←</span></a>
-        <a href="https://www.emploi.ma" target="_blank" rel="noopener"><span>Emploi.ma — عروض شغل في المغرب</span><span>←</span></a>
+        <a href="https://recrutement.enssup.gov.ma" target="_blank" rel="noopener"><span data-i18n="link1">بوابة الجامعات — مباريات الأساتذة والمتصرفين</span><span>←</span></a>
+        <a href="https://wolouj.men.gov.ma" target="_blank" rel="noopener"><span data-i18n="link2">بوابة الولوج — مباريات التعليم والأطر المختصة</span><span>←</span></a>
+        <a href="https://candidaturesbac.men.gov.ma" target="_blank" rel="noopener"><span data-i18n="link3">الباك الحر — الترشيح الرسمي</span><span>←</span></a>
+        <a href="https://www.rekrute.com" target="_blank" rel="noopener"><span data-i18n="link4">ReKrute — عروض شغل القطاع الخاص</span><span>←</span></a>
+        <a href="https://ma.indeed.com" target="_blank" rel="noopener"><span data-i18n="link5">Indeed المغرب — عروض شغل متنوعة</span><span>←</span></a>
+        <a href="https://www.moncallcenter.ma" target="_blank" rel="noopener"><span data-i18n="link6">Moncallcenter — مراكز النداء والخدمات</span><span>←</span></a>
+        <a href="https://www.stagiaires.ma" target="_blank" rel="noopener"><span data-i18n="link7">Stagiaires — السطاجات وفرص البداية</span><span>←</span></a>
+        <a href="https://www.maremploi.ma" target="_blank" rel="noopener"><span data-i18n="link8">MarEmploi — عروض شغل في المغرب</span><span>←</span></a>
+        <a href="https://www.emploi.ma" target="_blank" rel="noopener"><span data-i18n="link9">Emploi.ma — عروض شغل في المغرب</span><span>←</span></a>
       </div>
     </div>
   </section>
   <section class="section" id="tab-news">
-    <h3 class="sec-title">المستجدات</h3>
+    <h3 class="sec-title" data-i18n="tab_news">المستجدات</h3>
     <div class="card" id="newsList"></div>
   </section>
   <section class="section" id="tab-account">
-    <h3 class="sec-title">الحساب الشخصي</h3>
+    <h3 class="sec-title" data-i18n="account">الحساب الشخصي</h3>
     <div class="card">
       <div class="photo-row">
         <img id="profilePhoto" alt="">
         <div>
           <p style="margin:0 0 4px"><b id="userEmailLine"></b></p>
-          <label class="btn" for="photoInput" style="display:inline-block;cursor:pointer">بدّل الصورة</label>
+          <label class="btn" for="photoInput" style="display:inline-block;cursor:pointer" data-i18n="change_photo">تغيير الصورة</label>
           <input id="photoInput" type="file" accept="image/*" style="display:none">
         </div>
       </div>
     </div>
     <div class="card">
-      <div class="group-head" data-group="identity"><span class="gname">الهوية والازدياد</span><span class="gcount" id="count-identity"></span></div>
+      <div class="group-head" data-group="identity"><span class="gname" data-i18n="g_identity">الهوية والازدياد</span><span class="gcount" id="count-identity"></span></div>
       <div class="group-fields" id="fields-identity">
-        <div class="field"><label>الاسم الكامل</label><input data-f="name" type="text"></div>
-        <div class="field"><label>رقم البطاقة الوطنية</label><input data-f="cin" type="text"></div>
-        <div class="field"><label>تاريخ الازدياد</label><input data-f="birth" type="date"></div>
-        <div class="field"><label>مكان الازدياد</label><input data-f="birthplace" type="text"></div>
+        <div class="field"><label data-i18n="f_name">الاسم الكامل</label><input data-f="name" type="text"></div>
+        <div class="field"><label data-i18n="f_cin">رقم البطاقة الوطنية</label><input data-f="cin" type="text"></div>
+        <div class="field"><label data-i18n="f_birth">تاريخ الازدياد</label><input data-f="birth" type="date"></div>
+        <div class="field"><label data-i18n="f_birthplace">مكان الازدياد</label><input data-f="birthplace" type="text"></div>
       </div>
     </div>
     <div class="card">
-      <div class="group-head" data-group="contact"><span class="gname">العنوان والاتصال</span><span class="gcount" id="count-contact"></span></div>
+      <div class="group-head" data-group="contact"><span class="gname" data-i18n="g_contact">العنوان والاتصال</span><span class="gcount" id="count-contact"></span></div>
       <div class="group-fields" id="fields-contact">
-        <div class="field"><label>العنوان</label><input data-f="address" type="text"></div>
-        <div class="field"><label>الهاتف</label><input data-f="phone" type="tel"></div>
-        <div class="field"><label>البريد الإلكتروني</label><input data-f="email" type="email"></div>
+        <div class="field"><label data-i18n="f_address">العنوان</label><input data-f="address" type="text"></div>
+        <div class="field"><label data-i18n="f_phone">الهاتف</label><input data-f="phone" type="tel"></div>
+        <div class="field"><label data-i18n="email">البريد الإلكتروني</label><input data-f="email" type="email"></div>
       </div>
     </div>
     <div class="card">
-      <div class="group-head" data-group="diploma"><span class="gname">الدبلوم والجامعة</span><span class="gcount" id="count-diploma"></span></div>
+      <div class="group-head" data-group="diploma"><span class="gname" data-i18n="g_diploma">الدبلوم والجامعة</span><span class="gcount" id="count-diploma"></span></div>
       <div class="group-fields" id="fields-diploma">
-        <div class="field"><label>الدبلوم</label><input data-f="diploma" type="text"></div>
-        <div class="field"><label>الجامعة</label><input data-f="university" type="text"></div>
-        <div class="field"><label>سنة التخرج</label><input data-f="year" type="text"></div>
+        <div class="field"><label data-i18n="f_diploma">الدبلوم</label><input data-f="diploma" type="text"></div>
+        <div class="field"><label data-i18n="f_university">الجامعة</label><input data-f="university" type="text"></div>
+        <div class="field"><label data-i18n="f_year">سنة التخرج</label><input data-f="year" type="text"></div>
       </div>
     </div>
-    <button class="save-btn" id="saveProfile">حفظ</button>
+    <button class="save-btn" id="saveProfile" data-i18n="save">حفظ</button>
     <div class="card" style="margin-top:14px">
-      <p style="margin:0 0 6px"><b>ملفاتي</b></p>
-      <p style="color:var(--muted);font-size:13.5px;margin:0 0 10px">ملفاتك محفوظة في حسابك. الحجم الأقصى لكل ملف: 700 كيلوبايت.</p>
-      <label class="btn primary" for="fileInput" style="display:inline-block;cursor:pointer">زيد ملف</label>
+      <p style="margin:0 0 6px"><b data-i18n="my_files">ملفاتي</b></p>
+      <p style="color:var(--muted);font-size:13.5px;margin:0 0 10px" data-i18n="files_desc">ملفاتك محفوظة في حسابك. الحجم الأقصى لكل ملف: 700 كيلوبايت.</p>
+      <label class="btn primary" for="fileInput" style="display:inline-block;cursor:pointer" data-i18n="add_file">إضافة ملف</label>
       <input id="fileInput" type="file" style="display:none">
       <div id="filesList" style="margin-top:8px"></div>
     </div>
-    <button class="btn" id="signOutBtn" style="width:100%;margin-top:4px">تسجيل الخروج</button>
-    <p class="updated">المعلومات كتحفظ في حسابك وتتزامن بين الأجهزة</p>
+    <button class="btn" id="signOutBtn" style="width:100%;margin-top:4px" data-i18n="sign_out">تسجيل الخروج</button>
+    <p class="updated" data-i18n="sync_note">تحفظ المعلومات في حسابك وتتزامن بين الأجهزة</p>
   </section>
   <p class="updated" id="updatedLine"></p>
 </main>
 <nav class="bottom">
-  <button data-tab="home" class="active">الرئيسية</button>
-  <button data-tab="concours">المباريات</button>
-  <button data-tab="jobs">المناصب</button>
-  <button data-tab="news">المستجدات</button>
+  <button data-tab="home" class="active" data-i18n="tab_home">الرئيسية</button>
+  <button data-tab="concours" data-i18n="tab_concours">المباريات</button>
+  <button data-tab="jobs" data-i18n="tab_jobs">المناصب</button>
+  <button data-tab="news" data-i18n="tab_news">المستجدات</button>
 </nav>
 <div class="toast" id="toast"></div>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
@@ -309,22 +310,112 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 const FALLBACK = {
   updated: "2026-11-20",
   concours: [
-    {id:"specialiste", title:"مختص الاقتصاد والإدارة", org:"وزارة التربية الوطنية — الأطر المختصة", deadline:"2026-11-25", exam:"2026-12-05", apply:"https://wolouj.men.gov.ma", note:"559 منصب — آخر أجل 25 نونبر مع 16:30"},
+    {id:"specialiste", title:"مختص الاقتصاد والإدارة", org:"وزارة التربية الوطنية — الأطر المختصة", deadline:"2026-11-25", exam:"2026-12-05", apply:"https://wolouj.men.gov.ma", note:"559 منصب — آخر أجل 25 نونبر على الساعة 16:30"},
     {id:"baclibre", title:"الباك الحر 2027", org:"وزارة التربية الوطنية", deadline:"2026-12-04", exam:"", apply:"https://candidaturesbac.men.gov.ma", note:"علوم اقتصادية وتدبير — مسلك علوم اقتصادية"},
     {id:"primaire", title:"التعليم الابتدائي — مزدوج", org:"الأكاديميات الجهوية للتربية والتكوين", deadline:"2026-11-19", exam:"2026-11-28", apply:"https://wolouj.men.gov.ma", note:"لوائح المقبولين للكتابي: 24 نونبر — الكتابي: 28 نونبر"},
-    {id:"adii", title:"مفتش الجمارك — الدرجة 2", org:"إدارة الجمارك والضرائب غير المباشرة", deadline:"", exam:"2026-09-20", apply:"https://e-recrutement.finances.gov.ma", note:"الكتابي داز في 20 شتنبر — النتائج لم تنشر بعد"},
+    {id:"adii", title:"مفتش الجمارك — الدرجة 2", org:"إدارة الجمارك والضرائب غير المباشرة", deadline:"", exam:"2026-09-20", apply:"https://e-recrutement.finances.gov.ma", note:"أجري الكتابي في 20 شتنبر — النتائج لم تنشر بعد"},
     {id:"universites", title:"متصرف درجة 3 — علوم التدبير", org:"الجامعات المغربية", deadline:"2026-11-19", exam:"2026-11-29", apply:"https://recrutement.enssup.gov.ma", note:"أجل الترشيح انتهى"},
-    {id:"ormvad", title:"متصرف درجة 3 — علوم اقتصادية وتدبير", org:"المكتب الجهوي للاستثمار الفلاحي لدكالة", deadline:"", exam:"2026-11-08", apply:"", note:"الكتابي داز في 8 نونبر بالجديدة"}
+    {id:"ormvad", title:"متصرف درجة 3 — علوم اقتصادية وتدبير", org:"المكتب الجهوي للاستثمار الفلاحي لدكالة", deadline:"", exam:"2026-11-08", apply:"", note:"أجري الكتابي في 8 نونبر بالجديدة"}
   ],
   news: [
     {date:"2026-11-20", title:"لوائح المقبولين للكتابي — التعليم الابتدائي", body:"تصدر اللوائح يوم 24 نونبر على بوابة الولوج.", link:"https://wolouj.men.gov.ma"},
-    {date:"2026-11-20", title:"آخر أجل لمختص الاقتصاد والإدارة", body:"يغلق الترشيح يوم 25 نونبر مع 16:30. الكتابي يوم 5 دجنبر.", link:"https://wolouj.men.gov.ma"},
+    {date:"2026-11-20", title:"آخر أجل لمختص الاقتصاد والإدارة", body:"يغلق الترشيح يوم 25 نونبر على الساعة 16:30. الكتابي يوم 5 دجنبر.", link:"https://wolouj.men.gov.ma"},
     {date:"2026-11-20", title:"كتابي التعليم الابتدائي", body:"الاختبار الكتابي يوم السبت 28 نونبر.", link:""},
     {date:"2026-11-20", title:"نتائج الجمارك", body:"نتائج كتابي مفتش الجمارك الدرجة 2 لم تنشر بعد.", link:"https://e-recrutement.finances.gov.ma"},
     {date:"2026-11-20", title:"آخر أجل للباك الحر", body:"يغلق التسجيل يوم 4 دجنبر 2026.", link:"https://candidaturesbac.men.gov.ma"}
   ]
 };
 let DATA = FALLBACK;
+
+const I18N = {
+  ar: {
+    login_sub:"سجل الدخول لاستعمال التطبيق وحفظ ملفاتك في حسابك", google_btn:"تسجيل الدخول عبر Google",
+    or_email:"أو بالبريد الإلكتروني", email:"البريد الإلكتروني", password:"كلمة السر", login_btn:"دخول",
+    signup_btn:"إنشاء الحساب", toggle_signup:"ليس لديك حساب؟ أنشئ حسابا جديدا", toggle_login:"لديك حساب؟ سجل الدخول",
+    app_sub:"كونكوراتي — تتبع المباريات والمستجدات", pull_refresh:"اسحب للتحديث…",
+    latest_news:"آخر المستجدات", tab_home:"الرئيسية", tab_concours:"المباريات", tab_jobs:"المناصب", tab_news:"المستجدات",
+    portal_ep:"بوابة التشغيل العمومي", portal_ep_desc:"جميع مباريات الدولة والمناصب المفتوحة في مكان واحد.",
+    portal_fin:"بوابة وزارة المالية", portal_fin_desc:"مباريات الجمارك والخزينة والضرائب.", open_portal:"فتح البوابة الرسمية",
+    direct_links:"روابط مباشرة لمواقع الشغل والمباريات", direct_links_desc:"أي موقع لا يجمع تلقائيا، ادخل إليه من هنا مباشرة.",
+    link1:"بوابة الجامعات — مباريات الأساتذة والمتصرفين", link2:"بوابة الولوج — مباريات التعليم والأطر المختصة",
+    link3:"الباك الحر — الترشيح الرسمي", link4:"ReKrute — عروض شغل القطاع الخاص", link5:"Indeed المغرب — عروض شغل متنوعة",
+    link6:"Moncallcenter — مراكز النداء والخدمات", link7:"Stagiaires — التداريب وفرص البداية",
+    link8:"MarEmploi — عروض شغل في المغرب", link9:"Emploi.ma — عروض شغل في المغرب",
+    account:"الحساب الشخصي", change_photo:"تغيير الصورة", g_identity:"الهوية والازدياد", g_contact:"العنوان والاتصال",
+    g_diploma:"الدبلوم والجامعة", f_name:"الاسم الكامل", f_cin:"رقم البطاقة الوطنية", f_birth:"تاريخ الازدياد",
+    f_birthplace:"مكان الازدياد", f_address:"العنوان", f_phone:"الهاتف", f_diploma:"الدبلوم", f_university:"الجامعة",
+    f_year:"سنة التخرج", save:"حفظ", my_files:"ملفاتي",
+    files_desc:"ملفاتك محفوظة في حسابك. الحجم الأقصى لكل ملف: 700 كيلوبايت.", add_file:"إضافة ملف",
+    sign_out:"تسجيل الخروج", sync_note:"تحفظ المعلومات في حسابك وتتزامن بين الأجهزة",
+    days_left:"متبقٍّ {n} يوم", last_day:"اليوم آخر أجل", expired:"انتهى الأجل", waiting:"في الانتظار",
+    apply_official:"الترشيح عبر البوابة الرسمية", apply_paper:"الترشيح ورقي — لا بوابة إلكترونية",
+    next_deadline:"أقرب آخر أجل", no_open:"لا مباراة مفتوحة حاليا", pull_hint:"اسحب للتحديث لجلب آخر المستجدات",
+    deadline_lbl:"آخر أجل: ", exam_lbl:"الكتابي: ", no_concours:"لا مباريات حاليا", no_news:"لا مستجدات حاليا",
+    official_source:"المصدر الرسمي", updated_lbl:"آخر تحديث للبيانات: ", view_offer:"عرض الإعلان",
+    saved_ok:"✓ تم الحفظ بنجاح", photo_ok:"✓ تم تغيير الصورة", photo_err:"تعذر حفظ الصورة",
+    file_big:"الملف كبير جدا — الحد الأقصى 700 كيلوبايت", file_ok:"✓ تمت إضافة الملف", file_err:"تعذر حفظ الملف",
+    no_files:"لا ملفات بعد", open:"فتح", del:"حذف",
+    err_wrong_pass:"كلمة السر غير صحيحة", err_no_user:"هذا الحساب غير موجود", err_email_used:"هذا البريد مسجل مسبقا",
+    err_weak:"كلمة السر قصيرة — 6 أحرف على الأقل", err_bad_email:"البريد الإلكتروني غير صحيح",
+    err_network:"مشكلة في الاتصال — أعد المحاولة", err_generic:"حدثت مشكلة — أعد المحاولة",
+    err_fill:"أدخل البريد الإلكتروني وكلمة السر"
+  },
+  fr: {
+    login_sub:"Connectez-vous pour utiliser l'application et enregistrer vos fichiers dans votre compte",
+    google_btn:"Se connecter avec Google", or_email:"ou par e-mail", email:"E-mail", password:"Mot de passe",
+    login_btn:"Connexion", signup_btn:"Créer le compte", toggle_signup:"Pas de compte ? Créez-en un",
+    toggle_login:"Déjà un compte ? Connectez-vous",
+    app_sub:"My Concours — Suivi des concours et actualités", pull_refresh:"Tirez pour actualiser…",
+    latest_news:"Actualités récentes", tab_home:"Accueil", tab_concours:"Concours", tab_jobs:"Emplois", tab_news:"Actualités",
+    portal_ep:"Portail de l'emploi public", portal_ep_desc:"Tous les concours de l'État et postes ouverts au même endroit.",
+    portal_fin:"Portail du ministère des Finances", portal_fin_desc:"Concours des douanes, du Trésor et des impôts.",
+    open_portal:"Ouvrir le portail officiel",
+    direct_links:"Liens directs vers les sites d'emploi et de concours",
+    direct_links_desc:"Tout site non collecté automatiquement est accessible ici directement.",
+    link1:"Portail des universités — concours des enseignants et administrateurs",
+    link2:"Portail Wolouj — concours de l'enseignement et cadres spécialistes",
+    link3:"Bac libre — candidature officielle", link4:"ReKrute — offres du secteur privé",
+    link5:"Indeed Maroc — offres variées", link6:"Moncallcenter — centres d'appels et services",
+    link7:"Stagiaires — stages et débuts de carrière", link8:"MarEmploi — offres d'emploi au Maroc",
+    link9:"Emploi.ma — offres d'emploi au Maroc",
+    account:"Compte personnel", change_photo:"Changer la photo", g_identity:"Identité et naissance",
+    g_contact:"Adresse et contact", g_diploma:"Diplôme et université", f_name:"Nom complet",
+    f_cin:"Numéro de la carte nationale", f_birth:"Date de naissance", f_birthplace:"Lieu de naissance",
+    f_address:"Adresse", f_phone:"Téléphone", f_diploma:"Diplôme", f_university:"Université",
+    f_year:"Année d'obtention", save:"Enregistrer", my_files:"Mes fichiers",
+    files_desc:"Vos fichiers sont enregistrés dans votre compte. Taille maximale par fichier : 700 Ko.",
+    add_file:"Ajouter un fichier", sign_out:"Se déconnecter",
+    sync_note:"Les informations sont enregistrées dans votre compte et synchronisées entre appareils",
+    days_left:"Plus que {n} jours", last_day:"Dernier jour aujourd'hui", expired:"Délai expiré", waiting:"En attente",
+    apply_official:"Postuler sur le portail officiel", apply_paper:"Candidature papier — pas de portail en ligne",
+    next_deadline:"Prochaine échéance", no_open:"Aucun concours ouvert actuellement",
+    pull_hint:"Tirez pour actualiser les données", deadline_lbl:"Date limite : ", exam_lbl:"Écrit : ",
+    no_concours:"Aucun concours pour le moment", no_news:"Aucune actualité pour le moment",
+    official_source:"Source officielle", updated_lbl:"Dernière mise à jour : ", view_offer:"Voir l'offre",
+    saved_ok:"✓ Enregistré avec succès", photo_ok:"✓ Photo modifiée", photo_err:"Impossible d'enregistrer la photo",
+    file_big:"Fichier trop volumineux — maximum 700 Ko", file_ok:"✓ Fichier ajouté",
+    file_err:"Impossible d'enregistrer le fichier", no_files:"Aucun fichier pour le moment", open:"Ouvrir", del:"Supprimer",
+    err_wrong_pass:"Mot de passe incorrect", err_no_user:"Ce compte n'existe pas",
+    err_email_used:"Cet e-mail est déjà enregistré", err_weak:"Mot de passe trop court — 6 caractères minimum",
+    err_bad_email:"E-mail invalide", err_network:"Problème de connexion — réessayez",
+    err_generic:"Un problème est survenu — réessayez", err_fill:"Entrez l'e-mail et le mot de passe"
+  }
+};
+let LANG = localStorage.getItem("mc_lang") || "ar";
+function t(k, n){ let s = (I18N[LANG] && I18N[LANG][k]) || I18N.ar[k] || k; if(n !== undefined) s = s.replace("{n}", n); return s; }
+function applyLang(){
+  document.documentElement.lang = LANG;
+  document.documentElement.dir = LANG === "fr" ? "ltr" : "rtl";
+  document.querySelectorAll("[data-i18n]").forEach(el=>{ el.textContent = t(el.dataset.i18n); });
+  const lb = document.getElementById("langBtn"); if(lb) lb.textContent = LANG === "fr" ? "عربي" : "FR";
+  renderAll();
+  if(window.loadFiles) window.loadFiles();
+}
+document.getElementById("langBtn").addEventListener("click", ()=>{
+  LANG = LANG === "fr" ? "ar" : "fr";
+  localStorage.setItem("mc_lang", LANG);
+  applyLang();
+});
 
 function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function daysUntil(dateStr){
@@ -336,53 +427,53 @@ function daysUntil(dateStr){
 function fmtDate(dateStr){
   if(!dateStr) return "";
   const d = new Date(dateStr+"T00:00:00");
-  return d.toLocaleDateString("ar-MA",{day:"numeric",month:"long",year:"numeric"});
+  return d.toLocaleDateString(LANG==="fr"?"fr-FR":"ar-MA",{day:"numeric",month:"long",year:"numeric"});
 }
 function chipFor(c){
   const dd = daysUntil(c.deadline);
   if(dd !== null){
-    if(dd > 0) return '<span class="chip">باقي '+dd+' يوم</span>';
-    if(dd === 0) return '<span class="chip warn">اليوم آخر أجل</span>';
-    return '<span class="chip done">انتهى الأجل</span>';
+    if(dd > 0) return '<span class="chip">'+t("days_left",dd)+'</span>';
+    if(dd === 0) return '<span class="chip warn">'+t("last_day")+'</span>';
+    return '<span class="chip done">'+t("expired")+'</span>';
   }
-  return '<span class="chip done">في الانتظار</span>';
+  return '<span class="chip done">'+t("waiting")+'</span>';
 }
 function applyBtn(c, heroStyle){
-  if(c.apply) return '<a class="btn'+(heroStyle?"":" primary")+'" href="'+esc(c.apply)+'" target="_blank" rel="noopener">الترشيح عبر البوابة الرسمية</a>';
-  return '<span class="btn disabled">الترشيح ورقي — لا بوابة إلكترونية</span>';
+  if(c.apply) return '<a class="btn'+(heroStyle?"":" primary")+'" href="'+esc(c.apply)+'" target="_blank" rel="noopener">"+t("apply_official")+"</a>';
+  return '<span class="btn disabled">'+t("apply_paper")+'</span>';
 }
 function renderHero(){
   const upcoming = DATA.concours.filter(c=>{const d=daysUntil(c.deadline); return d!==null && d>=0;})
     .sort((a,b)=>new Date(a.deadline)-new Date(b.deadline))[0];
   const el = document.getElementById("hero");
-  if(!upcoming){ el.innerHTML = '<div class="card hero"><div class="kicker">أقرب آخر أجل</div><h2>لا مباراة مفتوحة حاليا</h2><div class="meta">اسحب للتحديث لجلب آخر المستجدات</div></div>'; return; }
+  if(!upcoming){ el.innerHTML = '<div class="card hero"><div class="kicker">'+t("next_deadline")+'</div><h2>'+t("no_open")+'</h2><div class="meta">'+t("pull_hint")+'</div></div>'; return; }
   const dd = daysUntil(upcoming.deadline);
-  el.innerHTML = '<div class="card hero"><div class="kicker">أقرب آخر أجل</div><h2>'+esc(upcoming.title)+'</h2>'
-    + '<div class="meta">'+esc(upcoming.org)+'<br>آخر أجل: '+fmtDate(upcoming.deadline)+(upcoming.exam?'<br>الكتابي: '+fmtDate(upcoming.exam):'')+'</div>'
-    + '<span class="days">باقي '+dd+' يوم</span><br>'+applyBtn(upcoming,true)+'</div>';
+  el.innerHTML = '<div class="card hero"><div class="kicker">'+t("next_deadline")+'</div><h2>'+esc(upcoming.title)+'</h2>'
+    + '<div class="meta">'+esc(upcoming.org)+'<br>'+t("deadline_lbl")+fmtDate(upcoming.deadline)+(upcoming.exam?'<br>'+t("exam_lbl")+fmtDate(upcoming.exam):'')+'</div>'
+    + '<span class="days">'+t("days_left",dd)+'</span><br>'+applyBtn(upcoming,true)+'</div>';
 }
 function renderConcours(){
   const el = document.getElementById("concoursList");
-  if(!DATA.concours.length){ el.innerHTML = '<div class="card empty">لا مباريات حاليا</div>'; return; }
+  if(!DATA.concours.length){ el.innerHTML = '<div class="card empty">'+t("no_concours")+'</div>'; return; }
   el.innerHTML = DATA.concours.map(c =>
     '<div class="card concours"><h4>'+esc(c.title)+'</h4><div class="org">'+esc(c.org)+'</div>'
-    + '<div class="dates">'+chipFor(c)+(c.deadline?' &nbsp;آخر أجل: '+fmtDate(c.deadline):'')+(c.exam?'<br>الكتابي: '+fmtDate(c.exam):'')+'</div>'
+    + '<div class="dates">'+chipFor(c)+(c.deadline?' &nbsp;'+t("deadline_lbl")+fmtDate(c.deadline):'')+(c.exam?'<br>'+t("exam_lbl")+fmtDate(c.exam):'')+'</div>'
     + (c.note?'<div class="note">'+esc(c.note)+'</div>':'')+applyBtn(c,false)+'</div>'
   ).join("");
 }
 function newsHtml(items){
-  if(!items.length) return '<div class="empty">لا مستجدات حاليا</div>';
+  if(!items.length) return '<div class="empty">'+t("no_news")+'</div>';
   return items.map(n =>
     '<div class="news-item"><div class="date">'+fmtDate(n.date)+'</div><div class="t">'+esc(n.title)+'</div>'
     + '<div class="b">'+esc(n.body)+'</div>'
-    + (n.link?'<a href="'+esc(n.link)+'" target="_blank" rel="noopener">المصدر الرسمي ←</a>':'')+'</div>'
+    + (n.link?'<a href="'+esc(n.link)+'" target="_blank" rel="noopener">"+t("official_source")+(LANG==="fr"?" →":" ←")+"</a>':'')+'</div>'
   ).join("");
 }
 function renderNews(){
   const sorted = [...DATA.news].sort((a,b)=>new Date(b.date)-new Date(a.date));
   document.getElementById("newsList").innerHTML = newsHtml(sorted);
   document.getElementById("homeNews").innerHTML = newsHtml(sorted.slice(0,3));
-  document.getElementById("updatedLine").textContent = DATA.updated ? "آخر تحديث للبيانات: "+fmtDate(DATA.updated) : "";
+  document.getElementById("updatedLine").textContent = DATA.updated ? t("updated_lbl")+fmtDate(DATA.updated) : "";
 }
 function renderAll(){ renderHero(); renderConcours(); renderNews(); renderJobs(); }
 function renderJobs(){
@@ -393,7 +484,7 @@ function renderJobs(){
   el.innerHTML = jobs.map(j =>
     '<div class="card concours"><h4>'+esc(j.title)+'</h4><div class="org">'+esc(j.company)+(j.city?' — '+esc(j.city):'')+'</div>'
     + ((j.contract||j.salary)?'<div class="dates">'+esc([j.contract,j.salary].filter(Boolean).join(" · "))+'</div>':'')
-    + (j.url?'<a class="btn primary" href="'+esc(j.url)+'" target="_blank" rel="noopener">عرض الإعلان</a>':'')+'</div>'
+    + (j.url?'<a class="btn primary" href="'+esc(j.url)+'" target="_blank" rel="noopener">"+t("view_offer")+"</a>':'')+'</div>'
   ).join("");
 }
 
@@ -499,10 +590,11 @@ document.getElementById("saveProfile").addEventListener("click", ()=>{
   updateCounts(p);
   document.querySelectorAll(".group-fields").forEach(f=>f.classList.remove("open"));
   if(window.cloudSaveProfile) window.cloudSaveProfile(p);
-  toast("✓ تم الحفظ بنجاح");
+  toast(t("saved_ok"));
 });
 document.getElementById("avatarBtn").addEventListener("click", ()=>showTab("account"));
 loadProfile();
+applyLang();
 
 // ===== Firebase: mandatory login, synced profile, photo, files =====
 (function(){
@@ -525,14 +617,14 @@ loadProfile();
   function err(msg){ document.getElementById("loginErr").textContent = msg || ""; }
   function friendly(e){
     const c = (e && e.code) || "";
-    if(c.includes("wrong-password") || c.includes("invalid-credential")) return "كلمة السر غلاطة";
-    if(c.includes("user-not-found")) return "هاد الحساب ما كاينش";
-    if(c.includes("email-already-in-use")) return "هاد الإيميل مسجل ديجا";
-    if(c.includes("weak-password")) return "كلمة السر قصيرة — خاصها 6 حروف على الأقل";
-    if(c.includes("invalid-email")) return "الإيميل ما صحيحش";
+    if(c.includes("wrong-password") || c.includes("invalid-credential")) return t("err_wrong_pass");
+    if(c.includes("user-not-found")) return t("err_no_user");
+    if(c.includes("email-already-in-use")) return t("err_email_used");
+    if(c.includes("weak-password")) return t("err_weak");
+    if(c.includes("invalid-email")) return t("err_bad_email");
     if(c.includes("popup-closed") || c.includes("cancelled")) return "";
-    if(c.includes("network")) return "مشكل في الاتصال — عاود المحاولة";
-    return "وقع مشكل — عاود المحاولة";
+    if(c.includes("network")) return t("err_network");
+    return t("err_generic");
   }
 
   document.getElementById("googleBtn").addEventListener("click", async ()=>{
@@ -548,15 +640,15 @@ loadProfile();
 
   document.getElementById("toggleMode").addEventListener("click", ()=>{
     signupMode = !signupMode;
-    document.getElementById("emailBtn").textContent = signupMode ? "صايب الحساب" : "دخول";
-    document.getElementById("toggleMode").textContent = signupMode ? "عندك حساب؟ دخل" : "ما عندكش حساب؟ صايب حساب جديد";
+    document.getElementById("emailBtn").textContent = signupMode ? t("signup_btn") : t("login_btn");
+    document.getElementById("toggleMode").textContent = signupMode ? t("toggle_login") : t("toggle_signup");
     err("");
   });
   document.getElementById("emailBtn").addEventListener("click", async ()=>{
     err("");
     const email = document.getElementById("loginEmail").value.trim();
     const pass = document.getElementById("loginPass").value;
-    if(!email || !pass){ err("عمر الإيميل وكلمة السر"); return; }
+    if(!email || !pass){ err(t("err_fill")); return; }
     try{
       if(signupMode) await auth.createUserWithEmailAndPassword(email, pass);
       else await auth.signInWithEmailAndPassword(email, pass);
@@ -604,31 +696,32 @@ loadProfile();
       const dataUrl = canvas.toDataURL("image/jpeg", 0.72);
       await db.collection("users").doc(currentUser.uid).set({photo: dataUrl}, {merge: true});
       setPhoto(dataUrl);
-      toast("✓ تبدلات الصورة");
-    }catch(e){ toast("تعذر حفظ الصورة"); }
+      toast(t("photo_ok"));
+    }catch(e){ toast(t("photo_err")); }
     ev.target.value = "";
   });
 
   // Files (stored in Firestore, max ~700KB each on the free plan)
   const MAX_FILE = 700 * 1024;
   async function loadFiles(){
+    window.loadFiles = loadFiles;
     const el = document.getElementById("filesList");
     if(!currentUser){ el.innerHTML = ""; return; }
     try{
       const qs = await db.collection("users").doc(currentUser.uid).collection("files").orderBy("ts", "desc").get();
-      if(qs.empty){ el.innerHTML = '<p style="color:var(--muted);font-size:13px;margin:6px 0">لا ملفات بعد</p>'; return; }
+      if(qs.empty){ el.innerHTML = '<p style="color:var(--muted);font-size:13px;margin:6px 0">'+t("no_files")+'</p>'; return; }
       el.innerHTML = "";
       qs.forEach(doc=>{
         const f = doc.data();
         const row = document.createElement("div");
         row.className = "filerow";
         const name = document.createElement("span"); name.className = "fname"; name.textContent = f.name;
-        const open = document.createElement("button"); open.textContent = "فتح";
+        const open = document.createElement("button"); open.textContent = t("open");
         open.addEventListener("click", ()=>{
           const w = window.open();
           if(w){ w.document.write('<iframe src="'+f.data+'" style="border:0;width:100%;height:100%"></iframe>'); }
         });
-        const del = document.createElement("button"); del.className = "del"; del.textContent = "حذف";
+        const del = document.createElement("button"); del.className = "del"; del.textContent = t("del");
         del.addEventListener("click", async ()=>{ await doc.ref.delete(); loadFiles(); });
         row.append(name, open, del);
         el.appendChild(row);
@@ -639,16 +732,16 @@ loadProfile();
   document.getElementById("fileInput").addEventListener("change", async (ev)=>{
     const file = ev.target.files[0];
     if(!file || !currentUser) return;
-    if(file.size > MAX_FILE){ toast("الملف كبير بزاف — الأقصى 700 كيلوبايت"); ev.target.value = ""; return; }
+    if(file.size > MAX_FILE){ toast(t("file_big")); ev.target.value = ""; return; }
     const reader = new FileReader();
     reader.onload = async ()=>{
       try{
         await db.collection("users").doc(currentUser.uid).collection("files").add({
           name: file.name, type: file.type, size: file.size, data: reader.result, ts: Date.now()
         });
-        toast("✓ تزاد الملف");
+        toast(t("file_ok"));
         loadFiles();
-      }catch(e){ toast("تعذر حفظ الملف"); }
+      }catch(e){ toast(t("file_err")); }
     };
     reader.readAsDataURL(file);
     ev.target.value = "";
