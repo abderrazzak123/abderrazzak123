@@ -15,7 +15,8 @@
 <meta property="og:description" content="جميع مباريات التوظيف المفتوحة في المغرب في مكان واحد، مع الترشيح المباشر وعروض الشغل.">
 <meta property="og:url" content="https://abderrazzak123.github.io/abderrazzak123/">
 <meta property="og:image" content="https://abderrazzak123.github.io/abderrazzak123/icon-512.png">
-<meta name="theme-color" content="#0071e3">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#e9edf6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101018">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <style>
@@ -704,7 +705,14 @@ document.getElementById("avatarBtn").addEventListener("click", ()=>showTab("acco
     if(t === "light") return false;
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   }
-  function paint(){ if(btn) btn.textContent = currentDark() ? "☀" : "☾"; }
+  function paint(){
+    if(btn) btn.textContent = currentDark() ? "☀" : "☾";
+    document.querySelectorAll('meta[name="theme-color"]').forEach(m=>m.remove());
+    const meta = document.createElement("meta");
+    meta.name = "theme-color";
+    meta.content = currentDark() ? "#101018" : "#e9edf6";
+    document.head.appendChild(meta);
+  }
   paint();
   btn?.addEventListener("click", ()=>{
     const next = currentDark() ? "light" : "dark";
