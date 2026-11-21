@@ -31,6 +31,7 @@
     --border:rgba(255,255,255,.14); --shadow:0 8px 32px rgba(0,0,0,.45); }
 }
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+html,body{overscroll-behavior-y:none}
 html,body{margin:0;padding:0}
 body{
   font-family:-apple-system,"Segoe UI",Roboto,"Noto Sans Arabic",sans-serif;
@@ -195,10 +196,15 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 .install-bar .ib-name{flex:1;font-weight:800;font-size:15px;line-height:1.2}
 .install-bar .ib-btn{background:#0071e3;color:#fff;border:none;border-radius:12px;padding:10px 16px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
 .install-bar .ib-x{background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer;padding:4px}
+.pull-ind{position:fixed;top:14px;left:50%;transform:translate(-50%,-70px);z-index:70;width:42px;height:42px;border-radius:50%;background:var(--glass,rgba(255,255,255,.85));backdrop-filter:blur(16px);box-shadow:0 6px 18px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;transition:transform .25s ease}
+.pull-ind svg{width:22px;height:22px;color:#0071e3}
+.pull-ind.spinning svg{animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 <div id="splash"><div class="splash-logo">MC</div><div class="splash-bar"><i></i></div></div>
+<div class="pull-ind" id="pullInd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></div>
 <div class="install-bar hide" id="installBar">
   <img src="icon-192.png" alt="">
   <div class="ib-name">My Concours</div>
@@ -597,23 +603,29 @@ try{
 
 // Pull to refresh
 let startY = 0, pulling = false;
-const pullEl = document.getElementById("pull");
+const pullInd = document.getElementById("pullInd");
 window.addEventListener("touchstart", e=>{
   if(window.scrollY <= 0){ startY = e.touches[0].clientY; pulling = true; }
 }, {passive:true});
 window.addEventListener("touchmove", e=>{
-  if(!pulling) return;
+  if(!pulling || !pullInd) return;
   const dy = e.touches[0].clientY - startY;
   if(dy > 0 && window.scrollY <= 0){
-    pullEl.style.height = Math.min(dy*0.5, 56)+"px";
-    pullEl.textContent = dy > 110 ? "أطلق للتحديث" : "اسحب للتحديث…";
+    const y = Math.min(dy*0.5, 64) - 70;
+    pullInd.style.transform = `translate(-50%, ${y}px) rotate(${Math.min(dy,180)}deg)`;
   }
 }, {passive:true});
-window.addEventListener("touchend", e=>{
+window.addEventListener("touchend", async e=>{
   if(!pulling) return; pulling = false;
   const dy = (e.changedTouches[0].clientY - startY);
-  pullEl.style.height = "0px";
-  if(dy > 110) refresh(true);
+  if(!pullInd) return;
+  if(dy > 110){
+    pullInd.style.transform = "translate(-50%, 6px)";
+    pullInd.classList.add("spinning");
+    try{ await refresh(true); }catch(err){}
+    pullInd.classList.remove("spinning");
+  }
+  pullInd.style.transform = "translate(-50%, -70px)";
 });
 
 renderAll();
