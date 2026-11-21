@@ -189,10 +189,22 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 .splash-bar{width:150px;height:4px;border-radius:2px;background:rgba(0,0,0,.12);overflow:hidden}
 .splash-bar i{display:block;height:100%;width:40%;background:#0071e3;border-radius:2px;animation:splashslide 1s ease-in-out infinite}
 @keyframes splashslide{0%{transform:translateX(-110%)}100%{transform:translateX(390%)}}
+.install-bar{position:fixed;left:14px;right:14px;bottom:96px;z-index:60;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:20px;background:var(--glass,rgba(255,255,255,.72));backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);box-shadow:0 10px 30px rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.5)}
+.install-bar.hide{display:none}
+.install-bar img{width:44px;height:44px;border-radius:12px}
+.install-bar .ib-name{flex:1;font-weight:800;font-size:15px;line-height:1.2}
+.install-bar .ib-btn{background:#0071e3;color:#fff;border:none;border-radius:12px;padding:10px 16px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
+.install-bar .ib-x{background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer;padding:4px}
 </style>
 </head>
 <body>
 <div id="splash"><div class="splash-logo">MC</div><div class="splash-bar"><i></i></div></div>
+<div class="install-bar hide" id="installBar">
+  <img src="icon-192.png" alt="">
+  <div class="ib-name">My Concours</div>
+  <a class="ib-btn" href="my-concours.apk" download data-i18n="dl_app">تحميل التطبيق</a>
+  <button class="ib-x" id="installClose" aria-label="إغلاق">×</button>
+</div>
 <div id="loginOverlay">
   <div class="login-card">
     <h2>كونكوراتي</h2>
@@ -219,7 +231,6 @@ nav.bottom button.active{background:var(--accent); color:#fff}
   <section class="section active" id="tab-home">
     <div class="stories" id="storiesRow"></div>
     <div id="hero"></div>
-    <a class="apply" href="my-concours.apk" download style="display:block;text-align:center;margin:0 0 14px;text-decoration:none" data-i18n="dl_app">تحميل التطبيق</a>
     <h3 class="sec-title" data-i18n="latest_news">آخر المستجدات</h3>
     <div class="card" id="homeNews"></div>
   </section>
@@ -608,6 +619,15 @@ window.addEventListener("touchend", e=>{
 renderAll();
 refresh(false);
 setTimeout(()=>{ const s=document.getElementById("splash"); if(s) s.classList.add("hide"); }, 900);
+(function(){
+  const bar = document.getElementById("installBar");
+  const standalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
+  if(bar && !standalone && !localStorage.getItem("mc_install_dismissed")) bar.classList.remove("hide");
+  document.getElementById("installClose")?.addEventListener("click", ()=>{
+    localStorage.setItem("mc_install_dismissed", "1");
+    bar?.classList.add("hide");
+  });
+})();
 if("serviceWorker" in navigator){ navigator.serviceWorker.register("sw.js").catch(()=>{}); }
 
 // Personal account (saved on this device only)
