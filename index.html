@@ -89,7 +89,7 @@ main{padding:calc(env(safe-area-inset-top,0px) + 84px) 14px 120px; max-width:640
   backdrop-filter:blur(26px) saturate(200%); -webkit-backdrop-filter:blur(26px) saturate(200%);
   box-shadow:var(--shadow), var(--edge); padding:18px; margin-bottom:14px;
 }
-.hero{background:linear-gradient(135deg, rgba(0,113,227,.85), rgba(94,92,230,.85)); color:#fff; border:none}
+.hero{background:linear-gradient(135deg, color-mix(in srgb, var(--accent) 88%, transparent), color-mix(in srgb, var(--accent2) 88%, transparent)); color:#fff; border:none}
 .hero .kicker{font-size:12px; opacity:.85}
 .hero h2{margin:6px 0 4px; font-size:21px}
 .hero .meta{font-size:13px; opacity:.92}
@@ -110,7 +110,7 @@ h3.sec-title{margin:18px 4px 10px; font-size:16px}
 .concours .note{font-size:13px; color:var(--muted); margin-top:4px}
 .chip{
   display:inline-block; font-size:12px; font-weight:700; border-radius:999px; padding:3px 10px;
-  background:rgba(0,113,227,.12); color:var(--accent);
+  background:color-mix(in srgb, var(--accent) 12%, transparent); color:var(--accent);
 }
 .chip.warn{background:rgba(245,166,35,.18); color:#9a6a00}
 .chip.done{background:rgba(128,128,128,.15); color:var(--muted)}
@@ -226,6 +226,9 @@ html[dir="ltr"] .switch.on::after{transform:translateX(20px)}
 body.no-anim *,body.no-anim *::before,body.no-anim *::after{animation:none!important;transition:none!important}
 main.zoom-s{zoom:.92}
 main.zoom-l{zoom:1.08}
+.swatches{display:flex;gap:8px}
+.swatch{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0}
+.swatch.on{border-color:var(--text);box-shadow:0 0 0 2px var(--bg), 0 0 0 4px var(--text)}
 @keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
@@ -361,6 +364,16 @@ main.zoom-l{zoom:1.08}
           <button data-v="fr">Français</button>
         </div>
       </div>
+      <div class="set-row"><span class="lbl" data-i18n="s_color">لون التطبيق</span>
+        <div class="swatches" id="swatches">
+          <button class="swatch" data-c="#0071e3" data-c2="#5e5ce6" style="background:linear-gradient(135deg,#0071e3,#5e5ce6)" aria-label="أزرق"></button>
+          <button class="swatch" data-c="#7d3ff2" data-c2="#c86dd7" style="background:linear-gradient(135deg,#7d3ff2,#c86dd7)" aria-label="بنفسجي"></button>
+          <button class="swatch" data-c="#0aa36b" data-c2="#34c759" style="background:linear-gradient(135deg,#0aa36b,#34c759)" aria-label="أخضر"></button>
+          <button class="swatch" data-c="#f56600" data-c2="#f5a623" style="background:linear-gradient(135deg,#f56600,#f5a623)" aria-label="برتقالي"></button>
+          <button class="swatch" data-c="#e8326e" data-c2="#ff5e8a" style="background:linear-gradient(135deg,#e8326e,#ff5e8a)" aria-label="وردي"></button>
+          <button class="swatch" data-c="#0a8a9e" data-c2="#30b8c7" style="background:linear-gradient(135deg,#0a8a9e,#30b8c7)" aria-label="سماوي"></button>
+        </div>
+      </div>
       <div class="set-row"><span class="lbl" data-i18n="s_font">حجم الخط</span>
         <div class="seg" id="segFont">
           <button data-v="small" data-i18n="s_small">صغير</button>
@@ -460,7 +473,7 @@ const I18N = {
     err_fill:"أدخل البريد الإلكتروني وكلمة السر", search_ph:"ابحث عن مباراة أو جهة…", no_results:"لا نتائج مطابقة",
     dl_app:"تحميل التطبيق",
     settings:"الإعدادات", s_theme:"المظهر", s_light:"فاتح", s_dark:"داكن", s_system:"النظام", s_lang:"اللغة",
-    s_font:"حجم الخط", s_small:"صغير", s_normal:"عادي", s_large:"كبير", s_anim:"الحركات",
+    s_font:"حجم الخط", s_small:"صغير", s_normal:"عادي", s_large:"كبير", s_anim:"الحركات", s_color:"لون التطبيق",
     s_notif:"إشعارات المباريات الجديدة", s_home_tab:"الصفحة عند الفتح"
   },
   fr: {
@@ -505,7 +518,7 @@ const I18N = {
     search_ph:"Rechercher un concours ou un organisme…", no_results:"Aucun résultat",
     dl_app:"Télécharger l'application",
     settings:"Paramètres", s_theme:"Apparence", s_light:"Clair", s_dark:"Sombre", s_system:"Système", s_lang:"Langue",
-    s_font:"Taille du texte", s_small:"Petit", s_normal:"Normal", s_large:"Grand", s_anim:"Animations",
+    s_font:"Taille du texte", s_small:"Petit", s_normal:"Normal", s_large:"Grand", s_anim:"Animations", s_color:"Couleur de l'app",
     s_notif:"Notifications des nouveaux concours", s_home_tab:"Page à l'ouverture"
   }
 };
@@ -737,7 +750,7 @@ if(sessionStorage.getItem("mc_splash_shown")){
 }
 // Settings
 const SETTINGS_KEY = "mc_settings";
-let SETTINGS = { theme: localStorage.getItem("mc_theme") || "system", font: "normal", anim: true, notif: false, homeTab: "" };
+let SETTINGS = { theme: localStorage.getItem("mc_theme") || "system", font: "normal", anim: true, notif: false, homeTab: "", color: "#0071e3", color2: "#5e5ce6" };
 try{ Object.assign(SETTINGS, JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}")); }catch(e){}
 function saveSettings(){ localStorage.setItem(SETTINGS_KEY, JSON.stringify(SETTINGS)); }
 function segPaint(id, val){
@@ -771,8 +784,13 @@ function applyAnimSetting(){
 function applyNotifSetting(){
   document.getElementById("swNotif")?.classList.toggle("on", SETTINGS.notif);
 }
+function applyColorSetting(){
+  document.documentElement.style.setProperty("--accent", SETTINGS.color);
+  document.documentElement.style.setProperty("--accent2", SETTINGS.color2);
+  document.querySelectorAll("#swatches .swatch").forEach(s=>s.classList.toggle("on", s.dataset.c===SETTINGS.color));
+}
 function applyAllSettings(){
-  applyThemeSetting(); applyFontSetting(); applyAnimSetting(); applyNotifSetting();
+  applyThemeSetting(); applyFontSetting(); applyAnimSetting(); applyNotifSetting(); applyColorSetting();
   segPaint("segLang", LANG);
   segPaint("segHome", SETTINGS.homeTab || "home");
 }
@@ -783,6 +801,10 @@ document.querySelectorAll("#segLang button").forEach(b=>b.addEventListener("clic
   if(LANG === b.dataset.v) return;
   LANG = b.dataset.v; localStorage.setItem("mc_lang", LANG);
   applyLang(); renderAll(); segPaint("segLang", LANG);
+}));
+document.querySelectorAll("#swatches .swatch").forEach(s=>s.addEventListener("click", ()=>{
+  SETTINGS.color = s.dataset.c; SETTINGS.color2 = s.dataset.c2;
+  saveSettings(); applyColorSetting();
 }));
 document.querySelectorAll("#segFont button").forEach(b=>b.addEventListener("click", ()=>{
   SETTINGS.font = b.dataset.v; saveSettings(); applyFontSetting();
