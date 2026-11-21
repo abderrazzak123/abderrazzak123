@@ -618,7 +618,12 @@ window.addEventListener("touchend", e=>{
 
 renderAll();
 refresh(false);
-setTimeout(()=>{ const s=document.getElementById("splash"); if(s) s.classList.add("hide"); }, 900);
+if(sessionStorage.getItem("mc_splash_shown")){
+  const s=document.getElementById("splash"); if(s) s.style.display="none";
+} else {
+  sessionStorage.setItem("mc_splash_shown","1");
+  setTimeout(()=>{ const s=document.getElementById("splash"); if(s) s.classList.add("hide"); }, 900);
+}
 (function(){
   const bar = document.getElementById("installBar");
   const standalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
