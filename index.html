@@ -212,6 +212,20 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 .pull-ind{position:fixed;top:calc(env(safe-area-inset-top,0px) + 76px);left:50%;transform:translate(-50%,-170px);z-index:70;width:42px;height:42px;border-radius:50%;background:var(--glass,rgba(255,255,255,.85));backdrop-filter:blur(16px);box-shadow:0 6px 18px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;transition:transform .25s ease}
 .pull-ind svg{width:22px;height:22px;color:#0071e3}
 .pull-ind.spinning svg{animation:spin 0.8s linear infinite}
+.set-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.set-row:last-child{border-bottom:none}
+.set-row .lbl{font-weight:600;font-size:14.5px}
+.seg{display:flex;background:rgba(128,128,128,.14);border-radius:999px;padding:3px;gap:2px}
+.seg button{border:none;background:transparent;color:var(--muted);font-family:inherit;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;cursor:pointer}
+.seg button.on{background:var(--accent);color:#fff}
+.switch{position:relative;width:48px;height:28px;border-radius:999px;background:rgba(128,128,128,.3);border:none;cursor:pointer;flex:0 0 auto;transition:background .2s}
+.switch::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.25);transition:transform .2s}
+.switch.on{background:var(--accent)}
+.switch.on::after{transform:translateX(-20px)}
+html[dir="ltr"] .switch.on::after{transform:translateX(20px)}
+body.no-anim *,body.no-anim *::before,body.no-anim *::after{animation:none!important;transition:none!important}
+main.zoom-s{zoom:.92}
+main.zoom-l{zoom:1.08}
 @keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
@@ -330,6 +344,43 @@ nav.bottom button.active{background:var(--accent); color:#fff}
       </div>
     </div>
     <button class="save-btn" id="saveProfile" data-i18n="save">حفظ</button>
+    <h3 class="sec-title" data-i18n="settings">الإعدادات</h3>
+    <div class="card">
+      <div class="set-row"><span class="lbl" data-i18n="s_theme">المظهر</span>
+        <div class="seg" id="segTheme">
+          <button data-v="light" data-i18n="s_light">فاتح</button>
+          <button data-v="dark" data-i18n="s_dark">داكن</button>
+          <button data-v="system" data-i18n="s_system">النظام</button>
+        </div>
+      </div>
+      <div class="set-row"><span class="lbl" data-i18n="s_lang">اللغة</span>
+        <div class="seg" id="segLang">
+          <button data-v="ar">العربية</button>
+          <button data-v="fr">Français</button>
+        </div>
+      </div>
+      <div class="set-row"><span class="lbl" data-i18n="s_font">حجم الخط</span>
+        <div class="seg" id="segFont">
+          <button data-v="small" data-i18n="s_small">صغير</button>
+          <button data-v="normal" data-i18n="s_normal">عادي</button>
+          <button data-v="large" data-i18n="s_large">كبير</button>
+        </div>
+      </div>
+      <div class="set-row"><span class="lbl" data-i18n="s_anim">الحركات</span>
+        <button class="switch on" id="swAnim" aria-label="الحركات"></button>
+      </div>
+      <div class="set-row"><span class="lbl" data-i18n="s_notif">إشعارات المباريات الجديدة</span>
+        <button class="switch" id="swNotif" aria-label="الإشعارات"></button>
+      </div>
+      <div class="set-row"><span class="lbl" data-i18n="s_home_tab">الصفحة عند الفتح</span>
+        <div class="seg" id="segHome">
+          <button data-v="home" data-i18n="tab_home">الرئيسية</button>
+          <button data-v="concours" data-i18n="tab_concours">المباريات</button>
+          <button data-v="jobs" data-i18n="tab_jobs">المناصب</button>
+          <button data-v="news" data-i18n="tab_news">المستجدات</button>
+        </div>
+      </div>
+    </div>
     <div class="card" style="margin-top:14px">
       <p style="margin:0 0 6px"><b data-i18n="my_files">ملفاتي</b></p>
       <p style="color:var(--muted);font-size:13.5px;margin:0 0 10px" data-i18n="files_desc">ملفاتك محفوظة في حسابك. الحجم الأقصى لكل ملف: 700 كيلوبايت.</p>
@@ -405,7 +456,10 @@ const I18N = {
     err_weak:"كلمة السر قصيرة — 6 أحرف على الأقل", err_bad_email:"البريد الإلكتروني غير صحيح",
     err_network:"مشكلة في الاتصال — أعد المحاولة", err_generic:"حدثت مشكلة — أعد المحاولة",
     err_fill:"أدخل البريد الإلكتروني وكلمة السر", search_ph:"ابحث عن مباراة أو جهة…", no_results:"لا نتائج مطابقة",
-    dl_app:"تحميل التطبيق"
+    dl_app:"تحميل التطبيق",
+    settings:"الإعدادات", s_theme:"المظهر", s_light:"فاتح", s_dark:"داكن", s_system:"النظام", s_lang:"اللغة",
+    s_font:"حجم الخط", s_small:"صغير", s_normal:"عادي", s_large:"كبير", s_anim:"الحركات",
+    s_notif:"إشعارات المباريات الجديدة", s_home_tab:"الصفحة عند الفتح"
   },
   fr: {
     login_sub:"Connectez-vous pour utiliser l'application et enregistrer vos fichiers dans votre compte",
@@ -447,7 +501,10 @@ const I18N = {
     err_bad_email:"E-mail invalide", err_network:"Problème de connexion — réessayez",
     err_generic:"Un problème est survenu — réessayez", err_fill:"Entrez l'e-mail et le mot de passe",
     search_ph:"Rechercher un concours ou un organisme…", no_results:"Aucun résultat",
-    dl_app:"Télécharger l'application"
+    dl_app:"Télécharger l'application",
+    settings:"Paramètres", s_theme:"Apparence", s_light:"Clair", s_dark:"Sombre", s_system:"Système", s_lang:"Langue",
+    s_font:"Taille du texte", s_small:"Petit", s_normal:"Normal", s_large:"Grand", s_anim:"Animations",
+    s_notif:"Notifications des nouveaux concours", s_home_tab:"Page à l'ouverture"
   }
 };
 let LANG = localStorage.getItem("mc_lang") || "ar";
@@ -596,12 +653,21 @@ async function refresh(showToast){
     }catch(e){}
     renderAll();
     animateCards();
+    try{
+      const lastCount = parseInt(localStorage.getItem("mc_last_count")||"0", 10);
+      const nowCount = DATA.concours.length;
+      if(lastCount && nowCount > lastCount && typeof SETTINGS!=="undefined" && SETTINGS.notif && "Notification" in window && Notification.permission==="granted"){
+        new Notification("My Concours", { body: (nowCount-lastCount) + " " + (LANG==="fr" ? "nouveau(x) concours" : "مباراة جديدة"), icon: "icon-192.png" });
+      }
+      localStorage.setItem("mc_last_count", String(nowCount));
+    }catch(e){}
     if(showToast) toast("تم التحديث");
   }catch(e){ renderAll(); animateCards(); if(showToast) toast("تعذر الجلب — عرض آخر بيانات محفوظة"); }
   if(mainEl) mainEl.classList.remove("refreshing");
   refreshing = false;
 }
 function animateCards(){
+  if(document.body.classList.contains("no-anim")) return;
   document.querySelectorAll("main .card, main .concours, main .job, main .news-item, main .hero").forEach((el,i)=>{
     el.classList.remove("anim-in");
     void el.offsetWidth;
@@ -623,7 +689,7 @@ document.querySelectorAll("nav.bottom button").forEach(b=>{
 });
 // Stay on the same page after a refresh/reload
 try{
-  const savedTab = localStorage.getItem("mc_tab");
+  const savedTab = (typeof SETTINGS!=="undefined" && SETTINGS.homeTab) || localStorage.getItem("mc_tab");
   if(savedTab && document.getElementById("tab-"+savedTab)) showTab(savedTab);
 }catch(e){}
 
@@ -662,6 +728,76 @@ if(sessionStorage.getItem("mc_splash_shown")){
   sessionStorage.setItem("mc_splash_shown","1");
   setTimeout(()=>{ const s=document.getElementById("splash"); if(s) s.classList.add("hide"); }, 900);
 }
+// Settings
+const SETTINGS_KEY = "mc_settings";
+let SETTINGS = { theme: localStorage.getItem("mc_theme") || "system", font: "normal", anim: true, notif: false, homeTab: "" };
+try{ Object.assign(SETTINGS, JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}")); }catch(e){}
+function saveSettings(){ localStorage.setItem(SETTINGS_KEY, JSON.stringify(SETTINGS)); }
+function segPaint(id, val){
+  document.querySelectorAll("#"+id+" button").forEach(b=>b.classList.toggle("on", b.dataset.v===val));
+}
+function applyThemeSetting(){
+  if(SETTINGS.theme === "system"){
+    document.documentElement.removeAttribute("data-theme");
+    localStorage.removeItem("mc_theme");
+  } else {
+    document.documentElement.dataset.theme = SETTINGS.theme;
+    localStorage.setItem("mc_theme", SETTINGS.theme);
+  }
+  const dark = SETTINGS.theme==="dark" || (SETTINGS.theme==="system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const tb = document.getElementById("themeBtn"); if(tb) tb.textContent = dark ? "☀" : "☾";
+  document.querySelectorAll('meta[name="theme-color"]').forEach(m=>m.remove());
+  const meta = document.createElement("meta"); meta.name="theme-color"; meta.content = dark ? "#101018" : "#e9edf6";
+  document.head.appendChild(meta);
+  segPaint("segTheme", SETTINGS.theme);
+}
+function applyFontSetting(){
+  const m = document.getElementById("main"); if(!m) return;
+  m.classList.toggle("zoom-s", SETTINGS.font==="small");
+  m.classList.toggle("zoom-l", SETTINGS.font==="large");
+  segPaint("segFont", SETTINGS.font);
+}
+function applyAnimSetting(){
+  document.body.classList.toggle("no-anim", !SETTINGS.anim);
+  document.getElementById("swAnim")?.classList.toggle("on", SETTINGS.anim);
+}
+function applyNotifSetting(){
+  document.getElementById("swNotif")?.classList.toggle("on", SETTINGS.notif);
+}
+function applyAllSettings(){
+  applyThemeSetting(); applyFontSetting(); applyAnimSetting(); applyNotifSetting();
+  segPaint("segLang", LANG);
+  segPaint("segHome", SETTINGS.homeTab || "home");
+}
+document.querySelectorAll("#segTheme button").forEach(b=>b.addEventListener("click", ()=>{
+  SETTINGS.theme = b.dataset.v; saveSettings(); applyThemeSetting();
+}));
+document.querySelectorAll("#segLang button").forEach(b=>b.addEventListener("click", ()=>{
+  if(LANG === b.dataset.v) return;
+  LANG = b.dataset.v; localStorage.setItem("mc_lang", LANG);
+  applyLang(); renderAll(); segPaint("segLang", LANG);
+}));
+document.querySelectorAll("#segFont button").forEach(b=>b.addEventListener("click", ()=>{
+  SETTINGS.font = b.dataset.v; saveSettings(); applyFontSetting();
+}));
+document.querySelectorAll("#segHome button").forEach(b=>b.addEventListener("click", ()=>{
+  SETTINGS.homeTab = b.dataset.v; saveSettings(); segPaint("segHome", SETTINGS.homeTab);
+}));
+document.getElementById("swAnim")?.addEventListener("click", ()=>{
+  SETTINGS.anim = !SETTINGS.anim; saveSettings(); applyAnimSetting();
+});
+document.getElementById("swNotif")?.addEventListener("click", async ()=>{
+  SETTINGS.notif = !SETTINGS.notif;
+  if(SETTINGS.notif && "Notification" in window && Notification.permission === "default"){
+    try{ await Notification.requestPermission(); }catch(e){}
+  }
+  saveSettings(); applyNotifSetting();
+});
+document.getElementById("themeBtn")?.addEventListener("click", ()=>{
+  SETTINGS.theme = document.documentElement.dataset.theme || "system";
+  saveSettings(); segPaint("segTheme", SETTINGS.theme);
+});
+applyAllSettings();
 (function(){
   const bar = document.getElementById("installBar");
   const standalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
