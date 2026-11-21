@@ -2566,6 +2566,15 @@
    "apply": "https://www.emploi-public.ma/fr/concours/details/41ab5083-666c-4c71-af53-39563ee175ed"
   },
   {
+   "id": "ep-68e599f9-1529-495e-8a5c-73a92fd440ce",
+   "title": "Avis de concours de recrutement de AVIS DE RECRUTEMENT (01) CHEF DE PROJETS (H/F) À LA SOCIETE AL OMRANE AL JANOUB Holding d'Aménagement Al Omrane",
+   "org": "",
+   "deadline": "2026-12-06",
+   "exam": "",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/68e599f9-1529-495e-8a5c-73a92fd440ce"
+  },
+  {
    "id": "ep-367a2ace-5caa-464f-9b95-76c1c97c5bff",
    "title": "Avis de concours de recrutement de Agent Ressources Humaines Agence Nationale des Ports",
    "org": "",
@@ -2656,6 +2665,15 @@
    "apply": "https://www.emploi-public.ma/fr/concours/details/a733db06-94ba-4d0a-a3ac-90ca4df8984d"
   },
   {
+   "id": "ep-ed5ca019-eb92-4461-b3bf-d2d153a73e62",
+   "title": "Avis de concours de recrutement de Maitre de conférences au profit de l’Ecole Supérieure de l'Education et de la Formation Oujda Université Mohammed Premier - Oujda",
+   "org": "",
+   "deadline": "2026-12-08",
+   "exam": "2026-12-14",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/ed5ca019-eb92-4461-b3bf-d2d153a73e62"
+  },
+  {
    "id": "ep-b75ebf20-47cc-440b-8e26-6b4ec81dd2ce",
    "title": "Avis de concours de recrutement de Enseignant-chercheur en Robotique Fondation Ecole Centrale Casablanca",
    "org": "",
@@ -2726,6 +2744,15 @@
    "exam": "",
    "note": "1 منصب",
    "apply": "https://www.emploi-public.ma/fr/concours/details/d84d9570-92af-4f9a-bf08-365fd83e1227"
+  },
+  {
+   "id": "ep-ad1f0081-ded7-4f6f-ae53-e7fb5cbc927c",
+   "title": "Avis de concours de recrutement de Responsable Administratif et Financier Société de Développement Régional pour la Promotion de la Toute Petite, la Petite et la Moyenne Entreprises Touristiques Souss-Massa",
+   "org": "",
+   "deadline": "2026-12-11",
+   "exam": "",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/ad1f0081-ded7-4f6f-ae53-e7fb5cbc927c"
   },
   {
    "id": "ep-d45d7653-93e7-4462-8350-86dcfcfa6092",
@@ -2872,6 +2899,25 @@
    "apply": "https://www.emploi-public.ma/fr/concours/details/3014e2dd-d9bf-4bfd-b622-3a6ceeead402"
   }
  ],
- "news": [],
+ "news": [
+  {
+   "date": "2026-11-21",
+   "title": "مباراة جديدة: Avis de concours de recrutement de AVIS DE RECRUTEMENT (01) CHEF DE PROJETS (H/F) À LA SOCIETE AL OMRANE AL JANOUB Holding d'Aménagement Al Omrane",
+   "body": "1 منصب — آخر أجل: 2026-12-06",
+   "link": "https://www.emploi-public.ma/fr/concours/details/68e599f9-1529-495e-8a5c-73a92fd440ce"
+  },
+  {
+   "date": "2026-11-21",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Maitre de conférences au profit de l’Ecole Supérieure de l'Education et de la Formation Oujda Université Mohammed Premier - Oujda",
+   "body": "1 منصب — آخر أجل: 2026-12-08",
+   "link": "https://www.emploi-public.ma/fr/concours/details/ed5ca019-eb92-4461-b3bf-d2d153a73e62"
+  },
+  {
+   "date": "2026-11-21",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Responsable Administratif et Financier Société de Développement Régional pour la Promotion de la Toute Petite, la Petite et la Moyenne Entreprises Touristiques Souss-Massa",
+   "body": "1 منصب — آخر أجل: 2026-12-11",
+   "link": "https://www.emploi-public.ma/fr/concours/details/ad1f0081-ded7-4f6f-ae53-e7fb5cbc927c"
+  }
+ ],
  "updated": "2026-11-21"
 }
