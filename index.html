@@ -219,6 +219,7 @@ nav.bottom button.active{background:var(--accent); color:#fff}
   <section class="section active" id="tab-home">
     <div class="stories" id="storiesRow"></div>
     <div id="hero"></div>
+    <a class="apply" href="my-concours.apk" download style="display:block;text-align:center;margin:0 0 14px;text-decoration:none" data-i18n="dl_app">تحميل التطبيق</a>
     <h3 class="sec-title" data-i18n="latest_news">آخر المستجدات</h3>
     <div class="card" id="homeNews"></div>
   </section>
@@ -372,7 +373,8 @@ const I18N = {
     err_wrong_pass:"كلمة السر غير صحيحة", err_no_user:"هذا الحساب غير موجود", err_email_used:"هذا البريد مسجل مسبقا",
     err_weak:"كلمة السر قصيرة — 6 أحرف على الأقل", err_bad_email:"البريد الإلكتروني غير صحيح",
     err_network:"مشكلة في الاتصال — أعد المحاولة", err_generic:"حدثت مشكلة — أعد المحاولة",
-    err_fill:"أدخل البريد الإلكتروني وكلمة السر", search_ph:"ابحث عن مباراة أو جهة…", no_results:"لا نتائج مطابقة"
+    err_fill:"أدخل البريد الإلكتروني وكلمة السر", search_ph:"ابحث عن مباراة أو جهة…", no_results:"لا نتائج مطابقة",
+    dl_app:"تحميل التطبيق"
   },
   fr: {
     login_sub:"Connectez-vous pour utiliser l'application et enregistrer vos fichiers dans votre compte",
@@ -413,7 +415,8 @@ const I18N = {
     err_email_used:"Cet e-mail est déjà enregistré", err_weak:"Mot de passe trop court — 6 caractères minimum",
     err_bad_email:"E-mail invalide", err_network:"Problème de connexion — réessayez",
     err_generic:"Un problème est survenu — réessayez", err_fill:"Entrez l'e-mail et le mot de passe",
-    search_ph:"Rechercher un concours ou un organisme…", no_results:"Aucun résultat"
+    search_ph:"Rechercher un concours ou un organisme…", no_results:"Aucun résultat",
+    dl_app:"Télécharger l'application"
   }
 };
 let LANG = localStorage.getItem("mc_lang") || "ar";
