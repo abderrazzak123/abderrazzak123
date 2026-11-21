@@ -26,10 +26,13 @@
   --shadow:0 8px 32px rgba(28,28,60,.12); --radius:28px;
 }
 @media (prefers-color-scheme: dark){
-  :root{ --bg:#101018; --text:#f2f2f7; --muted:#a1a1aa;
+  :root:not([data-theme="light"]){ --bg:#101018; --text:#f2f2f7; --muted:#a1a1aa;
     --glass:rgba(40,40,55,.5); --glass-strong:rgba(45,45,62,.7);
     --border:rgba(255,255,255,.14); --shadow:0 8px 32px rgba(0,0,0,.45); }
 }
+:root[data-theme="dark"]{ --bg:#101018; --text:#f2f2f7; --muted:#a1a1aa;
+  --glass:rgba(40,40,55,.5); --glass-strong:rgba(45,45,62,.7);
+  --border:rgba(255,255,255,.14); --shadow:0 8px 32px rgba(0,0,0,.45); }
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
 html,body{overscroll-behavior-y:none}
 html,body{margin:0;padding:0}
@@ -226,6 +229,7 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 </div>
 <header>
   <button class="refresh-btn" id="langBtn" aria-label="Language" style="font-weight:700;font-size:13px;width:auto;padding:0 10px">FR</button>
+  <button class="refresh-btn" id="themeBtn" aria-label="المظهر" style="font-size:17px">☀</button>
   <div class="brand">MC</div>
   <button class="avatar-btn" id="avatarBtn" aria-label="الحساب الشخصي">
     <img id="avatarImg" alt="">
@@ -675,6 +679,25 @@ document.getElementById("saveProfile").addEventListener("click", ()=>{
   toast(t("saved_ok"));
 });
 document.getElementById("avatarBtn").addEventListener("click", ()=>showTab("account"));
+(function(){
+  const btn = document.getElementById("themeBtn");
+  const saved = localStorage.getItem("mc_theme");
+  if(saved) document.documentElement.dataset.theme = saved;
+  function currentDark(){
+    const t = document.documentElement.dataset.theme;
+    if(t === "dark") return true;
+    if(t === "light") return false;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+  function paint(){ if(btn) btn.textContent = currentDark() ? "☀" : "☾"; }
+  paint();
+  btn?.addEventListener("click", ()=>{
+    const next = currentDark() ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem("mc_theme", next);
+    paint();
+  });
+})();
 loadProfile();
 applyLang();
 
