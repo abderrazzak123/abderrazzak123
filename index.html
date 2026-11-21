@@ -44,7 +44,7 @@ body{
   background-attachment:fixed;
 }
 header{
-  position:sticky; top:0; z-index:20; display:flex; align-items:center; gap:10px;
+  position:fixed; top:0; left:0; right:0; z-index:20; display:flex; align-items:center; gap:10px;
   padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 10px;
   backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%);
   background:var(--glass); border-bottom:1px solid var(--border);
@@ -68,7 +68,7 @@ header .sub{font-size:12px;color:var(--muted)}
   height:0; overflow:hidden; display:flex; align-items:flex-end; justify-content:center;
   color:var(--muted); font-size:13px; transition:height .15s ease;
 }
-main{padding:14px 14px 120px; max-width:640px; margin:0 auto}
+main{padding:calc(env(safe-area-inset-top,0px) + 84px) 14px 120px; max-width:640px; margin:0 auto}
 .section{display:none}
 .section.active{display:block; animation:fade .25s ease}
 @keyframes fade{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
@@ -196,7 +196,7 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 .install-bar .ib-name{flex:1;font-weight:800;font-size:15px;line-height:1.2}
 .install-bar .ib-btn{background:#0071e3;color:#fff;border:none;border-radius:12px;padding:10px 16px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
 .install-bar .ib-x{background:none;border:none;font-size:18px;color:var(--muted);cursor:pointer;padding:4px}
-.pull-ind{position:fixed;top:14px;left:50%;transform:translate(-50%,-70px);z-index:70;width:42px;height:42px;border-radius:50%;background:var(--glass,rgba(255,255,255,.85));backdrop-filter:blur(16px);box-shadow:0 6px 18px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;transition:transform .25s ease}
+.pull-ind{position:fixed;top:calc(env(safe-area-inset-top,0px) + 76px);left:50%;transform:translate(-50%,-70px);z-index:70;width:42px;height:42px;border-radius:50%;background:var(--glass,rgba(255,255,255,.85));backdrop-filter:blur(16px);box-shadow:0 6px 18px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;transition:transform .25s ease}
 .pull-ind svg{width:22px;height:22px;color:#0071e3}
 .pull-ind.spinning svg{animation:spin 0.8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
