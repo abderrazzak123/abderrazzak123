@@ -325,6 +325,7 @@ main.zoom-l{zoom:1.08}
         <div class="field"><label data-i18n="f_cin">رقم البطاقة الوطنية</label><input data-f="cin" type="text"></div>
         <div class="field"><label data-i18n="f_birth">تاريخ الازدياد</label><input data-f="birth" type="date"></div>
         <div class="field"><label data-i18n="f_birthplace">مكان الازدياد</label><input data-f="birthplace" type="text"></div>
+        <button class="save-btn group-save" data-save="identity" data-i18n="save">حفظ</button>
       </div>
     </div>
     <div class="card">
@@ -333,6 +334,7 @@ main.zoom-l{zoom:1.08}
         <div class="field"><label data-i18n="f_address">العنوان</label><input data-f="address" type="text"></div>
         <div class="field"><label data-i18n="f_phone">الهاتف</label><input data-f="phone" type="tel"></div>
         <div class="field"><label data-i18n="email">البريد الإلكتروني</label><input data-f="email" type="email"></div>
+        <button class="save-btn group-save" data-save="contact" data-i18n="save">حفظ</button>
       </div>
     </div>
     <div class="card">
@@ -341,9 +343,9 @@ main.zoom-l{zoom:1.08}
         <div class="field"><label data-i18n="f_diploma">الدبلوم</label><input data-f="diploma" type="text"></div>
         <div class="field"><label data-i18n="f_university">الجامعة</label><input data-f="university" type="text"></div>
         <div class="field"><label data-i18n="f_year">سنة التخرج</label><input data-f="year" type="text"></div>
+        <button class="save-btn group-save" data-save="diploma" data-i18n="save">حفظ</button>
       </div>
     </div>
-    <button class="save-btn" id="saveProfile" data-i18n="save">حفظ</button>
     <h3 class="sec-title" data-i18n="settings">الإعدادات</h3>
     <div class="card">
       <div class="set-row"><span class="lbl" data-i18n="s_theme">المظهر</span>
@@ -827,14 +829,16 @@ function updateCounts(p){
 document.querySelectorAll(".group-head").forEach(h=>{
   h.addEventListener("click", ()=> document.getElementById("fields-"+h.dataset.group).classList.toggle("open"));
 });
-document.getElementById("saveProfile").addEventListener("click", ()=>{
-  const p = {};
-  document.querySelectorAll("#tab-account input[data-f]").forEach(inp=>{ p[inp.dataset.f] = inp.value.trim(); });
-  localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
-  updateCounts(p);
-  document.querySelectorAll(".group-fields").forEach(f=>f.classList.remove("open"));
-  if(window.cloudSaveProfile) window.cloudSaveProfile(p);
-  toast(t("saved_ok"));
+document.querySelectorAll(".group-save").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const p = {};
+    document.querySelectorAll("#tab-account input[data-f]").forEach(inp=>{ p[inp.dataset.f] = inp.value.trim(); });
+    localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
+    updateCounts(p);
+    document.getElementById("fields-"+btn.dataset.save)?.classList.remove("open");
+    if(window.cloudSaveProfile) window.cloudSaveProfile(p);
+    toast(t("saved_ok"));
+  });
 });
 document.getElementById("avatarBtn").addEventListener("click", ()=>showTab("account"));
 (function(){
