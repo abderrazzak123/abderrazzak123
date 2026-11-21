@@ -650,6 +650,11 @@ async function refresh(showToast){
           const mine = new Set(DATA.concours.map(c=>norm(c.title)));
           const extra = c2.concours.filter(c=>!mine.has(norm(c.title)));
           DATA.concours = [...DATA.concours, ...extra];
+          if(Array.isArray(c2.news)){
+            const seenN = new Set(DATA.news.map(n=>norm(n.title)));
+            const extraN = c2.news.filter(n=>!seenN.has(norm(n.title)));
+            DATA.news = [...extraN, ...DATA.news].sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+          }
         }
       }
     }catch(e){}

@@ -171,10 +171,36 @@ def main():
             "apply": it["url"],
         })
     concours.sort(key=lambda c: (c["deadline"] or "9999-12-31", c["title"]))
-    out = {"concours": concours, "updated": today_iso}
+
+    # News: concours that were not in the previous run become news items.
+    prev_urls = set()
+    prev_news = []
+    try:
+        with open("concours.json", encoding="utf-8") as f:
+            prev = json.load(f)
+        prev_urls = {c.get("apply", "") for c in prev.get("concours", [])}
+        prev_news = prev.get("news", []) or []
+    except Exception:
+        pass
+    news = []
+    if prev_urls:
+        for c in concours:
+            if c["apply"] not in prev_urls:
+                body_parts = [p for p in [c["org"], c["note"]] if p]
+                if c["deadline"]:
+                    body_parts.append("آخر أجل: " + c["deadline"])
+                news.append({
+                    "date": today_iso,
+                    "title": "مباراة جديدة: " + c["title"],
+                    "body": " — ".join(body_parts),
+                    "link": c["apply"],
+                })
+    news = (news + prev_news)[:30]
+
+    out = {"concours": concours, "news": news, "updated": today_iso}
     with open("concours.json", "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
-    print(f"wrote {len(concours)} open concours from {requests_made} requests")
+    print(f"wrote {len(concours)} open concours, {len(news)} news items from {requests_made} requests")
 
 
 if __name__ == "__main__":
