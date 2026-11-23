@@ -2004,7 +2004,7 @@
    "org": "",
    "deadline": "2026-12-04",
    "exam": "",
-   "note": "1 منصب",
+   "note": "2 منصب",
    "apply": "https://www.emploi-public.ma/fr/concours/details/61b1b2fa-cbaa-4cc6-85d8-2c2474ed51d6"
   },
   {
@@ -2197,6 +2197,15 @@
    "apply": "https://www.emploi-public.ma/fr/concours/details/3869ed53-c06e-46bd-a616-208710cd43de"
   },
   {
+   "id": "ep-9369b688-ddf8-4b7f-83d8-f2d5e22b6a5b",
+   "title": "Avis de concours de recrutement de 2 Postes (Ingénieur chef de projet en environnement & chauffeur) Laboratoire Public des Essais et des Etudes (LPEE)",
+   "org": "",
+   "deadline": "2026-12-07",
+   "exam": "",
+   "note": "2 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/9369b688-ddf8-4b7f-83d8-f2d5e22b6a5b"
+  },
+  {
    "id": "ep-3fa18601-690a-4adc-bc53-f5b4636cacdf",
    "title": "Avis de concours de recrutement de Cadre Agence pour l'Aménagement de la Vallée du Bouregreg",
    "org": "",
@@ -2204,6 +2213,33 @@
    "exam": "",
    "note": "3 منصب",
    "apply": "https://www.emploi-public.ma/fr/concours/details/3fa18601-690a-4adc-bc53-f5b4636cacdf"
+  },
+  {
+   "id": "ep-0408c54b-8315-40d1-9bb2-058785cd9c67",
+   "title": "Avis de concours de recrutement de Chargé de Pilotage du Mandat de Gestion Caisse de Dépôt et de Gestion",
+   "org": "",
+   "deadline": "2026-12-07",
+   "exam": "",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/0408c54b-8315-40d1-9bb2-058785cd9c67"
+  },
+  {
+   "id": "ep-cfce9d15-2e4e-4932-b249-2fa4213ab2e3",
+   "title": "Avis de concours de recrutement de Chef de projet technique – Développement et Intelligence Artificielle Caisse de Dépôt et de Gestion",
+   "org": "",
+   "deadline": "2026-12-07",
+   "exam": "",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/cfce9d15-2e4e-4932-b249-2fa4213ab2e3"
+  },
+  {
+   "id": "ep-b01421f9-af17-4620-a6c9-a8d725600478",
+   "title": "Avis de concours de recrutement de Ingénieur en développement et Intelligence Artificielle Caisse de Dépôt et de Gestion",
+   "org": "",
+   "deadline": "2026-12-07",
+   "exam": "",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/b01421f9-af17-4620-a6c9-a8d725600478"
   },
   {
    "id": "ep-a53a91db-0679-4b10-83e8-39d16c1e4a7b",
@@ -2249,6 +2285,42 @@
    "exam": "2026-12-14",
    "note": "1 منصب",
    "apply": "https://www.emploi-public.ma/fr/concours/details/ed5ca019-eb92-4461-b3bf-d2d153a73e62"
+  },
+  {
+   "id": "ep-79353bd3-d956-466d-aa34-d1bbf723d14c",
+   "title": "Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Ibn Tofail - Kénitra",
+   "org": "",
+   "deadline": "2026-12-08",
+   "exam": "2026-12-14",
+   "note": "4 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/79353bd3-d956-466d-aa34-d1bbf723d14c"
+  },
+  {
+   "id": "ep-7d14171f-3f4e-4913-8cff-f16e39b9849a",
+   "title": "Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Sultan Moulay Slimane -Béni Mellal",
+   "org": "",
+   "deadline": "2026-12-08",
+   "exam": "2026-12-14",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/7d14171f-3f4e-4913-8cff-f16e39b9849a"
+  },
+  {
+   "id": "ep-29f0a4af-e7dc-464c-ba9e-64465e012d71",
+   "title": "Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Sultan Moulay Slimane -Béni Mellal",
+   "org": "",
+   "deadline": "2026-12-08",
+   "exam": "2026-12-14",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/29f0a4af-e7dc-464c-ba9e-64465e012d71"
+  },
+  {
+   "id": "ep-d20acfea-e336-407e-be71-3c25dadf34da",
+   "title": "Avis de concours de recrutement de Administrateur 3ème grade - Echelle 10 Chambre d'artisanat de la région Guelmim-Oued Noun",
+   "org": "",
+   "deadline": "2026-12-09",
+   "exam": "2026-12-13",
+   "note": "2 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/d20acfea-e336-407e-be71-3c25dadf34da"
   },
   {
    "id": "ep-b75ebf20-47cc-440b-8e26-6b4ec81dd2ce",
@@ -2458,6 +2530,24 @@
    "apply": "https://www.emploi-public.ma/fr/concours/details/f623f168-0cf9-4336-abb7-79c4f7fdb778"
   },
   {
+   "id": "ep-25522f75-f8e0-4c7c-a1f5-53b57433d5c1",
+   "title": "Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Province de Sefrou - RAS TABOUDA",
+   "org": "",
+   "deadline": "2026-12-18",
+   "exam": "2027-01-03",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/25522f75-f8e0-4c7c-a1f5-53b57433d5c1"
+  },
+  {
+   "id": "ep-9395f7ae-bc26-4673-ac8b-381dbfa582b1",
+   "title": "Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Province de Tata - TLITE",
+   "org": "",
+   "deadline": "2026-12-18",
+   "exam": "2026-12-27",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/9395f7ae-bc26-4673-ac8b-381dbfa582b1"
+  },
+  {
    "id": "ep-95deaf9c-14a4-4c50-a851-a555e82eafdb",
    "title": "Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Province de Moulay Yacoub - AIN CHKEF",
    "org": "",
@@ -2474,9 +2564,144 @@
    "exam": "2027-01-31",
    "note": "2 منصب",
    "apply": "https://www.emploi-public.ma/fr/concours/details/3014e2dd-d9bf-4bfd-b622-3a6ceeead402"
+  },
+  {
+   "id": "ep-fc54fad0-7f8e-4e16-9734-e07cfd9b0320",
+   "title": "Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Province de Chichaoua - DOUIRANE",
+   "org": "",
+   "deadline": "2026-12-22",
+   "exam": "2027-01-03",
+   "note": "2 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/fc54fad0-7f8e-4e16-9734-e07cfd9b0320"
+  },
+  {
+   "id": "ep-c7259a97-09c2-4050-893a-c2226569266d",
+   "title": "Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Province de khemisset - EZZHILIGA",
+   "org": "",
+   "deadline": "2026-12-30",
+   "exam": "2027-01-31",
+   "note": "4 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/c7259a97-09c2-4050-893a-c2226569266d"
+  },
+  {
+   "id": "ep-35a928ed-d8e5-4555-8daf-fa89a806a698",
+   "title": "Avis de concours de recrutement de Technicien de 4ème grade - Echelle 8 Province de khemisset - EZZHILIGA",
+   "org": "",
+   "deadline": "2026-12-30",
+   "exam": "2027-01-31",
+   "note": "2 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/35a928ed-d8e5-4555-8daf-fa89a806a698"
+  },
+  {
+   "id": "ep-3d0d7c43-34b5-4e4b-ba57-02da6200dbd0",
+   "title": "Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Province Berrechid - BERRECHID",
+   "org": "",
+   "deadline": "2027-01-15",
+   "exam": "2027-01-26",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/3d0d7c43-34b5-4e4b-ba57-02da6200dbd0"
+  },
+  {
+   "id": "ep-a7c4e6a7-7c33-4ec3-a00e-97c83892d659",
+   "title": "Avis de concours de recrutement de Technicien de 4ème grade - Echelle 8 Province Berrechid - BERRECHID",
+   "org": "",
+   "deadline": "2027-01-15",
+   "exam": "2027-01-26",
+   "note": "4 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/a7c4e6a7-7c33-4ec3-a00e-97c83892d659"
   }
  ],
  "news": [
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de 2 Postes (Ingénieur chef de projet en environnement & chauffeur) Laboratoire Public des Essais et des Etudes (LPEE)",
+   "body": "2 منصب — آخر أجل: 2026-12-07",
+   "link": "https://www.emploi-public.ma/fr/concours/details/9369b688-ddf8-4b7f-83d8-f2d5e22b6a5b"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Chargé de Pilotage du Mandat de Gestion Caisse de Dépôt et de Gestion",
+   "body": "1 منصب — آخر أجل: 2026-12-07",
+   "link": "https://www.emploi-public.ma/fr/concours/details/0408c54b-8315-40d1-9bb2-058785cd9c67"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Chef de projet technique – Développement et Intelligence Artificielle Caisse de Dépôt et de Gestion",
+   "body": "1 منصب — آخر أجل: 2026-12-07",
+   "link": "https://www.emploi-public.ma/fr/concours/details/cfce9d15-2e4e-4932-b249-2fa4213ab2e3"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Ingénieur en développement et Intelligence Artificielle Caisse de Dépôt et de Gestion",
+   "body": "1 منصب — آخر أجل: 2026-12-07",
+   "link": "https://www.emploi-public.ma/fr/concours/details/b01421f9-af17-4620-a6c9-a8d725600478"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Ibn Tofail - Kénitra",
+   "body": "4 منصب — آخر أجل: 2026-12-08",
+   "link": "https://www.emploi-public.ma/fr/concours/details/79353bd3-d956-466d-aa34-d1bbf723d14c"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Sultan Moulay Slimane -Béni Mellal",
+   "body": "1 منصب — آخر أجل: 2026-12-08",
+   "link": "https://www.emploi-public.ma/fr/concours/details/7d14171f-3f4e-4913-8cff-f16e39b9849a"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Sultan Moulay Slimane -Béni Mellal",
+   "body": "1 منصب — آخر أجل: 2026-12-08",
+   "link": "https://www.emploi-public.ma/fr/concours/details/29f0a4af-e7dc-464c-ba9e-64465e012d71"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Administrateur 3ème grade - Echelle 10 Chambre d'artisanat de la région Guelmim-Oued Noun",
+   "body": "2 منصب — آخر أجل: 2026-12-09",
+   "link": "https://www.emploi-public.ma/fr/concours/details/d20acfea-e336-407e-be71-3c25dadf34da"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Province de Sefrou - RAS TABOUDA",
+   "body": "1 منصب — آخر أجل: 2026-12-18",
+   "link": "https://www.emploi-public.ma/fr/concours/details/25522f75-f8e0-4c7c-a1f5-53b57433d5c1"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Province de Tata - TLITE",
+   "body": "1 منصب — آخر أجل: 2026-12-18",
+   "link": "https://www.emploi-public.ma/fr/concours/details/9395f7ae-bc26-4673-ac8b-381dbfa582b1"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Province de Chichaoua - DOUIRANE",
+   "body": "2 منصب — آخر أجل: 2026-12-22",
+   "link": "https://www.emploi-public.ma/fr/concours/details/fc54fad0-7f8e-4e16-9734-e07cfd9b0320"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Province de khemisset - EZZHILIGA",
+   "body": "4 منصب — آخر أجل: 2026-12-30",
+   "link": "https://www.emploi-public.ma/fr/concours/details/c7259a97-09c2-4050-893a-c2226569266d"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Technicien de 4ème grade - Echelle 8 Province de khemisset - EZZHILIGA",
+   "body": "2 منصب — آخر أجل: 2026-12-30",
+   "link": "https://www.emploi-public.ma/fr/concours/details/35a928ed-d8e5-4555-8daf-fa89a806a698"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Province Berrechid - BERRECHID",
+   "body": "1 منصب — آخر أجل: 2027-01-15",
+   "link": "https://www.emploi-public.ma/fr/concours/details/3d0d7c43-34b5-4e4b-ba57-02da6200dbd0"
+  },
+  {
+   "date": "2026-11-23",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Technicien de 4ème grade - Echelle 8 Province Berrechid - BERRECHID",
+   "body": "4 منصب — آخر أجل: 2027-01-15",
+   "link": "https://www.emploi-public.ma/fr/concours/details/a7c4e6a7-7c33-4ec3-a00e-97c83892d659"
+  },
   {
    "date": "2026-11-21",
    "title": "مباراة جديدة: Avis de concours de recrutement de AVIS DE RECRUTEMENT (01) CHEF DE PROJETS (H/F) À LA SOCIETE AL OMRANE AL JANOUB Holding d'Aménagement Al Omrane",
