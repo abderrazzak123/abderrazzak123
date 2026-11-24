@@ -2542,6 +2542,36 @@
  "news": [
   {
    "date": "2026-11-24",
+   "title": "نتائج ولوائح: مباريات التعليم 2026: الاختبارات الكتابية (لوائح المدعوين ابتداءً من 24 نونبر)",
+   "body": "maroc-concour",
+   "link": "https://www.maroc-concour.com/ar/concours/enseignants-aref/"
+  },
+  {
+   "date": "2026-11-24",
+   "title": "نتائج ولوائح: منصة Cursus Sup: طريقة الاستعمال إنشاء الحساب وترتيب المؤسسات وتتبع النتائج.",
+   "body": "maroc-concour",
+   "link": "https://www.maroc-concour.com/ar/guides/cursus-sup-inscription/"
+  },
+  {
+   "date": "2026-11-24",
+   "title": "نتائج ولوائح: نتائج مباراة التعليم 2026-2027 حسب جميع الجهات",
+   "body": "recrutements.ma",
+   "link": "https://www.recrutements.ma/resultats-concours-taalim"
+  },
+  {
+   "date": "2026-11-24",
+   "title": "نتائج ولوائح: نتائج مباراة حارس الجمارك 2026 : لائحة الناجحين لـ 900 منصب (Douane)",
+   "body": "recrutements.ma",
+   "link": "https://www.recrutements.ma/نتائج-مباراة-حارس-الجمارك-douane"
+  },
+  {
+   "date": "2026-11-24",
+   "title": "نتائج ولوائح: نتائج مباراة ادارة السجون extranet dgapr gov ma résultat 2026",
+   "body": "recrutements.ma",
+   "link": "https://www.recrutements.ma/نتائج-مباراة-ادارة-السجون"
+  },
+  {
+   "date": "2026-11-24",
    "title": "مباراة جديدة: Avis de concours de recrutement de Chargé(e) de relation clientèle Caisse de Dépôt et de Gestion -Branche Epargne - Prévoyance-",
    "body": "1 منصب — آخر أجل: 2026-12-07",
    "link": "https://www.emploi-public.ma/fr/concours/details/d16e794d-1b1a-497d-9728-882111d59d56"
@@ -2667,5 +2697,12 @@
    "link": "https://www.emploi-public.ma/fr/concours/details/ad1f0081-ded7-4f6f-ae53-e7fb5cbc927c"
   }
  ],
- "updated": "2026-11-24"
+ "updated": "2026-11-24",
+ "sources_seen": [
+  "https://www.maroc-concour.com/ar/concours/enseignants-aref/",
+  "https://www.maroc-concour.com/ar/guides/cursus-sup-inscription/",
+  "https://www.recrutements.ma/resultats-concours-taalim",
+  "https://www.recrutements.ma/نتائج-مباراة-ادارة-السجون",
+  "https://www.recrutements.ma/نتائج-مباراة-حارس-الجمارك-douane"
+ ]
 }
