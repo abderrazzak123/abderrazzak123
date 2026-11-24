@@ -17,6 +17,21 @@ import requests
 from bs4 import BeautifulSoup
 
 BASE = "https://www.emploi-public.ma"
+# --- results & news sources watched in every run (beyond emploi-public) ---
+# Each source: (display name, url, keywords matched against link text)
+RESULT_SOURCES = [
+    ("وزارة التربية الوطنية", "https://www.men.gov.ma/Fr/Pages/Accueil.aspx",
+     ["لوائح", "نتائج", "مباراة التعليم", "المراكز الجهوية", "CRMEF", "liste", "résultat"]),
+    ("الجمارك — المالية", "https://e-recrutement.finances.gov.ma/",
+     ["résultat", "liste", "نتائج", "لوائح", "ADII", "douane"]),
+    ("الجامعات", "https://recrutement.enssup.gov.ma/",
+     ["résultat", "liste", "نتائج", "لوائح", "avis"]),
+    ("maroc-concour", "https://www.maroc-concour.com/",
+     ["نتائج", "لوائح"]),
+    ("recrutements.ma", "https://www.recrutements.ma/",
+     ["نتائج", "لوائح"]),
+]
+RESULT_KEYWORDS = ["لوائح", "نتائج", "liste", "résultat", "resultat", "convocation"]
 CATEGORIES = ["service_etat", "etab_publics", "collec"]
 LIST_TMPL = (BASE + "/fr/concours-liste?key_word=&stat={stat}&corps=0&region=0"
              "&datePicker={day}&date_from=&date_to=&procedure=0&page={page}")
@@ -56,6 +71,7 @@ def clean(s):
 def parse_page(html):
     soup = BeautifulSoup(html, "html.parser")
     items = []
+    results = []
     for a in soup.find_all("a", href=True):
         text = clean(a.get_text(" "))
         if "Avis de concours" not in text:
@@ -70,6 +86,10 @@ def parse_page(html):
             if "Limite de dépôt" in card.get_text():
                 break
         card_text = clean(card.get_text(" "))
+        # Results publications become news too (not only announcements).
+        if "Résultats" in card_text or "Resultats" in card_text:
+            results.append({"title": re.split(r"\s+Annonce\s+", clean(text))[0][:120], "url": url})
+            continue
         # Keep announcements only (skip Convocation / Résultats publications).
         if "Annonce" not in card_text:
             continue
@@ -107,12 +127,51 @@ def parse_page(html):
             "posts": posts,
             "url": url,
         })
-    return items
+    return items, results
+
+
+def check_sources(session, seen_urls):
+    """Fetch each watched source page; return news items for new result/list links."""
+    found = []
+    for name, url, keywords in RESULT_SOURCES:
+        try:
+            r = session.get(url, timeout=25)
+            r.raise_for_status()
+        except requests.RequestException as e:
+            print(f"source failed {name} ({url}): {e}", file=sys.stderr)
+            continue
+        soup = BeautifulSoup(r.text, "html.parser")
+        n = 0
+        for a in soup.find_all("a", href=True):
+            text = clean(a.get_text(" "))
+            if len(text) < 8:
+                continue
+            low = text.lower()
+            if not any(k.lower() in low for k in keywords):
+                continue
+            href = a["href"]
+            if href.startswith("#") or href.startswith("javascript"):
+                continue
+            link = href if href.startswith("http") else url.rstrip("/") + "/" + href.lstrip("/")
+            if link in seen_urls or link in {f["link"] for f in found}:
+                continue
+            found.append({
+                "date": date.today().isoformat(),
+                "title": "نتائج ولوائح: " + text[:120],
+                "body": name,
+                "link": link,
+            })
+            n += 1
+            if n >= 5:
+                break
+        print(f"source {name}: {n} new links")
+    return found
 
 
 def main():
     today = date.today()
     seen = {}
+    ep_results = []
     session = requests.Session()
     session.headers.update(HEADERS)
     requests_made = 0
@@ -135,7 +194,10 @@ def main():
                     print(f"fetch failed {url}: {e}", file=sys.stderr)
                     break
                 requests_made += 1
-                items = parse_page(r.text)
+                items, page_results = parse_page(r.text)
+                for res in page_results:
+                    if res["url"] not in {x["url"] for x in ep_results}:
+                        ep_results.append(res)
                 if not items:
                     break
                 new = 0
@@ -175,11 +237,13 @@ def main():
     # News: concours that were not in the previous run become news items.
     prev_urls = set()
     prev_news = []
+    prev_seen_sources = set()
     try:
         with open("concours.json", encoding="utf-8") as f:
             prev = json.load(f)
         prev_urls = {c.get("apply", "") for c in prev.get("concours", [])}
         prev_news = prev.get("news", []) or []
+        prev_seen_sources = set(prev.get("sources_seen", []) or [])
     except Exception:
         pass
     news = []
@@ -195,9 +259,24 @@ def main():
                     "body": " — ".join(body_parts),
                     "link": c["apply"],
                 })
-    news = (news + prev_news)[:30]
+    # Results/lists from the watched sources (CRMEF, ADII, universities, aggregators).
+    session = requests.Session()
+    session.headers.update(HEADERS)
+    source_news = check_sources(session, prev_seen_sources)
+    for res in ep_results:
+        if res["url"] not in prev_seen_sources and res["url"] not in {n["link"] for n in source_news}:
+            source_news.append({
+                "date": today_iso,
+                "title": "نتائج: " + res["title"],
+                "body": "emploi-public",
+                "link": res["url"],
+            })
+    news = source_news + news
+    seen_sources = prev_seen_sources | {n["link"] for n in source_news}
+    news = (news + prev_news)[:40]
 
-    out = {"concours": concours, "news": news, "updated": today_iso}
+    out = {"concours": concours, "news": news, "updated": today_iso,
+           "sources_seen": sorted(seen_sources)}
     with open("concours.json", "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
     print(f"wrote {len(concours)} open concours, {len(news)} news items from {requests_made} requests")
