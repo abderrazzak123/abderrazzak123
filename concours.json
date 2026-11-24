@@ -1,105 +1,6 @@
 {
  "concours": [
   {
-   "id": "ep-8fba9c56-1c15-4e3b-b770-99fdbc718b60",
-   "title": "Avis de concours de recrutement de Adjoint administratif 2ème grade Archives du Maroc",
-   "org": "",
-   "deadline": "2026-11-23",
-   "exam": "2026-12-06",
-   "note": "2 منصب",
-   "apply": "https://www.emploi-public.ma/fr/concours/details/8fba9c56-1c15-4e3b-b770-99fdbc718b60"
-  },
-  {
-   "id": "ep-0ce1c9ce-1d0d-4ee0-a8cb-5b05f5d4e640",
-   "title": "Avis de concours de recrutement de Administrateur 2ème grade - Echelle 11 Ministère de l’intérieur -Province de Tata-",
-   "org": "",
-   "deadline": "2026-11-23",
-   "exam": "2026-11-29",
-   "note": "1 منصب",
-   "apply": "https://www.emploi-public.ma/fr/concours/details/0ce1c9ce-1d0d-4ee0-a8cb-5b05f5d4e640"
-  },
-  {
-   "id": "ep-284c1fe0-0a78-4892-87df-3e083e6a65d2",
-   "title": "Avis de concours de recrutement de Ingénieur d'Etat 1er grade - Echelle 11 Ministère de l’intérieur -Province de Tata-",
-   "org": "",
-   "deadline": "2026-11-23",
-   "exam": "2026-11-29",
-   "note": "1 منصب",
-   "apply": "https://www.emploi-public.ma/fr/concours/details/284c1fe0-0a78-4892-87df-3e083e6a65d2"
-  },
-  {
-   "id": "ep-25f59dc5-c121-414e-b6df-da0fefbf169b",
-   "title": "Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Ecole Nationale d’Agriculture de Meknès",
-   "org": "",
-   "deadline": "2026-11-23",
-   "exam": "",
-   "note": "1 منصب",
-   "apply": "https://www.emploi-public.ma/fr/concours/details/25f59dc5-c121-414e-b6df-da0fefbf169b"
-  },
-  {
-   "id": "ep-159b3ab5-4cf6-4c71-b8b0-a3a9353b3e64",
-   "title": "Avis de concours de recrutement de RESPONSABLE FONCTION EQUIPEMENTS FERROVIAIRES NADOR Office National des chemins de fer",
-   "org": "",
-   "deadline": "2026-11-23",
-   "exam": "",
-   "note": "1 منصب",
-   "apply": "https://www.emploi-public.ma/fr/concours/details/159b3ab5-4cf6-4c71-b8b0-a3a9353b3e64"
-  },
-  {
-   "id": "ep-36baaf03-b8f4-444c-93a6-411a4da4f2ed",
-   "title": "Avis de concours de recrutement de RESPONSABLE FONCTION EQUIPEMENTS FERROVIAIRES TANGER Office National des chemins de fer",
-   "org": "",
-   "deadline": "2026-11-23",
-   "exam": "",
-   "note": "1 منصب",
-   "apply": "https://www.emploi-public.ma/fr/concours/details/36baaf03-b8f4-444c-93a6-411a4da4f2ed"
-  },
-  {
-   "id": "ep-670d4abf-1860-4421-a83e-b4844c1a77c4",
-   "title": "Avis de concours de recrutement de RESPONSABLE FONCTION INFRASTRUCTURE GC SIDI ICHOU - FÈS Office National des chemins de fer",
-   "org": "",
-   "deadline": "2026-11-23",
-   "exam": "",
-   "note": "1 منصب",
-   "apply": "https://www.emploi-public.ma/fr/concours/details/670d4abf-1860-4421-a83e-b4844c1a77c4"
-  },
-  {
-   "id": "ep-798499cc-011a-4c69-b880-736c52f8c503",
-   "title": "Avis de concours de recrutement de RESPONSABLE FONCTION ÉQUIPEMENTS FERROVIAIRES SIDI ICHOU - FÈS Office National des chemins de fer",
-   "org": "",
-   "deadline": "2026-11-23",
-   "exam": "",
-   "note": "1 منصب",
-   "apply": "https://www.emploi-public.ma/fr/concours/details/798499cc-011a-4c69-b880-736c52f8c503"
-  },
-  {
-   "id": "ep-0581bd18-e42e-42e4-99ff-f7008747084c",
-   "title": "Avis de concours de recrutement de TELECONSEILLER Atlas On Line /groupe RAM",
-   "org": "",
-   "deadline": "2026-11-23",
-   "exam": "",
-   "note": "30 منصب",
-   "apply": "https://www.emploi-public.ma/fr/concours/details/0581bd18-e42e-42e4-99ff-f7008747084c"
-  },
-  {
-   "id": "ep-710da053-71ea-47bd-a05e-3f25ab917f23",
-   "title": "Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Archives du Maroc",
-   "org": "",
-   "deadline": "2026-11-23",
-   "exam": "2026-12-06",
-   "note": "1 منصب",
-   "apply": "https://www.emploi-public.ma/fr/concours/details/710da053-71ea-47bd-a05e-3f25ab917f23"
-  },
-  {
-   "id": "ep-14d099d9-217c-4f94-9d70-8be1b4df3c45",
-   "title": "Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Ecole Nationale Supérieure des Mines de Rabat",
-   "org": "",
-   "deadline": "2026-11-23",
-   "exam": "2026-11-29",
-   "note": "1 منصب",
-   "apply": "https://www.emploi-public.ma/fr/concours/details/14d099d9-217c-4f94-9d70-8be1b4df3c45"
-  },
-  {
    "id": "ep-a4877c6b-1635-4398-a78c-dc2b0b9ea92b",
    "title": "Avis de concours de recrutement de AGENT COMPTABLE Atlas On Line /groupe RAM",
    "org": "",
@@ -2224,6 +2125,15 @@
    "apply": "https://www.emploi-public.ma/fr/concours/details/0408c54b-8315-40d1-9bb2-058785cd9c67"
   },
   {
+   "id": "ep-d16e794d-1b1a-497d-9728-882111d59d56",
+   "title": "Avis de concours de recrutement de Chargé(e) de relation clientèle Caisse de Dépôt et de Gestion -Branche Epargne - Prévoyance-",
+   "org": "",
+   "deadline": "2026-12-07",
+   "exam": "",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/d16e794d-1b1a-497d-9728-882111d59d56"
+  },
+  {
    "id": "ep-cfce9d15-2e4e-4932-b249-2fa4213ab2e3",
    "title": "Avis de concours de recrutement de Chef de projet technique – Développement et Intelligence Artificielle Caisse de Dépôt et de Gestion",
    "org": "",
@@ -2231,6 +2141,15 @@
    "exam": "",
    "note": "1 منصب",
    "apply": "https://www.emploi-public.ma/fr/concours/details/cfce9d15-2e4e-4932-b249-2fa4213ab2e3"
+  },
+  {
+   "id": "ep-77890329-8608-4a44-9e02-746e757630a9",
+   "title": "Avis de concours de recrutement de Gestionnaire logistique Caisse de Dépôt et de Gestion -Branche Epargne - Prévoyance-",
+   "org": "",
+   "deadline": "2026-12-07",
+   "exam": "",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/77890329-8608-4a44-9e02-746e757630a9"
   },
   {
    "id": "ep-b01421f9-af17-4620-a6c9-a8d725600478",
@@ -2312,6 +2231,15 @@
    "exam": "2026-12-14",
    "note": "1 منصب",
    "apply": "https://www.emploi-public.ma/fr/concours/details/29f0a4af-e7dc-464c-ba9e-64465e012d71"
+  },
+  {
+   "id": "ep-ae99de97-e7ea-4962-9d04-c672cae4901e",
+   "title": "Avis de concours de recrutement de Opérateur de Maintenance des Pelouses Sportives SONARGES",
+   "org": "",
+   "deadline": "2026-12-08",
+   "exam": "",
+   "note": "5 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/ae99de97-e7ea-4962-9d04-c672cae4901e"
   },
   {
    "id": "ep-d20acfea-e336-407e-be71-3c25dadf34da",
@@ -2613,6 +2541,24 @@
  ],
  "news": [
   {
+   "date": "2026-11-24",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Chargé(e) de relation clientèle Caisse de Dépôt et de Gestion -Branche Epargne - Prévoyance-",
+   "body": "1 منصب — آخر أجل: 2026-12-07",
+   "link": "https://www.emploi-public.ma/fr/concours/details/d16e794d-1b1a-497d-9728-882111d59d56"
+  },
+  {
+   "date": "2026-11-24",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Gestionnaire logistique Caisse de Dépôt et de Gestion -Branche Epargne - Prévoyance-",
+   "body": "1 منصب — آخر أجل: 2026-12-07",
+   "link": "https://www.emploi-public.ma/fr/concours/details/77890329-8608-4a44-9e02-746e757630a9"
+  },
+  {
+   "date": "2026-11-24",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Opérateur de Maintenance des Pelouses Sportives SONARGES",
+   "body": "5 منصب — آخر أجل: 2026-12-08",
+   "link": "https://www.emploi-public.ma/fr/concours/details/ae99de97-e7ea-4962-9d04-c672cae4901e"
+  },
+  {
    "date": "2026-11-23",
    "title": "مباراة جديدة: Avis de concours de recrutement de 2 Postes (Ingénieur chef de projet en environnement & chauffeur) Laboratoire Public des Essais et des Etudes (LPEE)",
    "body": "2 منصب — آخر أجل: 2026-12-07",
@@ -2721,5 +2667,5 @@
    "link": "https://www.emploi-public.ma/fr/concours/details/ad1f0081-ded7-4f6f-ae53-e7fb5cbc927c"
   }
  ],
- "updated": "2026-11-23"
+ "updated": "2026-11-24"
 }
