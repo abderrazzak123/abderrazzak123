@@ -119,8 +119,8 @@ h3.sec-title{margin:18px 4px 10px; font-size:16px}
 .news-item{padding:12px 2px; border-bottom:1px solid var(--border)}
 .news-item:last-child{border-bottom:none}
 .news-item .date{font-size:12px; color:var(--muted)}
-.news-item .t{font-weight:700; margin:3px 0}
-.news-item .b{font-size:13.5px; color:var(--muted); line-height:1.6}
+.news-item .t{font-weight:700; margin:3px 0; unicode-bidi:plaintext}
+.news-item .b{font-size:13.5px; color:var(--muted); line-height:1.6; unicode-bidi:plaintext}
 .news-item a{color:var(--accent); font-size:13px; text-decoration:none; font-weight:600}
 .updated{font-size:12px; color:var(--muted); text-align:center; margin:6px 0 2px}
 nav.bottom{
@@ -195,7 +195,7 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 .story .ring{width:62px;height:62px;border-radius:50%;padding:3px;background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)}
 .story .inner{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;border:2px solid var(--bg,#e9edf6)}
 .story .lbl{font-size:11px;color:var(--muted);text-align:center;line-height:1.25;max-width:68px}
-.news-banner{height:110px;border-radius:16px;margin-bottom:10px;display:flex;align-items:flex-end;padding:12px;color:#fff;font-weight:800;font-size:17px;line-height:1.35;background:linear-gradient(135deg,#0b57d0,#7b1fa2)}
+.news-banner{height:110px;border-radius:16px;margin-bottom:10px;display:flex;align-items:flex-end;padding:12px;color:#fff;font-weight:800;font-size:17px;line-height:1.35;background:linear-gradient(135deg,#0b57d0,#7b1fa2);unicode-bidi:plaintext}
 .news-img{width:100%;height:150px;object-fit:cover;border-radius:16px;margin-bottom:10px;display:block}
 .news-video{width:100%;aspect-ratio:16/9;border:none;border-radius:16px;margin-bottom:10px;display:block}
 .brand{position:absolute;left:50%;transform:translateX(-50%);font-family:'Pacifico',cursive;font-size:30px;line-height:1;font-weight:400;pointer-events:none}
@@ -617,7 +617,7 @@ function newsHtml(items){
     + (n.video ? '<iframe class="news-video" src="'+esc(n.video)+'" allowfullscreen loading="lazy"></iframe>'
        : n.img ? '<img class="news-img" src="'+esc(n.img)+'" alt="" loading="lazy">'
        : '<div class="news-banner">'+esc(n.title)+'</div>')
-    + '<div class="date">'+fmtDate(n.date)+'</div><div class="t">'+esc(n.title)+'</div>'
+    + '<div class="date">'+fmtDate(n.date)+'</div>'+((n.video||n.img)?'<div class="t">'+esc(n.title)+'</div>':'')
     + '<div class="b">'+esc(n.body)+'</div>'
     + (n.link?'<a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+t("official_source")+(LANG==="fr"?" →":" ←")+'</a>':'')+'</div>'
   ).join("");
