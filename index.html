@@ -195,7 +195,8 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 .story .ring{width:62px;height:62px;border-radius:50%;padding:3px;background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)}
 .story .inner{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;border:2px solid var(--bg,#e9edf6)}
 .story .lbl{font-size:11px;color:var(--muted);text-align:center;line-height:1.25;max-width:68px}
-.news-banner{height:110px;border-radius:16px;margin-bottom:10px;display:flex;align-items:flex-end;padding:12px;color:#fff;font-weight:800;font-size:17px;line-height:1.35;background:linear-gradient(135deg,#0b57d0,#7b1fa2);unicode-bidi:plaintext}
+.news-banner{min-height:110px;border-radius:16px;margin-bottom:10px;display:flex;align-items:flex-end;padding:16px;color:#fff;font-weight:800;font-size:17px;line-height:1.35;background:linear-gradient(135deg,#0b57d0,#7b1fa2);unicode-bidi:plaintext}
+.news-banner span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .news-img{width:100%;height:150px;object-fit:cover;border-radius:16px;margin-bottom:10px;display:block}
 .news-video{width:100%;aspect-ratio:16/9;border:none;border-radius:16px;margin-bottom:10px;display:block}
 .brand{position:absolute;left:50%;transform:translateX(-50%);font-family:'Pacifico',cursive;font-size:30px;line-height:1;font-weight:400;pointer-events:none}
@@ -272,6 +273,8 @@ main.zoom-l{zoom:1.08}
   <section class="section active" id="tab-home">
     <div class="stories" id="storiesRow"></div>
     <div id="hero"></div>
+    <h3 class="sec-title" data-i18n="latest_concours">أحدث الكونكورات</h3>
+    <div id="homeConcours"></div>
     <h3 class="sec-title" data-i18n="latest_news">آخر المستجدات</h3>
     <div class="card" id="homeNews"></div>
   </section>
@@ -466,7 +469,7 @@ const I18N = {
     sign_out:"تسجيل الخروج", sync_note:"تحفظ المعلومات في حسابك وتتزامن بين الأجهزة",
     days_left:"متبقٍّ {n} يوم", last_day:"اليوم آخر أجل", expired:"انتهى الأجل", waiting:"في الانتظار",
     apply_official:"الترشيح عبر البوابة الرسمية", apply_paper:"الترشيح ورقي — لا بوابة إلكترونية",
-    share:"مشاركة", link_copied:"✓ تم نسخ الرابط",
+    share:"مشاركة", link_copied:"✓ تم نسخ الرابط", latest_concours:"أحدث الكونكورات",
     next_deadline:"أقرب آخر أجل", no_open:"لا مباراة مفتوحة حاليا", pull_hint:"اسحب للتحديث لجلب آخر المستجدات",
     deadline_lbl:"آخر أجل: ", exam_lbl:"الكتابي: ", no_concours:"لا مباريات حاليا", no_news:"لا مستجدات حاليا",
     official_source:"المصدر الرسمي", updated_lbl:"آخر تحديث للبيانات: ", view_offer:"عرض الإعلان",
@@ -510,7 +513,7 @@ const I18N = {
     sync_note:"Les informations sont enregistrées dans votre compte et synchronisées entre appareils",
     days_left:"Plus que {n} jours", last_day:"Dernier jour aujourd'hui", expired:"Délai expiré", waiting:"En attente",
     apply_official:"Postuler sur le portail officiel", apply_paper:"Candidature papier — pas de portail en ligne",
-    share:"Partager", link_copied:"✓ Lien copié",
+    share:"Partager", link_copied:"✓ Lien copié", latest_concours:"Concours récents",
     next_deadline:"Prochaine échéance", no_open:"Aucun concours ouvert actuellement",
     pull_hint:"Tirez pour actualiser les données", deadline_lbl:"Date limite : ", exam_lbl:"Écrit : ",
     no_concours:"Aucun concours pour le moment", no_news:"Aucune actualité pour le moment",
@@ -587,6 +590,21 @@ async function shareConcours(c){
 }
 function shareBtn(i){ return '<button class="btn share-btn" onclick="shareConcours(SHARE_LIST['+i+'])">'+SHARE_SVG+t("share")+'</button>'; }
 function shareBtnHero(){ return '<button class="btn share-btn" onclick="shareConcours(HERO_C)">'+SHARE_SVG+t("share")+'</button>'; }
+let HOME_LIST = [];
+function shareBtnHome(i){ return '<button class="btn share-btn" onclick="shareConcours(HOME_LIST['+i+'])">'+SHARE_SVG+t("share")+'</button>'; }
+function renderHomeConcours(){
+  const el = document.getElementById("homeConcours");
+  if(!el) return;
+  const open = DATA.concours.filter(c=>{const d=daysUntil(c.deadline); return d!==null && d>=0;})
+    .sort((a,b)=>daysUntil(a.deadline)-daysUntil(b.deadline)).slice(0,5);
+  HOME_LIST = open;
+  if(!open.length){ el.innerHTML = '<div class="card empty">'+t("no_open")+'</div>'; return; }
+  el.innerHTML = open.map((c,i) =>
+    '<div class="card concours"><h4>'+esc(c.title)+'</h4><div class="org">'+esc(c.org)+'</div>'
+    + '<div class="dates">'+chipFor(c)+(c.deadline?' &nbsp;'+t("deadline_lbl")+fmtDate(c.deadline):'')+(c.exam?'<br>'+t("exam_lbl")+fmtDate(c.exam):'')+'</div>'
+    + (c.note?'<div class="note">'+esc(c.note)+'</div>':'')+applyBtn(c,false)+shareBtnHome(i)+'</div>'
+  ).join("");
+}
 function renderHero(){
   const upcoming = DATA.concours.filter(c=>{const d=daysUntil(c.deadline); return d!==null && d>=0;})
     .sort((a,b)=>new Date(a.deadline)-new Date(b.deadline))[0];
@@ -623,7 +641,7 @@ function newsHtml(items){
     '<div class="news-item">'
     + (n.video ? '<iframe class="news-video" src="'+esc(n.video)+'" allowfullscreen loading="lazy"></iframe>'
        : n.img ? '<img class="news-img" src="'+esc(n.img)+'" alt="" loading="lazy">'
-       : '<div class="news-banner">'+esc(n.title)+'</div>')
+       : '<div class="news-banner"><span>'+esc(n.title)+'</span></div>')
     + '<div class="date">'+fmtDate(n.date)+'</div>'+((n.video||n.img)?'<div class="t">'+esc(n.title)+'</div>':'')
     + '<div class="b">'+esc(n.body)+'</div>'
     + (n.link?'<a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+t("official_source")+(LANG==="fr"?" →":" ←")+'</a>':'')+'</div>'
@@ -652,10 +670,10 @@ function renderStories(){
 function renderNews(){
   const sorted = [...DATA.news].sort((a,b)=>new Date(b.date)-new Date(a.date));
   document.getElementById("newsList").innerHTML = newsHtml(sorted);
-  document.getElementById("homeNews").innerHTML = newsHtml(sorted.slice(0,3));
+  document.getElementById("homeNews").innerHTML = newsHtml(sorted.slice(0,5));
   document.getElementById("updatedLine").textContent = DATA.updated ? t("updated_lbl")+fmtDate(DATA.updated) : "";
 }
-function renderAll(){ renderStories(); renderHero(); renderConcours(); renderNews(); renderJobs(); }
+function renderAll(){ renderStories(); renderHero(); renderHomeConcours(); renderConcours(); renderNews(); renderJobs(); }
 function renderJobs(){
   const el = document.getElementById("jobsList");
   if(!el) return;
