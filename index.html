@@ -602,9 +602,16 @@ function renderConcours(){
   const el = document.getElementById("concoursList");
   const q = (document.getElementById("concoursSearch")?.value || "").trim().toLowerCase();
   const list = q ? DATA.concours.filter(c => ((c.title||"")+" "+(c.org||"")+" "+(c.note||"")).toLowerCase().includes(q)) : DATA.concours;
-  SHARE_LIST = list;
-  if(!list.length){ el.innerHTML = '<div class="card empty">'+(q ? t("no_results") : t("no_concours"))+'</div>'; return; }
-  el.innerHTML = list.map((c,i) =>
+  const sorted = [...list].sort((a,b)=>{
+    const da = daysUntil(a.deadline), db = daysUntil(b.deadline);
+    const ga = da===null?1:(da>=0?0:2), gb = db===null?1:(db>=0?0:2);
+    if(ga!==gb) return ga-gb;
+    if(da!==null && db!==null) return da-db;
+    return 0;
+  });
+  SHARE_LIST = sorted;
+  if(!sorted.length){ el.innerHTML = '<div class="card empty">'+(q ? t("no_results") : t("no_concours"))+'</div>'; return; }
+  el.innerHTML = sorted.map((c,i) =>
     '<div class="card concours"><h4>'+esc(c.title)+'</h4><div class="org">'+esc(c.org)+'</div>'
     + '<div class="dates">'+chipFor(c)+(c.deadline?' &nbsp;'+t("deadline_lbl")+fmtDate(c.deadline):'')+(c.exam?'<br>'+t("exam_lbl")+fmtDate(c.exam):'')+'</div>'
     + (c.note?'<div class="note">'+esc(c.note)+'</div>':'')+applyBtn(c,false)+shareBtn(i)+'</div>'
