@@ -201,12 +201,6 @@ nav.bottom button.active{background:var(--accent); color:#fff}
 .news-img{width:100%;height:150px;object-fit:cover;border-radius:16px;margin-bottom:10px;display:block}
 .news-video{width:100%;aspect-ratio:16/9;border:none;border-radius:16px;margin-bottom:10px;display:block}
 .brand{position:absolute;left:50%;transform:translateX(-50%);font-family:'Pacifico',cursive;font-size:30px;line-height:1;font-weight:400;pointer-events:none}
-#splash{position:fixed;inset:0;background:var(--bg,#e9edf6);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .45s ease}
-#splash.hide{opacity:0;pointer-events:none}
-.splash-logo{font-family:'Pacifico',cursive;font-size:72px;line-height:1;color:var(--text,#111)}
-.splash-bar{width:150px;height:4px;border-radius:2px;background:rgba(0,0,0,.12);overflow:hidden}
-.splash-bar i{display:block;height:100%;width:40%;background:#0071e3;border-radius:2px;animation:splashslide 1s ease-in-out infinite}
-@keyframes splashslide{0%{transform:translateX(-110%)}100%{transform:translateX(390%)}}
 .install-bar{position:fixed;left:14px;right:14px;bottom:96px;z-index:60;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:20px;background:var(--glass,rgba(255,255,255,.72));backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);box-shadow:0 10px 30px rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.5)}
 .install-bar.hide{display:none}
 .install-bar img{width:44px;height:44px;border-radius:12px}
@@ -237,7 +231,7 @@ main.zoom-l{zoom:1.08}
 </style>
 </head>
 <body>
-<div id="splash"><div class="splash-logo">MC</div><div class="splash-bar"><i></i></div></div>
+
 <div class="pull-ind" id="pullInd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></div>
 <div class="install-bar hide" id="installBar">
   <img src="icon-192.png" alt="">
@@ -792,12 +786,6 @@ window.addEventListener("touchend", async e=>{
 
 renderAll();
 refresh(false);
-if(sessionStorage.getItem("mc_splash_shown")){
-  const s=document.getElementById("splash"); if(s) s.style.display="none";
-} else {
-  sessionStorage.setItem("mc_splash_shown","1");
-  setTimeout(()=>{ const s=document.getElementById("splash"); if(s) s.classList.add("hide"); }, 900);
-}
 // Settings
 const SETTINGS_KEY = "mc_settings";
 let SETTINGS = { theme: localStorage.getItem("mc_theme") || "system", font: "normal", anim: true, notif: false, homeTab: "", color: "#0071e3", color2: "#5e5ce6" };
