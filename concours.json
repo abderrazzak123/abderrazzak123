@@ -1765,6 +1765,15 @@
    "apply": "https://www.emploi-public.ma/fr/concours/details/631f5a37-ce06-43d5-beb2-6bf91e943474"
   },
   {
+   "id": "ep-e5581f88-1243-48b2-b6ff-ae135246c4f6",
+   "title": "Avis de concours de recrutement de Acheteur SOREAD 2M",
+   "org": "",
+   "deadline": "2026-12-11",
+   "exam": "",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/e5581f88-1243-48b2-b6ff-ae135246c4f6"
+  },
+  {
    "id": "ep-6a2330d4-4733-49c1-bedd-5be861163f0e",
    "title": "Avis de concours de recrutement de Administrateur 2ème grade - Echelle 11 Centre Cinématographique Marocain",
    "org": "",
@@ -1927,6 +1936,15 @@
    "apply": "https://www.emploi-public.ma/fr/concours/details/bd2a7773-fa09-4c14-a42f-397f9c633458"
   },
   {
+   "id": "ep-1e33ced8-9041-46db-ab70-478d2aad77cb",
+   "title": "Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Université Moulay Ismaïl - Meknès",
+   "org": "",
+   "deadline": "2026-12-11",
+   "exam": "2026-12-15",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/1e33ced8-9041-46db-ab70-478d2aad77cb"
+  },
+  {
    "id": "ep-bfff7746-dc4c-40be-8f95-b9b0620e9c2d",
    "title": "Avis de concours de recrutement de Technicien de 3ème grade – Secrétariat administratif à la Faculté des Sciences Juridiques et Politiques de Settat Université Hassan 1er - Settat",
    "org": "",
@@ -1970,6 +1988,24 @@
    "exam": "2027-01-10",
    "note": "1 منصب",
    "apply": "https://www.emploi-public.ma/fr/concours/details/5c06ac20-9431-4f7b-b52e-415a8d5decf7"
+  },
+  {
+   "id": "ep-770a12fe-e1a1-4bb9-8a7d-f6ca4c8152fb",
+   "title": "Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Moulay Ismaïl - Meknès",
+   "org": "",
+   "deadline": "2026-12-12",
+   "exam": "2026-12-18",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/770a12fe-e1a1-4bb9-8a7d-f6ca4c8152fb"
+  },
+  {
+   "id": "ep-9c94d268-16e7-4f46-9c9d-b1a429f8ea50",
+   "title": "Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Moulay Ismaïl - Meknès",
+   "org": "",
+   "deadline": "2026-12-12",
+   "exam": "2026-12-18",
+   "note": "1 منصب",
+   "apply": "https://www.emploi-public.ma/fr/concours/details/9c94d268-16e7-4f46-9c9d-b1a429f8ea50"
   },
   {
    "id": "ep-da464299-5f99-4c59-95a6-4c49f9e7fb30",
@@ -2235,6 +2271,30 @@
  ],
  "news": [
   {
+   "date": "2026-11-26",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Acheteur SOREAD 2M",
+   "body": "1 منصب — آخر أجل: 2026-12-11",
+   "link": "https://www.emploi-public.ma/fr/concours/details/e5581f88-1243-48b2-b6ff-ae135246c4f6"
+  },
+  {
+   "date": "2026-11-26",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Technicien de 3ème grade - Echelle 9 Université Moulay Ismaïl - Meknès",
+   "body": "1 منصب — آخر أجل: 2026-12-11",
+   "link": "https://www.emploi-public.ma/fr/concours/details/1e33ced8-9041-46db-ab70-478d2aad77cb"
+  },
+  {
+   "date": "2026-11-26",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Moulay Ismaïl - Meknès",
+   "body": "1 منصب — آخر أجل: 2026-12-12",
+   "link": "https://www.emploi-public.ma/fr/concours/details/770a12fe-e1a1-4bb9-8a7d-f6ca4c8152fb"
+  },
+  {
+   "date": "2026-11-26",
+   "title": "مباراة جديدة: Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Moulay Ismaïl - Meknès",
+   "body": "1 منصب — آخر أجل: 2026-12-12",
+   "link": "https://www.emploi-public.ma/fr/concours/details/9c94d268-16e7-4f46-9c9d-b1a429f8ea50"
+  },
+  {
    "date": "2026-11-25",
    "title": "مباراة جديدة: Avis de concours de recrutement de Adjoint technique 2ème grade Groupement Sanitaire Territorial de la Région Tanger – Tétouan – Al Hoceima",
    "body": "9 منصب — آخر أجل: 2026-11-25",
@@ -2449,30 +2509,6 @@
    "title": "مباراة جديدة: Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Cadi Ayyad",
    "body": "1 منصب — آخر أجل: 2026-11-25",
    "link": "https://www.emploi-public.ma/fr/concours/details/fb4cd13b-6fa1-460f-9122-a9b6a8c1f9ae"
-  },
-  {
-   "date": "2026-11-25",
-   "title": "مباراة جديدة: Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Cadi Ayyad",
-   "body": "1 منصب — آخر أجل: 2026-11-25",
-   "link": "https://www.emploi-public.ma/fr/concours/details/9ba5fef8-d010-4ac7-8c05-0c4d11beaab9"
-  },
-  {
-   "date": "2026-11-25",
-   "title": "مباراة جديدة: Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Cadi Ayyad",
-   "body": "1 منصب — آخر أجل: 2026-11-25",
-   "link": "https://www.emploi-public.ma/fr/concours/details/eb332ed3-f352-4138-a90c-26a6851b9e7e"
-  },
-  {
-   "date": "2026-11-25",
-   "title": "مباراة جديدة: Avis de concours de recrutement de Maître de conférences grade A - Echelle 11 Université Cadi Ayyad",
-   "body": "1 منصب — آخر أجل: 2026-11-25",
-   "link": "https://www.emploi-public.ma/fr/concours/details/1cad239a-2b73-455c-8a63-74b5439b2243"
-  },
-  {
-   "date": "2026-11-25",
-   "title": "مباراة جديدة: Avis de concours de recrutement de Maître de conférences à la FEG Guelmim spécialité Economie Université Ibn Zohr - Agadir",
-   "body": "1 منصب — آخر أجل: 2026-11-25",
-   "link": "https://www.emploi-public.ma/fr/concours/details/ba5fffd6-aea2-4924-a5cc-7b46237bf8a9"
   }
  ],
  "updated": "2026-11-26",
